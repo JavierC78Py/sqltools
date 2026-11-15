@@ -27,3 +27,9 @@ etapa1/oci_test
 
 # Capturas y temporales de trabajo
 etapa2/
+
+# Paquetes generados (se publican como Release de GitHub, no en git)
+macIntel/paquete/
+macM/paquete/
+instantclient_arm64/
+build-arm64/

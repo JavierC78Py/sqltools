@@ -11,6 +11,12 @@ Port nativo para macOS de **[SQLTools](https://sqltools.net)**, el cliente Oracl
 - Gestor de conexiones con contraseñas en el Llavero de macOS, importación de las conexiones de SQLTools de Windows (sin contraseñas).
 - Menús y atajos equivalentes a los de Windows, adaptados al Mac.
 
+## Descargas para probar
+| Su Mac | Carpeta | Descarga |
+|---|---|---|
+| Chip **Intel** | [`macIntel/`](macIntel/LEEME.md) | `SQLTools-Mac-x86_64.zip` en *Releases* |
+| Chip **Apple (M1–M4)** | [`macM/`](macM/LEEME.md) | `SQLTools-Mac-arm64.zip` en *Releases* |
+
 ## Documentación (en español)
 - Manual de usuario: [`docs/manual/`](docs/manual/) (PDF y HTML en `docs/manual/salida/`)
 - Menús y atajos: [`docs/MENUS_Y_ATAJOS.md`](docs/MENUS_Y_ATAJOS.md), [`docs/ATAJOS.md`](docs/ATAJOS.md)

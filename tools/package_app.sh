@@ -1,12 +1,12 @@
 #!/bin/bash
 # Empaqueta SQLTools Mac como una app AUTÓNOMA (Qt y Oracle Instant Client dentro del .app) lista para copiar a otro Mac.
-# Resultado: dist/SQLTools Mac.app  y  dist/SQLTools-Mac-<arquitectura>.zip   (uso: bash tools/package_app.sh)
+# Resultado: <OUT_DIR>/SQLTools-Mac-<arquitectura>.zip   (uso: bash tools/package_app.sh; variables opcionales: IC_DIR, BUILD_DIR, OUT_DIR)
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 QT="${QT_ROOT:-$HOME/Qt/6.8.3/macos}"
-IC="$ROOT/instantclient_19_16"
-SRC="$ROOT/build-release/SQLToolsMac.app"
-OUT="$ROOT/dist"
+IC="${IC_DIR:-$ROOT/instantclient_19_16}"
+SRC="${BUILD_DIR:-$ROOT/build-release}/SQLToolsMac.app"
+OUT="${OUT_DIR:-$ROOT/dist}"      # solo se borra esta carpeta: use una exclusiva (macIntel/paquete, macM/paquete)
 APP="$OUT/SQLTools Mac.app"
 ARCH="$(lipo -archs "$SRC/Contents/MacOS/SQLToolsMac")"
 
