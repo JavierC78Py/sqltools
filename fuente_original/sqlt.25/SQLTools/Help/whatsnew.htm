@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <title>What&#39;s new in 2.5</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+        <LINK href="_sqltools.css" type="text/css" rel="stylesheet"></head>
+    <body>
+        <OBJECT classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" type="application/x-oleobject"
+                VIEWASTEXT>
+        </OBJECT>
+        <h3>What's new in 2.5</h3>
+        <hr size="3">
+
+        <h4><a href="datagrid.htm#editing">Editable Data Grid</a></h4>
+        <p>The data grid can now write to the database: F2 changes a cell,
+            Ctrl+F2 inserts a row, Ctrl+Shift+F2 duplicates the current one,
+            Ctrl+Enter posts it, Esc discards it and Ctrl+Del deletes the row.
+            Writes are addressed by ROWID against the single table the query
+            reads, so a join or a result set with no ROWID column leaves the
+            grid read-only.</p>
+
+        <p>A cell edit or row delete now locks its row first, with NOWAIT, so a
+            row another session holds uncommitted or has already deleted is
+            reported immediately rather than waited on. Neither refusal changes
+            the grid, which keeps showing what the database has.</p>
+
+        <h4><a href="datagrid.htm#selection">JSON and Excel Workbook Export</a></h4>
+        <p>The data grid exports to JSON, pretty-printed or compact, and straight
+            to a native Excel workbook (.xlsx) in which numbers stay numbers, a
+            DATE or TIMESTAMP stays a real date Excel can sort and filter, and a
+            NULL becomes an empty cell. &quot;Open with Excel&quot; now writes
+            that workbook instead of a CSV.</p>
+
+        <h4><a href="snippets_pane.htm">Snippets Pane</a></h4>
+        <p>A dockable pane (Alt+5) that lists the editor's
+            <a href="templates.htm">code templates</a> as cards, so a snippet can be
+            picked and inserted at the caret instead of its keyword being typed. Each
+            card's badge shows the keyword that expands it and the minimum number of
+            characters that must be typed first; a card shown dimmed belongs to another
+            language class than the active document's, and cannot be expanded where the
+            caret is.</p>
+
+        <h4><a href="editor_search.htm">Redesigned Find &amp; Replace</a></h4>
+        <p>The editor Find/Replace dialog is modeless now: it no longer blocks the editor,
+            searches as you type with a live match count and highlighted matches, and can
+            search in the selection, the current document or all open editor windows.</p>
+
+        <h4><a href="editor_auto_closing.htm">Auto-closing and Auto-surround</a></h4>
+        <p>Including <a href="editor_auto_closing.htm#plsql">PL/SQL-aware auto-surround</a></p>
+
+        <h4><a href="editor_features.htm#indentation">Smart auto-indent for PL/SQL</a></h4>
+        <p>A third &quot;Auto indent&quot; mode that reads the block structure around
+            the caret, so Enter after BEGIN, IF&hellip;THEN, LOOP, WHEN&hellip;THEN,
+            EXCEPTION, CASE or an unclosed bracket indents one level in and END,
+            END IF, a closing bracket or a statement-terminating semicolon steps back
+            out. Enter in the middle of a line indents from the text after the
+            caret, a wrapped expression continues one level deeper &mdash;
+            including an IF or WHILE condition split across AND / OR, whose THEN
+            or LOOP comes back to the header's level &mdash; and typing the last
+            character of END, ELSE, ELSIF, EXCEPTION or WHEN pulls a line that is
+            one level too deep back to where it belongs. Opt-in per
+            category; every language without smart rules keeps
+            behaving as the Default mode.</p>
+
+        <h4><a href="code_outline.htm">Code Outline</a></h4>
+
+        <h4><a href="code_folding.htm">Code Folding</a></h4>
+        <p>The editor can collapse PL/SQL blocks &mdash; procedures, IF/LOOP blocks,
+            whole SELECT statements, comment blocks &mdash; to a single line ending
+            in a [...] marker, from the folding gutter or the Edit &rarr; Outlining
+            menu (Ctrl+M chords).</p>
+
+        <h4><a href="sql_formatter.htm">SQL Formatter</a></h4>
+
+        <H4><a href="History.txt">The complete list of changes...</a></H4>
+
+        <hr size="3">
+        <h3>What's new in 2.0</h3>
+        <hr size="1">
+
+        <h4><a href="autocomplete.htm">Autocomplete</a></h4>
+        <p>SQLTools provides autocomplete with proper alias-resolving logic.</p>
+
+        <h4>Unicode support</h4>
+        <p>The program partially supports Unicode/UTF now. The editor works with European languages w/o any issues but eastern characters are not supported mainly because the Windows <strong>monospaced</strong> fonts are actually not fixed-width for those code pages. The data grid, on other hand, should handle any texts.</p>
+        <H4>New docking window framework</H4>
+        <p>The control panels like &quot;File Panel&quot;, &quot;History&quot;, &quot;Open Files&quot;, &quot;Object Viewer&quot; can be docked more easily, as well as stacked in tabs. Additionally panels can &quot;Auto hide&quot; in the docking mode. The window tab control &quot;Workbook&quot; is more functional and nicer than in the version 1.9.</p>
+        <H4>Re-implemented &quot;Find In Files&quot;</H4>
+        <p>The external grep program was replaced with the internal implementation which is faster and more functional. See <a href="file_find.htm"><strong>Find in Files</strong></a> for more details.<br></p>
+        <hr size="1">
+        <H4><a href="whatsnew19.htm">What&#39;s new in 1.9</a></H4>
+
+    </body>
+</html>

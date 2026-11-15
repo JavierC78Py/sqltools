@@ -1,0 +1,122 @@
+/*
+    Copyright (C) 2002 Aleksey Kochetov
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+
+#pragma once
+#ifndef __STRHELPERS_H__
+#define __STRHELPERS_H__
+
+namespace Common
+{
+    using std::string;
+    using std::wstring;
+    using std::vector;
+
+    void trim_symmetric (string& str, const char* skip = " \t\n\r");
+    void trim_symmetric (wstring& str, const wchar_t* skip = L" \t\n\r");
+
+    void to_printable_str (const char* from, string& to);
+    void to_printable_str (const char* from, wstring& to);
+
+    void to_unprintable_str (const char* from, string& to, bool skipEscDgt = false);
+    void to_unprintable_str (const char* from, wstring& to, bool skipEscDgt = false);
+
+    void date_c_to_oracle (const char* from, string& to);
+    void date_oracle_to_c (const char* from, string& to);
+
+    void to_upper_str (const char* from, string& to);
+    void to_upper_str (const wchar_t* from, wstring& to);
+
+    void to_lower_str (const char* from, string& to);
+    void to_lower_str (const wchar_t* from, wstring& to);
+
+    void make_safe_filename (const char* from, string& to);
+    void make_safe_filename (const wchar_t* from, wstring& to);
+
+    string sub_str (const string& text, int startLine, int startCol, int length = -1);
+    string sub_str (const string& text, int startLine, int startCol, int endLine, int endCol);
+
+    
+    bool is_blank_line (const char *str, int len);
+    bool is_blank_line (const wchar_t *str, int len);
+
+    string print_time (double seconds);
+
+    bool get_line (const wchar_t* str, int len, int& position, std::wstring& line, bool& cr);
+
+    //  Oracle alternative quoting: q'X ... X' and nq'X ... X'.
+    //  See md/Oracle alternative quoting (q-quote).md.
+    //
+    //  Several independent scanners have to agree on where such a literal ends -
+    //  the script splitter, the editor highlighter, the multiline-quotes storage
+    //  scanner and the formatter's tokeniser. This one function is the single
+    //  source of that truth so the four cannot drift apart.
+    //
+    //  The opening delimiter X terminates the literal on its own, except for the
+    //  four paired brackets, where Oracle terminates on the matching closer
+    //  instead: q'[it''s fine]' ends at "]'" and not at the embedded quote.
+    //
+    //  Returns 0 when X cannot delimit a q-literal at all (whitespace, or the
+    //  quote character itself), so a caller can reject the construct and fall
+    //  back to treating it as an identifier followed by an ordinary string
+    //  rather than entering a state that could never be closed.
+    wchar_t q_closer_for (wchar_t open);
+    char    q_closer_for (char open);
+
+    //  True when `ch` can continue an Oracle identifier (letters, digits and the
+    //  three extra characters Oracle permits: $ # _). Used for the boundary test
+    //  of the q-quote prefix, so that "myq'[x]'" stays an identifier plus a
+    //  string instead of being mistaken for a q-literal.
+    bool q_ident_char (wchar_t ch);
+
+    //  This object-procedure is quicker (two times) than vprintf.
+    class Substitutor
+    {
+    public:
+        Substitutor (bool casesensitive = true) { m_casesensitive = casesensitive; }
+
+        void ResetContent ();
+        void ResetResult ();
+
+        void AddPair (const char*, const char*);
+        void AddPair (const string&, const string&);
+        Substitutor& operator << (const char*);
+        const char* GetResult () const;
+        const string& GetResultStr () const;
+
+    private:
+        string m_result;
+        vector<string>
+            m_whatFind, m_withReplace;
+        bool m_casesensitive;
+    };
+
+    inline
+    const char* Substitutor::GetResult () const
+        { return m_result.c_str(); }
+
+    inline
+    const string& Substitutor::GetResultStr () const
+        { return m_result; }
+
+    inline
+    void Substitutor::ResetResult ()
+        { m_result.erase(); }
+
+} // END namespace Common
+
+#endif//__STRHELPERS_H__

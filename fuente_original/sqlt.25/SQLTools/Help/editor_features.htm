@@ -1,0 +1,808 @@
+<HTML>
+    <HEAD>
+        <TITLE>Editor &mdash; Feature Reference</TITLE>
+        <META content="Microsoft Visual Studio 7.0" name="GENERATOR">
+        <META http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+        <LINK href="_sqltools.css" type="text/css" rel="stylesheet">
+    </HEAD>
+    <BODY>
+        <OBJECT id="Object1" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" type="application/x-oleobject"
+                VIEWASTEXT>
+            <PARAM NAME="Keyword" VALUE="Editor">
+            <PARAM NAME="Keyword" VALUE="Editor features">
+            <PARAM NAME="Keyword" VALUE="Column selection">
+            <PARAM NAME="Keyword" VALUE="Block selection">
+            <PARAM NAME="Keyword" VALUE="Bookmarks">
+            <PARAM NAME="Keyword" VALUE="Find Match">
+            <PARAM NAME="Keyword" VALUE="Templates">
+            <PARAM NAME="Keyword" VALUE="Keyboard shortcuts">
+            <PARAM NAME="Keyword" VALUE="Code folding">
+        </OBJECT>
+
+        <H3>Editor &mdash; Feature Reference</H3>
+        <HR SIZE="3">
+
+        <P>
+            <A href="main_window.htm">&larr; Main Window</A>
+        </P>
+
+        <P>
+            This page is a reference for the editor&rsquo;s editing features. It
+            deliberately skips things every modern text/code editor already does
+            &mdash; open/save, cut/copy/paste, plain undo/redo, basic find,
+            syntax highlighting, line numbers, plain multi-line indent &mdash;
+            and focuses on features that are either uncommon elsewhere or work
+            a little differently here. Running SQL/PL/SQL against a database
+            is a separate topic &mdash; see <A href="main_window.htm">Main Window</A>
+            and <A href="quick_query_and_others.htm">Quick Query and others</A>.
+        </P>
+
+        <P>
+            Most commands below are reachable from the menus and the editor
+            context menu, and every shortcut can be changed from
+            <STRONG>Tools &gt; Settings &gt; Keymap</STRONG>. However, that
+            requires manual edit of <CODE>custom.keymap</CODE> and switching
+            to it in settings. The shortcuts shown here are the ones SQLTools
+            ships with by default.
+        </P>
+
+        <H4>Contents</H4>
+        <UL>
+            <LI><A href="#selection">Selection modes</A></LI>
+            <LI><A href="#clipboard">Clipboard &amp; line operations</A></LI>
+            <LI><A href="#navigation">Navigation, scrolling &amp; bookmarks</A></LI>
+            <LI><A href="#find">Find, replace &amp; find-in-files</A></LI>
+            <LI><A href="#autoclosing">Auto-closing &amp; auto-surrounding pairs</A></LI>
+            <LI><A href="#indentation">Indentation &amp; whitespace</A></LI>
+            <LI><A href="#case">Case &amp; text transformation</A></LI>
+            <LI><A href="#column">Column / block editing</A></LI>
+            <LI><A href="#sorting">Text sorting &amp; formatting utilities</A></LI>
+            <LI><A href="#comments">Comments</A></LI>
+            <LI><A href="#templates">Templates &amp; auto-text</A></LI>
+            <LI><A href="#encoding">Encoding &amp; line-ending handling</A></LI>
+            <LI><A href="#visual">Visual aids / display toggles</A></LI>
+            <LI><A href="#document">File &amp; document behaviors</A></LI>
+            <LI><A href="#draganddrop">Drag &amp; drop</A></LI>
+            <LI><A href="#autocomplete">Autocomplete (database objects)</A></LI>
+            <LI><A href="#outline">Code outlining</A></LI>
+            <LI><A href="#folding">Code folding</A></LI>
+        </UL>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="selection">Selection modes</A></H4>
+
+        <P>
+            Unlike most editors, which only support a single &ldquo;stream&rdquo;
+            selection (optionally with a secondary rectangular-selection modifier
+            key), this editor has two persistent, switchable selection modes
+            that stick until you change them:
+        </P>
+        <UL>
+            <LI>
+                <STRONG>Stream Selection</STRONG> (<STRONG>F8</STRONG>) &mdash;
+                normal contiguous text selection.
+            </LI>
+            <LI>
+                <STRONG>Column Selection</STRONG> (<STRONG>Ctrl+Shift+F8</STRONG>)
+                &mdash; a persistent rectangular/column selection mode; every
+                subsequent mouse/keyboard selection is a rectangular block until
+                switched off.
+            </LI>
+            <LI>
+                <STRONG>Toggle Selection Mode</STRONG>
+                (<STRONG>Ctrl+Q, B</STRONG>) &mdash; quick switch between the two.
+            </LI>
+            <LI>
+                In addition to the sticky mode above, holding <STRONG>Alt</STRONG>
+                while selecting with the mouse, or <STRONG>Alt+Shift</STRONG>
+                while selecting with the arrow keys, temporarily forces column
+                mode for that one selection without changing the sticky mode
+                &mdash; see
+                <A href="#column-alt">Entering column selection with Alt</A>
+                below.
+            </LI>
+        </UL>
+
+        <P>
+            Column selection here is not only a transient Alt+drag &mdash; it is
+            also a documented, sticky editor mode that affects clipboard,
+            indent, case-conversion, and auto-surround operations uniformly
+            (see <A href="#column">Column / block editing</A>).
+        </P>
+
+        <P>
+            Convenience selection commands: <STRONG>Select Word</STRONG>
+            (<STRONG>Ctrl+W</STRONG>), <STRONG>Select Line</STRONG>
+            (<STRONG>Ctrl+L</STRONG>).
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="clipboard">Clipboard &amp; line operations</A></H4>
+
+        <P>Beyond plain cut/copy/paste:</P>
+        <UL>
+            <LI>
+                <STRONG>Cut &amp; Append</STRONG> (<STRONG>Ctrl+Shift+X</STRONG>) /
+                <STRONG>Copy &amp; Append</STRONG> (<STRONG>Ctrl+Shift+C</STRONG>)
+                &mdash; append the current cut/copy to the existing clipboard
+                content instead of replacing it, letting you accumulate several
+                non-contiguous fragments into one paste.
+            </LI>
+            <LI>
+                <STRONG>Cut / Copy / Delete Bookmarked Lines</STRONG>
+                (<STRONG>Ctrl+K, X</STRONG> / <STRONG>Ctrl+K, C</STRONG> /
+                <STRONG>Ctrl+K, D</STRONG>) &mdash; operate on the set of all
+                currently bookmarked lines in the document at once, regardless
+                of contiguity (see <A href="#navigation">Bookmarks</A> below).
+            </LI>
+            <LI>
+                <STRONG>Duplicate Line or Selection</STRONG>
+                (<STRONG>Ctrl+K, Q</STRONG>).
+            </LI>
+            <LI>
+                <STRONG>Delete to End of Word</STRONG>
+                (<STRONG>Ctrl+Delete</STRONG>) / <STRONG>Delete Word Back</STRONG>
+                (<STRONG>Ctrl+Backspace</STRONG>) and <STRONG>Delete Line</STRONG>
+                (<STRONG>Ctrl+Y</STRONG>).
+            </LI>
+        </UL>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="navigation">Navigation, scrolling &amp; bookmarks</A></H4>
+
+        <UL>
+            <LI>
+                <STRONG>Scroll Up / Down / To Center</STRONG> without moving the
+                caret (<STRONG>Ctrl+Up</STRONG>, <STRONG>Ctrl+Down</STRONG>,
+                <STRONG>Num 5</STRONG>) &mdash; scrolls the viewport while
+                keeping the cursor position in the buffer, useful for glancing
+                at surrounding code.
+            </LI>
+            <LI>
+                <STRONG>Toggle Bookmark</STRONG> (<STRONG>Ctrl+F2</STRONG>),
+                <STRONG>Next / Previous Bookmark</STRONG>
+                (<STRONG>F2</STRONG> / <STRONG>Shift+F2</STRONG>),
+                <STRONG>Remove all Bookmarks</STRONG>
+                (<STRONG>Ctrl+Shift+F2</STRONG>).
+            </LI>
+            <LI>
+                <STRONG>Numbered (&ldquo;random access&rdquo;) bookmarks 0&ndash;9</STRONG>
+                &mdash; <STRONG>Set Random Bookmark</STRONG>
+                (<STRONG>Ctrl+Shift+0</STRONG>&hellip;<STRONG>9</STRONG>) and
+                <STRONG>Get Random Bookmark</STRONG>
+                (<STRONG>Ctrl+0</STRONG>&hellip;<STRONG>9</STRONG>) let you pin
+                up to 10 named jump points and return to any one directly by
+                number, instead of cycling sequentially through all bookmarks.
+            </LI>
+            <LI>
+                <STRONG>Find Match</STRONG> (<STRONG>Ctrl+]</STRONG>) /
+                <STRONG>Find Match &amp; Select</STRONG>
+                (<STRONG>Ctrl+Shift+]</STRONG>) &mdash; goes well beyond plain
+                brace/parenthesis/bracket matching. It also understands
+                <STRONG>SQL and PL/SQL language pairs</STRONG> and jumps the
+                caret (optionally extending the selection to cover everything
+                in between) between:
+                <UL>
+                    <LI>
+                        SQL statement keywords &mdash; <CODE>SELECT</CODE> /
+                        <CODE>FROM</CODE> / <CODE>WHERE</CODE> (and other
+                        clause keywords of the same statement);
+                    </LI>
+                    <LI>
+                        PL/SQL block/control keywords &mdash;
+                        <CODE>IF</CODE> / <CODE>ELSIF</CODE> / <CODE>ELSE</CODE>
+                        / <CODE>END IF</CODE>, <CODE>CASE</CODE> /
+                        <CODE>WHEN</CODE> / <CODE>END CASE</CODE>,
+                        <CODE>LOOP</CODE> / <CODE>END LOOP</CODE>,
+                        <CODE>BEGIN</CODE> / <CODE>END</CODE>, and similar
+                        paired constructs.
+                    </LI>
+                </UL>
+                This makes it a quick way to jump around the structure of a
+                statement or a PL/SQL block without a mouse, the same way
+                brace-matching lets you jump around nested code in other
+                languages.
+            </LI>
+            <LI>
+                <STRONG>Go To</STRONG> (line/column)
+                (<STRONG>Ctrl+G</STRONG>).
+            </LI>
+            <LI>
+                <STRONG>Open file under cursor</STRONG>
+                (<STRONG>Ctrl+K, F</STRONG>) &mdash; treats the token under the
+                caret as a file reference and opens it directly, handy for
+                jumping to <CODE>@script.sql</CODE> includes or referenced
+                file paths without leaving the keyboard.
+            </LI>
+        </UL>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="find">Find, replace &amp; find-in-files</A></H4>
+
+        <UL>
+            <LI>
+                <STRONG>Find</STRONG> (<STRONG>Ctrl+F</STRONG>) /
+                <STRONG>Replace</STRONG> (<STRONG>Ctrl+H</STRONG>) open a
+                <EM>modeless</EM> dialog that does not block the editor:
+                it searches as you type with a live match count and
+                highlighted matches, and can search the selection, the
+                current document or all open editor windows.
+                <STRONG>Mark All</STRONG> bookmarks every matching line.
+                See <A href="editor_search.htm">Find and Replace</A>.
+            </LI>
+            <LI>
+                <STRONG>Find Next / Previous</STRONG>
+                (<STRONG>F3</STRONG> / <STRONG>Shift+F3</STRONG>) and, notably,
+                <STRONG>Find Selected Next / Previous</STRONG>
+                (<STRONG>Ctrl+F3</STRONG> / <STRONG>Ctrl+Shift+F3</STRONG>)
+                &mdash; instantly search for the next or previous occurrence
+                of the currently selected text without opening the Find
+                dialog.
+            </LI>
+            <LI>
+                <STRONG>Find In Files</STRONG> (<STRONG>Ctrl+Shift+F</STRONG>)
+                &mdash; grep-style search across multiple files with file-mask
+                filtering and recursive directory search, with results shown
+                in a dedicated output panel (double-click a hit to jump to
+                it). See <A href="file_find.htm">Find in Files</A>.
+            </LI>
+        </UL>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="autoclosing">Auto-closing &amp; auto-surrounding pairs</A></H4>
+
+        <P>
+            Full details, including the columnar variant:
+            <A href="editor_auto_closing.htm">Auto-closing and Auto-surround</A>.
+            Two related but distinct features, both configurable in
+            <STRONG>Tools &gt; Settings &gt; Editor &gt; Editing</STRONG>:
+        </P>
+        <UL>
+            <LI>
+                <STRONG>Auto-close</STRONG>: typing an opening character
+                &mdash; <CODE>(</CODE>, <CODE>[</CODE>, <CODE>{</CODE>,
+                <CODE>'</CODE>, <CODE>"</CODE> &mdash; automatically inserts
+                its matching closer and leaves the caret between them. A
+                setting restricts this to only trigger when the character to
+                the right is whitespace/end-of-line, to avoid unwanted closing
+                when typing next to existing text.
+                <UL>
+                    <LI>
+                        <STRONG>Overtype/skip-over</STRONG>: typing the same
+                        closing character that was just auto-inserted moves
+                        the caret past it instead of inserting a duplicate,
+                        and this caret move is not recorded on the undo stack.
+                    </LI>
+                    <LI>
+                        <STRONG>Undo</STRONG>: the auto-inserted closer is its
+                        own undo step, separate from the opener, so a single
+                        Undo removes only the auto-inserted character.
+                    </LI>
+                    <LI>
+                        Suppressed automatically inside quoted strings and
+                        while in overtype/insert mode; not suppressed inside
+                        comments.
+                    </LI>
+                </UL>
+            </LI>
+            <LI>
+                <STRONG>Auto-surround</STRONG>: typing an opening character
+                while text is selected wraps the selection with the matching
+                pair (<CODE>(</CODE>&nbsp;<CODE>)</CODE>,
+                <CODE>[</CODE>&nbsp;<CODE>]</CODE>,
+                <CODE>{</CODE>&nbsp;<CODE>}</CODE>,
+                <CODE>'</CODE>&nbsp;<CODE>'</CODE>,
+                <CODE>"</CODE>&nbsp;<CODE>"</CODE>,
+                <CODE>`</CODE>&nbsp;<CODE>`</CODE>) instead of replacing it,
+                and re-selects the wrapped text. Works with a column/rectangular
+                selection too &mdash; every line of a block gets its own pair.
+                The whole operation is a single Undo step.
+            </LI>
+        </UL>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="indentation">Indentation &amp; whitespace</A></H4>
+
+        <UL>
+            <LI>
+                <STRONG>Indent / Undent Selection</STRONG>
+                (<STRONG>Ctrl+I</STRONG> / <STRONG>Ctrl+U</STRONG>) &mdash;
+                multi-line block indent/outdent, tab-width aware.
+            </LI>
+            <LI>
+                <STRONG>Untabify Selection</STRONG>
+                (<STRONG>Ctrl+K, U</STRONG>) &mdash; convert tabs to spaces.
+            </LI>
+            <LI>
+                <STRONG>Tabify Selection (All)</STRONG>
+                (<STRONG>Ctrl+K, T</STRONG>) vs.
+                <STRONG>Tabify Selection (Leading only)</STRONG>
+                (<STRONG>Ctrl+K, L</STRONG>) &mdash; the distinction between
+                tabifying the whole selection versus only leading indentation
+                whitespace is not offered by most editors, which usually only
+                do leading-whitespace tabify.
+            </LI>
+            <LI>
+                <STRONG>Trim Leading Spaces</STRONG>
+                (<STRONG>Ctrl+K, O</STRONG>),
+                <STRONG>Trim Trailing Spaces</STRONG>
+                (<STRONG>Ctrl+K, R</STRONG>),
+                <STRONG>Trim Excessive Spaces</STRONG>
+                (<STRONG>Ctrl+K, P</STRONG>) &mdash; the &ldquo;excessive
+                spaces&rdquo; variant collapses runs of interior spaces, which
+                goes beyond the usual trailing-whitespace trim most editors
+                provide.
+            </LI>
+            <LI>
+                <STRONG>Smart auto-indent</STRONG> &mdash; the third
+                &quot;Auto indent&quot; mode on the
+                <STRONG>Editor&nbsp;&rarr;&nbsp;Categories</STRONG> settings page,
+                beside <EM>None</EM> and <EM>Default</EM>. Where <EM>Default</EM>
+                copies the leading whitespace of the line above, <EM>Smart</EM>
+                reads the PL/SQL block structure around the caret and indents the
+                new line <EM>relative</EM> to that line: pressing
+                <STRONG>Enter</STRONG> after <CODE>BEGIN</CODE>,
+                <CODE>IF&nbsp;&hellip;&nbsp;THEN</CODE>, <CODE>ELSIF</CODE>,
+                <CODE>ELSE</CODE>, <CODE>LOOP</CODE>,
+                <CODE>WHEN&nbsp;&hellip;&nbsp;THEN</CODE>, <CODE>EXCEPTION</CODE>,
+                a <CODE>CASE</CODE> statement or expression, an
+                <CODE>IS</CODE>/<CODE>AS</CODE> definition header or an unclosed
+                bracket steps one level in, and <CODE>END</CODE>,
+                <CODE>END&nbsp;IF</CODE>, <CODE>END&nbsp;LOOP</CODE>,
+                <CODE>END&nbsp;CASE</CODE>, a closing bracket or a
+                statement-terminating semicolon steps back out. The level is
+                applied to the line above, so a line you have already misaligned
+                keeps its offset until you run <A
+                href="sql_formatter.htm">Format SQL</A>. Inside a continued
+                string literal or block comment the new line is treated as
+                literal content and simply keeps the indentation above it.
+                Pressing <STRONG>Enter</STRONG> in the <EM>middle</EM> of a line
+                is understood too: the text after the caret keeps its place, the
+                new line is indented from that tail's own first keyword rather
+                than from the level the line above left open, and a line ending
+                on <CODE>||</CODE>, a comma, or an arithmetic or comparison
+                operator &mdash; or a continuation line <EM>starting</EM> with
+                one, which is how <A href="sql_formatter.htm">Format SQL</A>
+                wraps a long expression &mdash; is continued one level deeper.
+                A condition wrapped across lines follows the same rule: each
+                top-level <CODE>AND</CODE> / <CODE>OR</CODE> of an
+                <CODE>IF</CODE>, <CODE>ELSIF</CODE> or <CODE>WHILE</CODE> sits
+                one level under the header keyword, and the <CODE>THEN</CODE> or
+                <CODE>LOOP</CODE> that ends it comes back to the header's own
+                level. Indenting also happens <EM>while you type</EM>:
+                <STRONG>Enter</STRONG> can only place the line it creates, so
+                typing the last character of <CODE>END</CODE>,
+                <CODE>ELSE</CODE>, <CODE>ELSIF</CODE>, <CODE>EXCEPTION</CODE> or
+                <CODE>WHEN</CODE> on a line that is one level too deep &mdash; or
+                a closing bracket that begins its line &mdash; pulls that line
+                back to the level it belongs at and moves the caret with it. One
+                <STRONG>Ctrl+Z</STRONG> removes the character and restores the
+                previous indentation.
+                A
+                language with no smart rules behaves exactly as <EM>Default</EM>
+                does, so selecting <EM>Smart</EM> is safe everywhere. No shipped
+                category selects it.
+            </LI>
+        </UL>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="case">Case &amp; text transformation</A></H4>
+
+        <UL>
+            <LI>
+                <STRONG>Lowercase</STRONG> (<STRONG>Ctrl+Shift+Down</STRONG>),
+                <STRONG>Uppercase</STRONG> (<STRONG>Ctrl+Shift+Up</STRONG>),
+                <STRONG>Capitalize</STRONG> (<STRONG>Ctrl+K, A</STRONG>),
+                <STRONG>Invert Case</STRONG> (<STRONG>Ctrl+K, I</STRONG>)
+                &mdash; the &ldquo;Invert case&rdquo; option (toggle each
+                letter&rsquo;s case) is less commonly found than plain
+                upper/lower/capitalize.
+            </LI>
+            <LI>
+                <STRONG>Normalize Keyword</STRONG>
+                (<STRONG>Ctrl+K, N</STRONG>) &mdash; reformats identifiers and
+                keywords under the caret or selection to the casing
+                convention configured for the recognized language (e.g.,
+                normalizing <CODE>SELECT</CODE>/<CODE>select</CODE>/<CODE>Select</CODE>
+                to one canonical form), driven by the language&rsquo;s
+                keyword table rather than blind case conversion.
+            </LI>
+            <LI>
+                <STRONG>Datetime Stamp</STRONG>
+                (<STRONG>Ctrl+T</STRONG>) &mdash; inserts a formatted current
+                date/time at the caret.
+            </LI>
+        </UL>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="column">Column / block editing</A></H4>
+
+        <P>
+            Because Column Selection is a first-class, sticky mode (see
+            <A href="#selection">Selection modes</A>), a full set of
+            column-aware operations builds on it:
+        </P>
+        <UL>
+            <LI>
+                <STRONG>Insert/Fill Columns&hellip;</STRONG>
+                (<STRONG>Ctrl+K, B</STRONG>) &mdash; insert or fill a
+                rectangular block of text down a column selection.
+            </LI>
+            <LI>
+                <STRONG>Insert Number&hellip;</STRONG>
+                (<STRONG>Ctrl+K, M</STRONG>) &mdash; insert an
+                auto-incrementing sequence of numbers, one per line, into a
+                column selection &mdash; useful for quickly numbering a list
+                of rows/lines without a macro.
+            </LI>
+            <LI>
+                <STRONG>Column Left / Center / Right Justify</STRONG>
+                (<STRONG>Ctrl+K, Y</STRONG> / <STRONG>Ctrl+K, V</STRONG> /
+                <STRONG>Ctrl+K, W</STRONG>) &mdash; align text within a
+                column block.
+            </LI>
+            <LI>
+                Clipboard, indent, case-conversion and auto-surround commands
+                described elsewhere all operate per-line across a rectangular
+                block when column mode is active.
+            </LI>
+        </UL>
+
+        <H5><A name="column-alt">Entering column selection with Alt</A></H5>
+
+        <P>
+            You rarely need to switch the sticky Column Selection mode
+            explicitly: holding <STRONG>Alt</STRONG> while selecting &mdash;
+            with either the mouse or the keyboard &mdash; auto-switches into
+            column mode for that selection.
+        </P>
+        <UL>
+            <LI>
+                <STRONG>Mouse</STRONG>: <STRONG>Alt</STRONG> + drag starts a
+                rectangular (column) selection instead of a normal stream
+                selection.
+            </LI>
+            <LI>
+                <STRONG>Keyboard</STRONG>: <STRONG>Shift</STRONG> + arrow keys
+                extend a selection as usual; adding <STRONG>Alt</STRONG>
+                (i.e. <STRONG>Alt+Shift+Arrow</STRONG>) while doing so
+                likewise turns the selection into a rectangular block. This is
+                the standard way to make a column selection purely from the
+                keyboard &mdash; grow the block by rows/columns with
+                <STRONG>Alt+Shift+Up/Down/Left/Right</STRONG> (or
+                <STRONG>Alt+Shift+Page Up/Page Down</STRONG>, etc.).
+            </LI>
+            <LI>
+                Releasing Alt does not cancel the column selection already in
+                progress; it stays a column selection until you clear it or
+                start a new one.
+            </LI>
+        </UL>
+
+        <H5>Typing into a multi-line column selection</H5>
+
+        <P>
+            Once you have a non-empty, multi-line column (rectangular)
+            selection and you type a regular character, the editor does
+            <STRONG>not</STRONG> replace the whole block with one character
+            &mdash; it types that character <STRONG>on every selected line
+            simultaneously</STRONG>, at the same column, producing a
+            multi-caret-like editing effect:
+        </P>
+        <UL>
+            <LI>
+                If the block is a real rectangle (more than one column wide):
+                the selected columns on every line are replaced by one copy
+                of the typed character per line.
+            </LI>
+            <LI>
+                If the block is a zero-width column selection (e.g. you
+                pressed <STRONG>Alt+Shift+Down</STRONG> without moving right,
+                giving you a multi-line caret with nothing actually
+                highlighted): the typed character is inserted (not
+                overwritten) on every line at that column, and the caret
+                advances one column to the right afterward &mdash; the
+                classic &ldquo;type once, appears on every line&rdquo;
+                behavior.
+            </LI>
+            <LI>
+                The whole keystroke is a single Undo step, covering every
+                affected line at once.
+            </LI>
+            <LI>
+                <STRONG>Tab</STRONG> / <STRONG>Shift+Tab</STRONG> with an
+                active column selection indents/outdents every selected line
+                by one tab stop in lockstep, instead of inserting a literal
+                tab character into the block.
+            </LI>
+            <LI>
+                Typing an opening bracket or quote with a column selection
+                active auto-surrounds every line of the block in the pair
+                (see <A href="#autoclosing">Auto-closing &amp; auto-surrounding
+                pairs</A>) rather than replacing the block.
+            </LI>
+        </UL>
+        <P>
+            This behavior is what makes rectangular selections useful as a
+            lightweight substitute for &ldquo;multiple cursors&rdquo; found
+            in newer editors &mdash; you don&rsquo;t get independent carets
+            with independent navigation, but simultaneous same-column typing,
+            deleting, indenting, case-conversion, and surrounding across many
+            lines is fully supported. This behavior can be turned off in
+            <STRONG>Tools &gt; Settings &gt; Editor &gt; Block</STRONG> if you
+            prefer the block to simply be overwritten instead.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="sorting">Text sorting &amp; formatting utilities</A></H4>
+
+        <UL>
+            <LI>
+                <STRONG>Sort&hellip;</STRONG> (<STRONG>Ctrl+K, S</STRONG>)
+                &mdash; sort selected lines (dialog-driven; supports options
+                such as case sensitivity/order).
+            </LI>
+            <LI>
+                <STRONG>Join Lines</STRONG> (<STRONG>Ctrl+K, J</STRONG>) /
+                <STRONG>Split Line&hellip;</STRONG>
+                (<STRONG>Ctrl+K, K</STRONG>) &mdash; merge selected lines into
+                one, or split a line by a delimiter/column with a dialog for
+                choosing where to break.
+            </LI>
+            <LI>
+                <STRONG>Remove Blank Lines</STRONG>
+                (<STRONG>Ctrl+K, G</STRONG>) vs.
+                <STRONG>Remove Excessive Blank Lines</STRONG>
+                (<STRONG>Ctrl+K, H</STRONG>) &mdash; remove all blank lines,
+                or only collapse consecutive runs of blank lines down to a
+                single one (preserving intentional paragraph-style spacing).
+            </LI>
+            <LI>
+                <STRONG>Format SQL</STRONG> (<STRONG>Ctrl+K, E</STRONG>;
+                <STRONG>Ctrl+Shift+K, E</STRONG> to adjust settings first)
+                &mdash; invokes the built-in SQL/PL/SQL formatter on the
+                current selection or statement. See
+                <A href="sql_formatter.htm">SQL Formatter</A> and
+                <A href="plsql_formatter.htm">SQL Formatter &mdash; PL/SQL</A>.
+            </LI>
+        </UL>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="comments">Comments</A></H4>
+
+        <UL>
+            <LI>
+                <STRONG>Comment Line</STRONG> (<STRONG>Ctrl+&gt;</STRONG>) /
+                <STRONG>Uncomment Line</STRONG> (<STRONG>Ctrl+&lt;</STRONG>)
+                &mdash; language-aware line commenting (uses the correct
+                line-comment token for the current language, e.g.
+                <CODE>--</CODE> for SQL) rather than a hardcoded token.
+            </LI>
+        </UL>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="templates">Templates &amp; auto-text</A></H4>
+
+        <P>
+            <STRONG>Expand Template</STRONG>
+            (<STRONG>Ctrl+Space</STRONG>) &mdash; expands a short
+            keyword typed at the caret into a predefined block of text
+            (a lightweight code-snippet/live-template system).
+            <STRONG>Create Template</STRONG> (no default shortcut &mdash;
+            assign one under <STRONG>Tools &gt; Settings &gt; Keymap</STRONG>,
+            where it is listed as <CODE>Edit.CreateTemplate</CODE>) &mdash;
+            makes a new one from the selected text. The
+            <STRONG>Snippets</STRONG> pane (<STRONG>Alt+5</STRONG>) lists every
+            template for browsing and mouse-driven insertion.
+        </P>
+        <P>
+            Full details &mdash; how much of a keyword you must type, where the
+            caret lands afterwards, what the two-tone badge means, and how to
+            hide a template from the pane &mdash; are on the
+            <A href="templates.htm">Templates</A> and
+            <A href="snippets_pane.htm">Snippets Pane</A> pages.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="encoding">Encoding &amp; line-ending handling</A></H4>
+
+        <UL>
+            <LI>
+                Viewing the <STRONG>current</STRONG> encoding vs. converting
+                to a different encoding are two separate menu groups: one
+                reflects/sets how the file is interpreted (ANSI / OEM / UTF-8
+                / a specific codepage), the other actually re-saves the file
+                content in a new encoding &mdash; including UTF-8/UTF-16
+                with-or-without-BOM variants and an open-ended codepage list,
+                which is broader than what most editors expose directly from
+                a menu. Neither group has a default keyboard shortcut.
+            </LI>
+            <LI>
+                <STRONG>File line ending style</STRONG>: Windows / Unix / Old
+                Mac &mdash; explicit conversion including the legacy
+                classic-Mac CR-only line ending, rarely still offered
+                elsewhere. No default keyboard shortcut.
+            </LI>
+        </UL>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="visual">Visual aids / display toggles</A></H4>
+
+        <P>Beyond the usual syntax highlighting and line numbers:</P>
+        <UL>
+            <LI>
+                <STRONG>Syntax Gutter</STRONG> (<STRONG>Ctrl+Q, Y</STRONG>)
+                and <STRONG>Ruler</STRONG> (<STRONG>Ctrl+Q, U</STRONG>)
+                toggles.
+            </LI>
+            <LI>
+                <STRONG>Column Markers</STRONG> (<STRONG>Ctrl+Q, M</STRONG>)
+                &mdash; vertical guide line(s) at configured column positions
+                (e.g. to flag 80-column overflow).
+            </LI>
+            <LI>
+                <STRONG>Indent Guide</STRONG> (<STRONG>Ctrl+Q, G</STRONG>)
+                &mdash; vertical lines tracing indentation levels.
+            </LI>
+            <LI>
+                <STRONG>Visible Spaces</STRONG> (<STRONG>Ctrl+Q, I</STRONG>)
+                &mdash; render whitespace characters.
+            </LI>
+            <LI>
+                <STRONG>Line Numbers</STRONG> (<STRONG>Ctrl+Q, L</STRONG>).
+            </LI>
+        </UL>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="document">File &amp; document behaviors</A></H4>
+
+        <UL>
+            <LI>
+                <STRONG>Read Only</STRONG> toggle at the session/document
+                level (<STRONG>Ctrl+D, O</STRONG>) &mdash; the view is
+                rendered in a distinct, &ldquo;locked&rdquo; look while the
+                document is protected.
+            </LI>
+            <LI>
+                Per-file <STRONG>Properties&hellip;</STRONG>
+                (<STRONG>Ctrl+Q, F</STRONG>) &mdash; inspect/override
+                file-level settings (e.g., encoding, line-ending, tab width)
+                independent of the global editor settings
+                (<STRONG>Ctrl+Q, P</STRONG>).
+            </LI>
+            <LI>
+                Multi-step operations (templates, auto-surround,
+                reformatting) are grouped so they collapse into a single
+                user-facing Undo step instead of requiring many presses of
+                Undo.
+            </LI>
+        </UL>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="draganddrop">Drag &amp; drop</A></H4>
+
+        <P>
+            Internal drag-to-move / drag-to-copy (hold <STRONG>Ctrl</STRONG>
+            while dragging to copy) of selected text within and between
+            editor views, plus drop support for files dragged in from
+            Explorer.
+        </P>
+
+        <P>
+            The data grid also supports dragging selected cells or column
+            headers and dropping them into the editor &mdash; see
+            <A href="datagrid.htm#dad">Data Grid &mdash; Drag and Drop</A>.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="autocomplete">Autocomplete (database objects)</A></H4>
+
+        <P>
+            <STRONG>Ctrl+Shift+Space</STRONG> opens a completion popup. Unlike
+            typical IDE code-completion, this list is <STRONG>not</STRONG> a
+            keyword or language-syntax completion &mdash; it is available
+            <STRONG>only while connected to a database</STRONG>, and only
+            ever lists <STRONG>database objects</STRONG>: schemas,
+            tables/views, columns, and packages/procedures (with their
+            parameters), resolved contextually:
+        </P>
+        <UL>
+            <LI>After a schema name and a dot &rarr; objects of that schema.</LI>
+            <LI>
+                After a table/view name or alias and a dot &rarr; that
+                table&rsquo;s columns (with alias-resolution logic to figure
+                out which table an alias refers to).
+            </LI>
+            <LI>
+                After a package name and a dot &rarr; the package&rsquo;s
+                procedures/functions with parameters.
+            </LI>
+            <LI>
+                For table/view columns specifically, you can multi-select
+                several columns (<STRONG>Space</STRONG>, <STRONG>Ins</STRONG>,
+                or <STRONG>Ctrl+Left-Click</STRONG>) in the order you want
+                them, and insert all of them at once.
+            </LI>
+        </UL>
+        <P>
+            See <A href="autocomplete.htm">Autocomplete</A> for the full
+            behavior, alias-resolving logic, and settings. Without an active
+            database connection this popup has nothing to offer &mdash; it
+            does not fall back to keyword or word-based completion.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="outline">Code outlining</A></H4>
+
+        <P>
+            The <STRONG>Code Outline</STRONG> panel (<STRONG>Alt+4</STRONG>)
+            shows a structural outline of the current SQL/PL/SQL document
+            (procedures, functions, packages, blocks), letting you navigate
+            directly to a symbol&rsquo;s declaration. See
+            <A href="code_outline.htm">Code Outline</A>.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="folding">Code folding</A></H4>
+
+        <P>
+            PL/SQL code blocks &mdash; program units, <STRONG>BEGIN &hellip; END</STRONG>,
+            <STRONG>IF</STRONG> / <STRONG>CASE</STRONG> / <STRONG>LOOP</STRONG> blocks,
+            multiline statements and runs of comment lines &mdash; can be collapsed
+            to a single line ending in a <STRONG>[&hellip;]</STRONG> marker, from the
+            folding gutter (the &minus;/+ boxes between the line numbers and the
+            text), the left-margin context menu, or the <STRONG>Edit &gt;
+            Outlining</STRONG> submenu. The default shortcuts are
+            <STRONG>Ctrl+M</STRONG> chords: <STRONG>Ctrl+M, S</STRONG> collapses the
+            region around the caret, <STRONG>Ctrl+M, E</STRONG> expands it,
+            <STRONG>Ctrl+M, A</STRONG> and <STRONG>Ctrl+M, X</STRONG> collapse and
+            expand the whole document. Hiding lines never loses text: find, print,
+            copy and caret jumps still work on the full document and reveal folded
+            regions as needed. Folding is on by default &mdash; see
+            <A href="code_folding.htm">Code Folding</A> for the complete command
+            list, settings and limitations.
+        </P>
+
+        <HR SIZE="1">
+        <P>
+            <A href="main_window.htm">&larr; Main Window</A>
+        </P>
+
+    </BODY>
+</HTML>

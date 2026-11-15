@@ -1,0 +1,3904 @@
+{
+ "menu": [
+  {
+   "type": "popup",
+   "label": "&File",
+   "children": [
+    {
+     "type": "item",
+     "label": "&New",
+     "id": "ID_FILE_NEW",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Ne&w ...",
+     "id": "ID_FILE_NEW_EXT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Open...",
+     "id": "ID_FILE_OPEN",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Reloa&d",
+     "id": "ID_FILE_RELOAD",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Close",
+     "id": "ID_FILE_CLOSE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Clos&e All",
+     "id": "ID_FILE_CLOSE_ALL",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Save",
+     "id": "ID_FILE_SAVE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Save &As...",
+     "id": "ID_FILE_SAVE_AS",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Save A&ll",
+     "id": "ID_FILE_SAVE_ALL",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Move / &Rename",
+     "id": "ID_FILE_RENAME",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Sho&w File Location",
+     "id": "ID_FILE_SYNC_LOCATION",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Copy File Locat&ion",
+     "id": "ID_FILE_COPY_LOCATION",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Proper&ties...",
+     "id": "ID_EDIT_FILE_SETTINGS",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "popup",
+     "label": "Workspace",
+     "children": [
+      {
+       "type": "item",
+       "label": "Open...",
+       "id": "ID_WORKSPACE_OPEN",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "separator"
+      },
+      {
+       "type": "item",
+       "label": "Save",
+       "id": "ID_WORKSPACE_SAVE",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "Save As...",
+       "id": "ID_WORKSPACE_SAVE_AS",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "separator"
+      },
+      {
+       "type": "item",
+       "label": "Close",
+       "id": "ID_WORKSPACE_CLOSE",
+       "grayed": false,
+       "checked": false
+      }
+     ]
+    },
+    {
+     "type": "popup",
+     "label": "Snapshot",
+     "children": [
+      {
+       "type": "item",
+       "label": "Open AS/QS...",
+       "id": "ID_WORKSPACE_OPEN_AUTOSAVED",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "separator"
+      },
+      {
+       "type": "item",
+       "label": "Quick Save",
+       "id": "ID_WORKSPACE_SAVE_QUICK",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "separator"
+      },
+      {
+       "type": "item",
+       "label": "Copy",
+       "id": "ID_WORKSPACE_COPY",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "Paste",
+       "id": "ID_WORKSPACE_PASTE",
+       "grayed": false,
+       "checked": false
+      }
+     ]
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Page Set&up...",
+     "id": "ID_EDIT_PRINT_PAGE_SETUP",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "P&rint Setup...",
+     "id": "ID_FILE_PRINT_SETUP",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Print Pre&view",
+     "id": "ID_FILE_PRINT_PREVIEW",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Print...",
+     "id": "ID_FILE_PRINT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Send &Mail",
+     "id": "ID_FILE_SEND_MAIL",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "popup",
+     "label": "Recent &Files",
+     "children": [
+      {
+       "type": "item",
+       "label": "Recent File",
+       "id": "ID_FILE_MRU_FILE1",
+       "grayed": true,
+       "checked": false
+      }
+     ]
+    },
+    {
+     "type": "popup",
+     "label": "Recent &Workspaces",
+     "children": [
+      {
+       "type": "item",
+       "label": "Recent Workspace",
+       "id": "ID_WORKSPACE_MRU_FILE1",
+       "grayed": true,
+       "checked": false
+      }
+     ]
+    },
+    {
+     "type": "popup",
+     "label": "Recent &Quick Snapshots",
+     "children": [
+      {
+       "type": "item",
+       "label": "Recent Quick Snapshot",
+       "id": "ID_WORKSPACE_QUICK_MRU_FIRST",
+       "grayed": true,
+       "checked": false
+      }
+     ]
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "E&xit",
+     "id": "ID_APP_EXIT",
+     "grayed": false,
+     "checked": false
+    }
+   ]
+  },
+  {
+   "type": "popup",
+   "label": "&Edit",
+   "children": [
+    {
+     "type": "item",
+     "label": "&Undo",
+     "id": "ID_EDIT_UNDO",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Redo",
+     "id": "ID_EDIT_REDO",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Cu&t",
+     "id": "ID_EDIT_CUT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "C&opy",
+     "id": "ID_EDIT_COPY",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Pa&ste",
+     "id": "ID_EDIT_PASTE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Cut && Append",
+     "id": "ID_EDIT_CUT_N_APPEND",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Cut Bookmarked Lines",
+     "id": "ID_EDIT_CUT_BOOKMARKED",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Copy && Append",
+     "id": "ID_EDIT_COPY_N_APPEND",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Copy Bookmarked Lines",
+     "id": "ID_EDIT_COPY_BOOKMARKED",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Duplicate Line or Selection",
+     "id": "ID_EDIT_DUP_LINE_OR_SELECTION",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Delete",
+     "id": "ID_EDIT_DELETE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Delete to &End of Word",
+     "id": "ID_EDIT_DELETE_WORD_TO_RIGHT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Delete Word &Back",
+     "id": "ID_EDIT_DELETE_WORD_TO_LEFT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Delete L&ine",
+     "id": "ID_EDIT_DELETE_LINE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Delete Boo&kmarked Lines",
+     "id": "ID_EDIT_DELETE_BOOKMARKED",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Select Wo&rd",
+     "id": "ID_EDIT_SELECT_WORD",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Select &Line",
+     "id": "ID_EDIT_SELECT_LINE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Select &All",
+     "id": "ID_EDIT_SELECT_ALL",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Scroll U&p",
+     "id": "ID_EDIT_SCROLL_UP",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Scroll To Ce&nter",
+     "id": "ID_EDIT_SCROLL_CENTER",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Scroll Do&wn",
+     "id": "ID_EDIT_SCROLL_DOWN",
+     "grayed": false,
+     "checked": false
+    }
+   ]
+  },
+  {
+   "type": "popup",
+   "label": "&View",
+   "children": [
+    {
+     "type": "item",
+     "label": "F&ile Toolbar",
+     "id": "ID_VIEW_FILE_TOOLBAR",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&SQL Toolbar",
+     "id": "ID_VIEW_SQL_TOOLBAR",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Connection Toolbar",
+     "id": "ID_VIEW_CONNECT_TOOLBAR",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Object &Viewer",
+     "id": "ID_SQL_OBJ_VIEWER",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Properties",
+     "id": "ID_VIEW_PROPERTIES",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Object List",
+     "id": "ID_SQL_DB_SOURCE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Code Outline",
+     "id": "ID_VIEW_CODE_OUTLINE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "S&nippets",
+     "id": "ID_VIEW_SNIPPETS",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Find in Files Output",
+     "id": "ID_FILE_SHOW_GREP_OUTPUT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&File Panel",
+     "id": "ID_VIEW_FILE_PANEL",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Open Files",
+     "id": "ID_VIEW_OPEN_FILES",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&History",
+     "id": "ID_VIEW_HISTORY",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "St&atus Bar",
+     "id": "ID_VIEW_STATUS_BAR",
+     "grayed": false,
+     "checked": false
+    }
+   ]
+  },
+  {
+   "type": "popup",
+   "label": "&Search",
+   "children": [
+    {
+     "type": "item",
+     "label": "&Find...",
+     "id": "ID_EDIT_FIND",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Replace...",
+     "id": "ID_EDIT_REPLACE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Find &next",
+     "id": "ID_EDIT_FIND_NEXT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Find pre&vious",
+     "id": "ID_EDIT_FIND_PREVIOUS",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Find s&elected",
+     "id": "ID_EDIT_FIND_SELECTED_NEXT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Find selected b&ackward",
+     "id": "ID_EDIT_FIND_SELECTED_PREVIOUS",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Go To...",
+     "id": "ID_EDIT_GOTO",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Toggle Bookmark",
+     "id": "ID_EDIT_BKM_TOGGLE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Next &Bookmark",
+     "id": "ID_EDIT_BKM_NEXT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Previous B&ookmark",
+     "id": "ID_EDIT_BKM_PREV",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Remove a&ll Bookmarks",
+     "id": "ID_EDIT_BKM_REMOVE_ALL",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "popup",
+     "label": "&Set Random Bookmark",
+     "children": [
+      {
+       "type": "item",
+       "label": "&0",
+       "id": "ID_EDIT_BKM_SET_0",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&1",
+       "id": "ID_EDIT_BKM_SET_1",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&2",
+       "id": "ID_EDIT_BKM_SET_2",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&3",
+       "id": "ID_EDIT_BKM_SET_3",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&4",
+       "id": "ID_EDIT_BKM_SET_4",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&5",
+       "id": "ID_EDIT_BKM_SET_5",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&6",
+       "id": "ID_EDIT_BKM_SET_6",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&7",
+       "id": "ID_EDIT_BKM_SET_7",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&8",
+       "id": "ID_EDIT_BKM_SET_8",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&9",
+       "id": "ID_EDIT_BKM_SET_9",
+       "grayed": false,
+       "checked": false
+      }
+     ]
+    },
+    {
+     "type": "popup",
+     "label": "Get Ran&dom Bookmark",
+     "children": [
+      {
+       "type": "item",
+       "label": "&0",
+       "id": "ID_EDIT_BKM_GET_0",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&1",
+       "id": "ID_EDIT_BKM_GET_1",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&2",
+       "id": "ID_EDIT_BKM_GET_2",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&3",
+       "id": "ID_EDIT_BKM_GET_3",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&4",
+       "id": "ID_EDIT_BKM_GET_4",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&5",
+       "id": "ID_EDIT_BKM_GET_5",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&6",
+       "id": "ID_EDIT_BKM_GET_6",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&7",
+       "id": "ID_EDIT_BKM_GET_7",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&8",
+       "id": "ID_EDIT_BKM_GET_8",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&9",
+       "id": "ID_EDIT_BKM_GET_9",
+       "grayed": false,
+       "checked": false
+      }
+     ]
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "popup",
+     "label": "&Outlining",
+     "children": [
+      {
+       "type": "item",
+       "label": "&Collapse Current Region",
+       "id": "ID_EDIT_FOLD_COLLAPSE_CURRENT",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&Expand Current Region",
+       "id": "ID_EDIT_FOLD_EXPAND_CURRENT",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&Toggle Current Region",
+       "id": "ID_EDIT_FOLD_TOGGLE_CURRENT",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "Expand Current &Subtree",
+       "id": "ID_EDIT_FOLD_EXPAND_SUBTREE",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "separator"
+      },
+      {
+       "type": "item",
+       "label": "Collapse &All",
+       "id": "ID_EDIT_FOLD_COLLAPSE_ALL",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "E&xpand All",
+       "id": "ID_EDIT_FOLD_EXPAND_ALL",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "Togg&le All",
+       "id": "ID_EDIT_FOLD_TOGGLE_ALL",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "separator"
+      },
+      {
+       "type": "item",
+       "label": "Collapse to Level &1",
+       "id": "ID_EDIT_FOLD_COLLAPSE_LEVEL1",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "Collapse to Level &2",
+       "id": "ID_EDIT_FOLD_COLLAPSE_LEVEL2",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "Collapse to Level &3",
+       "id": "ID_EDIT_FOLD_COLLAPSE_LEVEL3",
+       "grayed": false,
+       "checked": false
+      }
+     ]
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Find &Match",
+     "id": "ID_EDIT_FIND_MATCH",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Find Mat&ch && Select",
+     "id": "ID_EDIT_FIND_MATCH_N_SELECT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Find &In Files...",
+     "id": "ID_FILE_FIND_IN_FILE",
+     "grayed": false,
+     "checked": false
+    }
+   ]
+  },
+  {
+   "type": "popup",
+   "label": "&Text",
+   "children": [
+    {
+     "type": "item",
+     "label": "&Stream Selection",
+     "id": "ID_EDIT_STREAM_SEL",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Column Selection",
+     "id": "ID_EDIT_COLUMN_SEL",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Toggle Selection Mode",
+     "id": "ID_EDIT_TOGGLES_SEL",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Indent Selection",
+     "id": "ID_EDIT_INDENT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "U&ndent Selection",
+     "id": "ID_EDIT_UNDENT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Untabify Selection",
+     "id": "ID_EDIT_UNTABIFY",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Tabify Selection (All)",
+     "id": "ID_EDIT_TABIFY",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Tabify Selection (&Leading)",
+     "id": "ID_EDIT_TABIFY_LEADING",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Normalize Keyword",
+     "id": "ID_EDIT_NORMALIZE_TEXT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Lo&wercase",
+     "id": "ID_EDIT_LOWER",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Uppercase",
+     "id": "ID_EDIT_UPPER",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "C&apitalize",
+     "id": "ID_EDIT_CAPITALIZE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "In&vert case",
+     "id": "ID_EDIT_INVERT_CASE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Comment Line",
+     "id": "ID_EDIT_COMMENT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Uncomment L&ine",
+     "id": "ID_EDIT_UNCOMMENT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "E&xpand Template",
+     "id": "ID_EDIT_EXPAND_TEMPLATE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Create Template",
+     "id": "ID_EDIT_CREATE_TEMPLATE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Dateti&me Stamp",
+     "id": "ID_EDIT_DATETIME_STAMP",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Open file under cursor",
+     "id": "ID_EDIT_OPENFILEUNDERCURSOR",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "V&isible Spaces",
+     "id": "ID_EDIT_VIEW_WHITE_SPACE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Line Numbers",
+     "id": "ID_EDIT_VIEW_LINE_NUMBERS",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Syntax Gutter",
+     "id": "ID_EDIT_VIEW_SYNTAX_GUTTER",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Ruler",
+     "id": "ID_EDIT_VIEW_RULER",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Column &Markers",
+     "id": "ID_EDIT_VIEW_COLUMN_MARKERS",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Indent &Guide",
+     "id": "ID_EDIT_VIEW_INDENT_GUIDE",
+     "grayed": false,
+     "checked": false
+    }
+   ]
+  },
+  {
+   "type": "popup",
+   "label": "Text/For&mat",
+   "children": [
+    {
+     "type": "item",
+     "label": "&Sort...",
+     "id": "ID_EDIT_SORT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Format SQL",
+     "id": "ID_EDIT_FORMAT_SQL",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Insert/Fill Columns...",
+     "id": "ID_EDIT_COLUMN_INSERT_FILL",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Insert &Number...",
+     "id": "ID_EDIT_COLUMN_INSERT_NUMBER",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Column &Left Justify",
+     "id": "ID_EDIT_COLUMN_LEFT_JUSTIFY",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Column &Center Justify",
+     "id": "ID_EDIT_COLUMN_CENTER_JUSTIFY",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Column &Right Justify",
+     "id": "ID_EDIT_COLUMN_RIGT_JUSTIFY",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Join Lines",
+     "id": "ID_EDIT_FORMAT_JOIN_LINES",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Split Line...",
+     "id": "ID_EDIT_FORMAT_SPLIT_LINES",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Remove Blank Lines",
+     "id": "ID_EDIT_FORMAT_REMOVE_BLANK",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Remove E&xcessive Blank Lines",
+     "id": "ID_EDIT_FORMAT_REMOVE_EXCESSIVE_BLANK",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Trim L&eading Spaces",
+     "id": "ID_EDIT_FORMAT_TRIM_LEADING_SPACES",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Trim Excessi&ve Spaces",
+     "id": "ID_EDIT_FORMAT_TRIM_EXCESSIVE_SPACES",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Tri&m Trailing Spaces",
+     "id": "ID_EDIT_FORMAT_TRIM_TRAILING_SPACES",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "popup",
+     "label": "&Encoding",
+     "children": [
+      {
+       "type": "item",
+       "label": "&ANSI",
+       "id": "ID_EDIT_ENCODING_ANSI",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "O&EM",
+       "id": "ID_EDIT_ENCODING_OEM",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "UTF-&8",
+       "id": "ID_EDIT_ENCODING_UTF8",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "separator"
+      },
+      {
+       "type": "popup",
+       "label": "&Others",
+       "children": [
+        {
+         "type": "item",
+         "label": "Codepage #1",
+         "id": "ID_EDIT_ENCODING_CODEPAGE_FIRST",
+         "grayed": false,
+         "checked": false
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "popup",
+     "label": "Convert to &encoding",
+     "children": [
+      {
+       "type": "item",
+       "label": "&ANSI",
+       "id": "ID_FILE_ENCODING_ANSI",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "O&EM",
+       "id": "ID_FILE_ENCODING_OEM",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "UTF-&8",
+       "id": "ID_FILE_ENCODING_UTF8",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "UTF-&8 with BOM",
+       "id": "ID_FILE_ENCODING_UTF8_BOM",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "UTF-&16 with BOM",
+       "id": "ID_FILE_ENCODING_UTF16_BOM",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "separator"
+      },
+      {
+       "type": "popup",
+       "label": "&Others",
+       "children": [
+        {
+         "type": "item",
+         "label": "Codepage #1",
+         "id": "ID_FILE_ENCODING_CODEPAGE_FIRST",
+         "grayed": false,
+         "checked": false
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "popup",
+     "label": "&File line ending style",
+     "children": [
+      {
+       "type": "item",
+       "label": "&Windows",
+       "id": "ID_EDIT_FILE_FORMAT_WINOWS",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "&Unix",
+       "id": "ID_EDIT_FILE_FORMAT_UNIX",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "Old &Mac",
+       "id": "ID_EDIT_FILE_FORMAT_MAC",
+       "grayed": false,
+       "checked": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "type": "popup",
+   "label": "&Grid",
+   "children": [
+    {
+     "type": "item",
+     "label": "Size Columns to &Data",
+     "id": "ID_OCIGRID_DATA_FIT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Size Columns to &Headers",
+     "id": "ID_OCIGRID_COLS_TO_HEADERS",
+     "grayed": true,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Copy",
+     "id": "ID_EDIT_COPY",
+     "grayed": true,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Copy Column &Header",
+     "id": "ID_GRID_COPY_COL_HEADER",
+     "grayed": true,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Copy All Column H&eaders",
+     "id": "ID_GRID_COPY_HEADERS",
+     "grayed": true,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Copy &Row",
+     "id": "ID_GRID_COPY_ROW",
+     "grayed": true,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Copy &All",
+     "id": "ID_GRID_COPY_ALL",
+     "grayed": true,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Open in Editor",
+     "id": "ID_GRID_OUTPUT_OPEN",
+     "grayed": true,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Export",
+     "id": "ID_GRID_OUTPUT_EXPORT",
+     "grayed": true,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Export and She&ll Open",
+     "id": "ID_GRID_OUTPUT_EXPORT_AND_OPEN",
+     "grayed": true,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Format Options...",
+     "id": "ID_GRID_OUTPUT_OPTIONS",
+     "grayed": false,
+     "checked": false
+    }
+   ]
+  },
+  {
+   "type": "popup",
+   "label": "Sessi&on",
+   "children": [
+    {
+     "type": "item",
+     "label": "Co&nnect...",
+     "id": "ID_SQL_CONNECT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Disconnect",
+     "id": "ID_SQL_DISCONNECT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Test Connection/Reconnect",
+     "id": "ID_SQL_RECONNECT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "C&ancel",
+     "id": "ID_SQL_CANCEL",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Commit",
+     "id": "ID_SQL_COMMIT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Rollback",
+     "id": "ID_SQL_ROLLBACK",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Refresh &Object Name Cache",
+     "id": "ID_SQL_REFRESH_OBJECT_CACHE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Read &Only",
+     "id": "ID_SQL_READ_ONLY",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Enable Dbms Output",
+     "id": "ID_SQL_DBMS_OUTPUT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Enable Session Statistics",
+     "id": "ID_SQL_SESSION_STATISTICS",
+     "grayed": false,
+     "checked": false
+    }
+   ]
+  },
+  {
+   "type": "popup",
+   "label": "Sc&ript",
+   "children": [
+    {
+     "type": "item",
+     "label": "E&xecute Current",
+     "id": "ID_SQL_EXECUTE_CURRENT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "E&xecute Current &Alternative",
+     "id": "ID_SQL_EXECUTE_CURRENT_ALT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Execute and &Step",
+     "id": "ID_SQL_EXECUTE_CURRENT_AND_STEP",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Execute",
+     "id": "ID_SQL_EXECUTE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Execute from &Cursor position",
+     "id": "ID_SQL_EXECUTE_FROM_CURSOR",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Quick Query",
+     "id": "ID_SQL_QUICK_QUERY",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Quick Count",
+     "id": "ID_SQL_QUICK_COUNT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Execute in SQL*Pl&us",
+     "id": "ID_SQL_EXECUTE_IN_SQLPLUS",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Next Error",
+     "id": "ID_SQL_NEXT_ERROR",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Previous Error",
+     "id": "ID_SQL_PREV_ERROR",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Get history and step back",
+     "id": "ID_SQL_HISTORY_GET_AND_STEPBACK",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Step forward and get history",
+     "id": "ID_SQL_HISTORY_STEPFORWARD_AND_GET",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Find Object",
+     "id": "ID_SQL_DESCRIBE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Load DDL script",
+     "id": "ID_SQL_LOAD",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Load DDL script with Dbms_Metadata",
+     "id": "ID_SQL_LOAD_WITH_DBMS_METADATA",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Explain &Plan",
+     "id": "ID_SQL_EXPLAIN_PLAN",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Halt Execution on &Errors",
+     "id": "ID_SQL_HALT_ON_ERROR",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Enable Substitution Variables",
+     "id": "ID_SQL_SUBSTITUTION_VARIABLES",
+     "grayed": false,
+     "checked": false
+    }
+   ]
+  },
+  {
+   "type": "popup",
+   "label": "Too&ls",
+   "children": [
+    {
+     "type": "item",
+     "label": "E&xtract Schema DDL...",
+     "id": "ID_SQL_EXTRACT_SCHEMA",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Table Transformation Helper...",
+     "id": "ID_SQL_TABLE_TRANSFORMER",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Settings...",
+     "id": "ID_APP_SETTINGS",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Open Settings Folder",
+     "id": "ID_APP_SETTINGS_FOLDER",
+     "grayed": false,
+     "checked": false
+    }
+   ]
+  },
+  {
+   "type": "popup",
+   "label": "&Window",
+   "children": [
+    {
+     "type": "item",
+     "label": "S&plit",
+     "id": "ID_WINDOW_SPLIT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Move splitter &up",
+     "id": "ID_CUSTOM_SPLITTER_UP",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Move splitter &down",
+     "id": "ID_CUSTOM_SPLITTER_DOWN",
+     "grayed": false,
+     "checked": false
+    }
+   ]
+  },
+  {
+   "type": "popup",
+   "label": "&Help",
+   "children": [
+    {
+     "type": "item",
+     "label": "&Help Topics",
+     "id": "ID_HELP_FINDER",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&SQL Short Reference",
+     "id": "ID_SQL_HELP",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "SQLTools on the &Web",
+     "id": "ID_SQLTOOLS_ON_THE_WEB",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&About...",
+     "id": "ID_APP_ABOUT",
+     "grayed": false,
+     "checked": false
+    }
+   ]
+  }
+ ],
+ "menuNoDocument": [
+  {
+   "type": "popup",
+   "label": "&File",
+   "children": [
+    {
+     "type": "item",
+     "label": "&New",
+     "id": "ID_FILE_NEW",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Ne&w ...",
+     "id": "ID_FILE_NEW_EXT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Open...",
+     "id": "ID_FILE_OPEN",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "popup",
+     "label": "Workspace",
+     "children": [
+      {
+       "type": "item",
+       "label": "Open...",
+       "id": "ID_WORKSPACE_OPEN",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "separator"
+      },
+      {
+       "type": "item",
+       "label": "Save",
+       "id": "ID_WORKSPACE_SAVE",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "Save As...",
+       "id": "ID_WORKSPACE_SAVE_AS",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "separator"
+      },
+      {
+       "type": "item",
+       "label": "Close",
+       "id": "ID_WORKSPACE_CLOSE",
+       "grayed": false,
+       "checked": false
+      }
+     ]
+    },
+    {
+     "type": "popup",
+     "label": "Snapshot",
+     "children": [
+      {
+       "type": "item",
+       "label": "Open AS/QS...",
+       "id": "ID_WORKSPACE_OPEN_AUTOSAVED",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "separator"
+      },
+      {
+       "type": "item",
+       "label": "Quick Save",
+       "id": "ID_WORKSPACE_SAVE_QUICK",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "separator"
+      },
+      {
+       "type": "item",
+       "label": "Copy",
+       "id": "ID_WORKSPACE_COPY",
+       "grayed": false,
+       "checked": false
+      },
+      {
+       "type": "item",
+       "label": "Paste",
+       "id": "ID_WORKSPACE_PASTE",
+       "grayed": false,
+       "checked": false
+      }
+     ]
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "P&rint Setup...",
+     "id": "ID_EDIT_PRINT_PAGE_SETUP",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "popup",
+     "label": "Recent &Files",
+     "children": [
+      {
+       "type": "item",
+       "label": "Recent File",
+       "id": "ID_FILE_MRU_FILE1",
+       "grayed": true,
+       "checked": false
+      }
+     ]
+    },
+    {
+     "type": "popup",
+     "label": "Recent &Workspaces",
+     "children": [
+      {
+       "type": "item",
+       "label": "Recent Workspace",
+       "id": "ID_WORKSPACE_MRU_FILE1",
+       "grayed": true,
+       "checked": false
+      }
+     ]
+    },
+    {
+     "type": "popup",
+     "label": "Recent &Quick Snapshots",
+     "children": [
+      {
+       "type": "item",
+       "label": "Recent Quick Snapshot",
+       "id": "ID_WORKSPACE_QUICK_MRU_FIRST",
+       "grayed": true,
+       "checked": false
+      }
+     ]
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "E&xit",
+     "id": "ID_APP_EXIT",
+     "grayed": false,
+     "checked": false
+    }
+   ]
+  },
+  {
+   "type": "popup",
+   "label": "&View",
+   "children": [
+    {
+     "type": "item",
+     "label": "F&ile Toolbar",
+     "id": "ID_VIEW_FILE_TOOLBAR",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&SQL Toolbar",
+     "id": "ID_VIEW_SQL_TOOLBAR",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Connection Toolbar",
+     "id": "ID_VIEW_CONNECT_TOOLBAR",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Object &Viewer",
+     "id": "ID_SQL_OBJ_VIEWER",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Properties",
+     "id": "ID_VIEW_PROPERTIES",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Object List",
+     "id": "ID_SQL_DB_SOURCE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Code Outline",
+     "id": "ID_VIEW_CODE_OUTLINE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "S&nippets",
+     "id": "ID_VIEW_SNIPPETS",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Find in Files Output",
+     "id": "ID_FILE_SHOW_GREP_OUTPUT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&File Panel",
+     "id": "ID_VIEW_FILE_PANEL",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Open Files",
+     "id": "ID_VIEW_OPEN_FILES",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&History",
+     "id": "ID_VIEW_HISTORY",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "St&atus Bar",
+     "id": "ID_VIEW_STATUS_BAR",
+     "grayed": false,
+     "checked": false
+    }
+   ]
+  },
+  {
+   "type": "popup",
+   "label": "&Search",
+   "children": [
+    {
+     "type": "item",
+     "label": "Find &In Files...",
+     "id": "ID_FILE_FIND_IN_FILE",
+     "grayed": false,
+     "checked": false
+    }
+   ]
+  },
+  {
+   "type": "popup",
+   "label": "Sessi&on",
+   "children": [
+    {
+     "type": "item",
+     "label": "Co&nnect...",
+     "id": "ID_SQL_CONNECT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Disconnect",
+     "id": "ID_SQL_DISCONNECT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Test connection/Reconnect",
+     "id": "ID_SQL_RECONNECT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "C&ancel",
+     "id": "ID_SQL_CANCEL",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Commit",
+     "id": "ID_SQL_COMMIT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Rollback",
+     "id": "ID_SQL_ROLLBACK",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Refresh &Object Name Cache",
+     "id": "ID_SQL_REFRESH_OBJECT_CACHE",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "Read &Only",
+     "id": "ID_SQL_READ_ONLY",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Enable Dbms Output",
+     "id": "ID_SQL_DBMS_OUTPUT",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "Enable Session Statistics",
+     "id": "ID_SQL_SESSION_STATISTICS",
+     "grayed": false,
+     "checked": false
+    }
+   ]
+  },
+  {
+   "type": "popup",
+   "label": "Too&ls",
+   "children": [
+    {
+     "type": "item",
+     "label": "E&xtract Schema DDL...",
+     "id": "ID_SQL_EXTRACT_SCHEMA",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&Table Transformation Helper...",
+     "id": "ID_SQL_TABLE_TRANSFORMER",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Settings...",
+     "id": "ID_APP_SETTINGS",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&Open Settings Folder",
+     "id": "ID_APP_SETTINGS_FOLDER",
+     "grayed": false,
+     "checked": false
+    }
+   ]
+  },
+  {
+   "type": "popup",
+   "label": "&Help",
+   "children": [
+    {
+     "type": "item",
+     "label": "&Help Topics",
+     "id": "ID_HELP_FINDER",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "item",
+     "label": "&SQL Short Reference",
+     "id": "ID_SQL_HELP",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "SQLTools on the &Web",
+     "id": "ID_SQLTOOLS_ON_THE_WEB",
+     "grayed": false,
+     "checked": false
+    },
+    {
+     "type": "separator"
+    },
+    {
+     "type": "item",
+     "label": "&About...",
+     "id": "ID_APP_ABOUT",
+     "grayed": false,
+     "checked": false
+    }
+   ]
+  }
+ ],
+ "toolbars": {
+  "IDT_SQL": {
+   "size": 19,
+   "buttons": [
+    "ID_SQL_CANCEL",
+    "ID_SQL_COMMIT",
+    "ID_SQL_ROLLBACK",
+    null,
+    "ID_SQL_EXECUTE_CURRENT",
+    "ID_SQL_EXECUTE_CURRENT_AND_STEP",
+    "ID_SQL_EXECUTE",
+    "ID_SQL_EXECUTE_IN_SQLPLUS",
+    null,
+    "ID_SQL_NEXT_ERROR",
+    "ID_SQL_PREV_ERROR",
+    null,
+    "ID_SQL_DB_SOURCE",
+    "ID_SQL_EXPLAIN_PLAN",
+    "ID_SQL_DESCRIBE",
+    null,
+    "ID_SQL_DBMS_OUTPUT",
+    "ID_SQL_SESSION_STATISTICS",
+    "ID_SQL_SUBSTITUTION_VARIABLES"
+   ]
+  },
+  "IDT_FILE": {
+   "size": 19,
+   "buttons": [
+    "ID_FILE_NEW",
+    "ID_FILE_OPEN",
+    "ID_FILE_SAVE",
+    "ID_FILE_SAVE_ALL",
+    null,
+    "ID_WORKSPACE_OPEN",
+    "ID_WORKSPACE_SAVE",
+    null,
+    "ID_WORKSPACE_OPEN_AUTOSAVED",
+    "ID_WORKSPACE_SAVE_QUICK",
+    null,
+    "ID_VIEW_FILE_PANEL",
+    "ID_FILE_SYNC_LOCATION",
+    null,
+    "ID_EDIT_CUT",
+    "ID_EDIT_COPY",
+    "ID_EDIT_PASTE",
+    null,
+    "ID_EDIT_UNDO",
+    "ID_EDIT_REDO",
+    null,
+    "ID_EDIT_FIND",
+    "ID_EDIT_REPLACE",
+    "ID_EDIT_FIND_NEXT",
+    "ID_EDIT_FIND_PREVIOUS",
+    "ID_FILE_FIND_IN_FILE",
+    null,
+    "ID_EDIT_COMMENT",
+    "ID_EDIT_UNCOMMENT",
+    "ID_EDIT_LOWER",
+    "ID_EDIT_UPPER",
+    "ID_EDIT_FIND_MATCH",
+    "ID_EDIT_EXPAND_TEMPLATE",
+    null,
+    "ID_EDIT_BKM_TOGGLE",
+    "ID_EDIT_BKM_NEXT",
+    "ID_EDIT_BKM_PREV",
+    "ID_EDIT_BKM_REMOVE_ALL"
+   ]
+  },
+  "IDT_BOOKLET": {
+   "size": 16,
+   "buttons": [
+    "ID_BOOKLET_RESULT",
+    "ID_BOOKLET_STATISTICS",
+    "ID_BOOKLET_SQL_PLAN",
+    "ID_BOOKLET_OUTPUT",
+    "ID_BOOKLET_HISTORY",
+    "ID_BOOKLET_BINDS",
+    null,
+    "ID_GRID_ROTATE",
+    "ID_GRID_DATA_FIT",
+    "ID_GRID_HEADER_FIT",
+    null,
+    "ID_GRID_MOVE_HOME",
+    "ID_GRID_MOVE_PGUP",
+    "ID_GRID_MOVE_UP",
+    "ID_GRID_MOVE_DOWN",
+    "ID_GRID_MOVE_PGDOWN",
+    "ID_GRID_MOVE_END",
+    null,
+    "ID_GRID_EXPORT",
+    "ID_GRID_SETTINGS",
+    null,
+    "ID_BOOKLET_PIN",
+    "ID_BOOKLET_UNPIN",
+    "ID_GRID_OPEN_WITH_IE",
+    "ID_GRID_OPEN_WITH_EXCEL",
+    "ID_GRID_CLEAR_RECORDS"
+   ]
+  },
+  "IDT_GRIDPOPUP": {
+   "size": 16,
+   "buttons": [
+    "ID_GRIDPOPUP_TEXT",
+    "ID_GRIDPOPUP_HTML",
+    null,
+    "ID_GRIDPOPUP_WORDWRAP"
+   ]
+  },
+  "IDT_CONNECT": {
+   "size": 19,
+   "buttons": [
+    "ID_SQL_CONNECT",
+    "ID_SQL_DISCONNECT",
+    "ID_SQL_RECONNECT",
+    null,
+    "ID_SQL_CONN_DESCRIPTION",
+    null,
+    "ID_SQL_READ_ONLY"
+   ]
+  }
+ },
+ "commands": {
+  "ID_APP_ABOUT": {
+   "name": "Help.AboutOpenEditor",
+   "keys": [
+    "Ctrl+Q,A"
+   ],
+   "help": ""
+  },
+  "ID_APP_EXIT": {
+   "name": "File.Exit",
+   "keys": [
+    "Alt+F4"
+   ],
+   "help": ""
+  },
+  "ID_APP_SETTINGS": {
+   "name": "Edit.PermanentSettings",
+   "keys": [
+    "Ctrl+Q,P"
+   ],
+   "help": "The application settings\nSettings"
+  },
+  "ID_APP_SETTINGS_FOLDER": {
+   "name": "",
+   "keys": [],
+   "help": "Open a folder that contains the application settings\nOpen Settings Folder"
+  },
+  "ID_BOOKLET_BINDS": {
+   "name": "",
+   "keys": [],
+   "help": "Bind Window"
+  },
+  "ID_BOOKLET_HISTORY": {
+   "name": "",
+   "keys": [],
+   "help": "History Window"
+  },
+  "ID_BOOKLET_OUTPUT": {
+   "name": "",
+   "keys": [],
+   "help": "Output Window"
+  },
+  "ID_BOOKLET_PIN": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_BOOKLET_RESULT": {
+   "name": "",
+   "keys": [],
+   "help": "Results Window"
+  },
+  "ID_BOOKLET_SQL_PLAN": {
+   "name": "",
+   "keys": [],
+   "help": "Explain Plan Window"
+  },
+  "ID_BOOKLET_STATISTICS": {
+   "name": "",
+   "keys": [],
+   "help": "Statistics Window"
+  },
+  "ID_BOOKLET_UNPIN": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_CUSTOM_SPLITTER_DOWN": {
+   "name": "Window.SplitterDown",
+   "keys": [
+    "Shift+Ctrl+PgDown"
+   ],
+   "help": "Move the active window splitter  down\nSplittter down"
+  },
+  "ID_CUSTOM_SPLITTER_UP": {
+   "name": "Window.SplitterUp",
+   "keys": [
+    "Shift+Ctrl+PgUp"
+   ],
+   "help": "Move the active window splitter  up\nSplittter up"
+  },
+  "ID_EDIT_BKM_GET_0": {
+   "name": "Edit.GetRandomBookmark.0",
+   "keys": [
+    "Ctrl+0"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_GET_1": {
+   "name": "Edit.GetRandomBookmark.1",
+   "keys": [
+    "Ctrl+1"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_GET_2": {
+   "name": "Edit.GetRandomBookmark.2",
+   "keys": [
+    "Ctrl+2"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_GET_3": {
+   "name": "Edit.GetRandomBookmark.3",
+   "keys": [
+    "Ctrl+3"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_GET_4": {
+   "name": "Edit.GetRandomBookmark.4",
+   "keys": [
+    "Ctrl+4"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_GET_5": {
+   "name": "Edit.GetRandomBookmark.5",
+   "keys": [
+    "Ctrl+5"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_GET_6": {
+   "name": "Edit.GetRandomBookmark.6",
+   "keys": [
+    "Ctrl+6"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_GET_7": {
+   "name": "Edit.GetRandomBookmark.7",
+   "keys": [
+    "Ctrl+7"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_GET_8": {
+   "name": "Edit.GetRandomBookmark.8",
+   "keys": [
+    "Ctrl+8"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_GET_9": {
+   "name": "Edit.GetRandomBookmark.9",
+   "keys": [
+    "Ctrl+9"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_NEXT": {
+   "name": "Edit.NextBookmark",
+   "keys": [
+    "F2"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_PREV": {
+   "name": "Edit.PreviousBookmark",
+   "keys": [
+    "Shift+F2"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_REMOVE_ALL": {
+   "name": "Edit.RemoveallBookmarks",
+   "keys": [
+    "Ctrl+Shift+F2"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_SET_0": {
+   "name": "Edit.SetRandomBookmark.0",
+   "keys": [
+    "Ctrl+Shift+0"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_SET_1": {
+   "name": "Edit.SetRandomBookmark.1",
+   "keys": [
+    "Ctrl+Shift+1"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_SET_2": {
+   "name": "Edit.SetRandomBookmark.2",
+   "keys": [
+    "Ctrl+Shift+2"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_SET_3": {
+   "name": "Edit.SetRandomBookmark.3",
+   "keys": [
+    "Ctrl+Shift+3"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_SET_4": {
+   "name": "Edit.SetRandomBookmark.4",
+   "keys": [
+    "Ctrl+Shift+4"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_SET_5": {
+   "name": "Edit.SetRandomBookmark.5",
+   "keys": [
+    "Ctrl+Shift+5"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_SET_6": {
+   "name": "Edit.SetRandomBookmark.6",
+   "keys": [
+    "Ctrl+Shift+6"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_SET_7": {
+   "name": "Edit.SetRandomBookmark.7",
+   "keys": [
+    "Ctrl+Shift+7"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_SET_8": {
+   "name": "Edit.SetRandomBookmark.8",
+   "keys": [
+    "Ctrl+Shift+8"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_SET_9": {
+   "name": "Edit.SetRandomBookmark.9",
+   "keys": [
+    "Ctrl+Shift+9"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_BKM_TOGGLE": {
+   "name": "Edit.ToggleBookmark",
+   "keys": [
+    "Ctrl+F2"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_CAPITALIZE": {
+   "name": "Edit.Capitalize",
+   "keys": [
+    "Ctrl+K,A"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_COLUMN_CENTER_JUSTIFY": {
+   "name": "Edit.ColumnCenterJustify",
+   "keys": [
+    "Ctrl+K,V"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_COLUMN_INSERT_FILL": {
+   "name": "Edit.ColumnInsert",
+   "keys": [
+    "Ctrl+K,B"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_COLUMN_INSERT_NUMBER": {
+   "name": "Edit.ColumnInsertNumber",
+   "keys": [
+    "Ctrl+K,M"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_COLUMN_LEFT_JUSTIFY": {
+   "name": "Edit.ColumnLeftJustify",
+   "keys": [
+    "Ctrl+K,Y"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_COLUMN_RIGT_JUSTIFY": {
+   "name": "Edit.ColumnRightJustify",
+   "keys": [
+    "Ctrl+K,W"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_COLUMN_SEL": {
+   "name": "Edit.ColumnSelection",
+   "keys": [
+    "Ctrl+Shift+F8"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_COMMENT": {
+   "name": "Edit.CommentLine",
+   "keys": [
+    "Ctrl+>"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_COPY": {
+   "name": "Edit.Copy",
+   "keys": [
+    "Ctrl+C",
+    "Ctrl+Insert"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_COPY_BOOKMARKED": {
+   "name": "Edit.CopyBookmarkedLines",
+   "keys": [
+    "Ctrl+K,C"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_COPY_N_APPEND": {
+   "name": "Edit.CopyAppend",
+   "keys": [
+    "Ctrl+Shift+C",
+    "Ctrl+Shift+Insert"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_CREATE_TEMPLATE": {
+   "name": "Edit.CreateTemplate",
+   "keys": [],
+   "help": ""
+  },
+  "ID_EDIT_CUT": {
+   "name": "Edit.Cut",
+   "keys": [
+    "Ctrl+X",
+    "Shift+Delete"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_CUT_BOOKMARKED": {
+   "name": "Edit.CutBookmarkedLines",
+   "keys": [
+    "Ctrl+K,X"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_CUT_N_APPEND": {
+   "name": "Edit.CutAppend",
+   "keys": [
+    "Ctrl+Shift+X",
+    "Ctrl+Shift+Delete"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_DATETIME_STAMP": {
+   "name": "Edit.DatetimeStamp",
+   "keys": [
+    "Ctrl+T"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_DELETE": {
+   "name": "Edit.Delete",
+   "keys": [],
+   "help": ""
+  },
+  "ID_EDIT_DELETE_BOOKMARKED": {
+   "name": "Edit.DeleteBookmarkedLines",
+   "keys": [
+    "Ctrl+K,D"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_DELETE_LINE": {
+   "name": "Edit.DeleteLine",
+   "keys": [
+    "Ctrl+Y"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_DELETE_WORD_TO_LEFT": {
+   "name": "Edit.DeleteWordBack",
+   "keys": [
+    "Ctrl+Backspace"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_DELETE_WORD_TO_RIGHT": {
+   "name": "Edit.DeletetoEndOfWord",
+   "keys": [
+    "Ctrl+Delete"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_DUP_LINE_OR_SELECTION": {
+   "name": "Edit.DupLineOrSelection",
+   "keys": [
+    "Ctrl+K,Q"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_ENCODING_ANSI": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_EDIT_ENCODING_CODEPAGE_FIRST": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_EDIT_ENCODING_OEM": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_EDIT_ENCODING_UTF8": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_EDIT_EXPAND_TEMPLATE": {
+   "name": "Edit.ExpandTemplate",
+   "keys": [
+    "Ctrl+Space"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FILE_FORMAT_MAC": {
+   "name": "Edit.FileFormat_Mac",
+   "keys": [],
+   "help": ""
+  },
+  "ID_EDIT_FILE_FORMAT_UNIX": {
+   "name": "Edit.FileFormat_Unix",
+   "keys": [],
+   "help": ""
+  },
+  "ID_EDIT_FILE_FORMAT_WINOWS": {
+   "name": "Edit.FileFormat_Winows",
+   "keys": [],
+   "help": ""
+  },
+  "ID_EDIT_FILE_SETTINGS": {
+   "name": "Edit.FileSettings",
+   "keys": [
+    "Ctrl+Q,F"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FIND": {
+   "name": "Edit.Find",
+   "keys": [
+    "Ctrl+F"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FIND_MATCH": {
+   "name": "Edit.FindMatch",
+   "keys": [
+    "Ctrl+]"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FIND_MATCH_N_SELECT": {
+   "name": "Edit.FindMatchSelect",
+   "keys": [
+    "Ctrl+Shift+]"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FIND_NEXT": {
+   "name": "Edit.FindNext",
+   "keys": [
+    "F3"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FIND_PREVIOUS": {
+   "name": "Edit.FindPrevious",
+   "keys": [
+    "Shift+F3"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FIND_SELECTED_NEXT": {
+   "name": "Edit.FindSelectedNext",
+   "keys": [
+    "Ctrl+F3"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FIND_SELECTED_PREVIOUS": {
+   "name": "Edit.FindSelectedPrevious",
+   "keys": [
+    "Ctrl+Shift+F3"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FOLD_COLLAPSE_ALL": {
+   "name": "Edit.CollapseAllFolds",
+   "keys": [
+    "Ctrl+M,A"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FOLD_COLLAPSE_CURRENT": {
+   "name": "Edit.CollapseCurrentRegion",
+   "keys": [
+    "Ctrl+M,S"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FOLD_COLLAPSE_LEVEL1": {
+   "name": "Edit.CollapseToLevel1",
+   "keys": [
+    "Ctrl+M,1"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FOLD_COLLAPSE_LEVEL2": {
+   "name": "Edit.CollapseToLevel2",
+   "keys": [
+    "Ctrl+M,2"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FOLD_COLLAPSE_LEVEL3": {
+   "name": "Edit.CollapseToLevel3",
+   "keys": [
+    "Ctrl+M,3"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FOLD_EXPAND_ALL": {
+   "name": "Edit.ExpandAllFolds",
+   "keys": [
+    "Ctrl+M,X"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FOLD_EXPAND_CURRENT": {
+   "name": "Edit.ExpandCurrentRegion",
+   "keys": [
+    "Ctrl+M,E"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FOLD_EXPAND_SUBTREE": {
+   "name": "Edit.ExpandCurrentSubtree",
+   "keys": [
+    "Ctrl+M,J"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FOLD_TOGGLE_ALL": {
+   "name": "Edit.ToggleAllFolds",
+   "keys": [
+    "Ctrl+M,L"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FOLD_TOGGLE_CURRENT": {
+   "name": "Edit.ToggleCurrentRegion",
+   "keys": [
+    "Ctrl+M,M"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FORMAT_JOIN_LINES": {
+   "name": "Edit.JoinLines",
+   "keys": [
+    "Ctrl+K,J"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FORMAT_REMOVE_BLANK": {
+   "name": "Edit.RemoveBlankLines",
+   "keys": [
+    "Ctrl+K,G"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FORMAT_REMOVE_EXCESSIVE_BLANK": {
+   "name": "Edit.RemoveExcessiveBlankLines",
+   "keys": [
+    "Ctrl+K,H"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FORMAT_SPLIT_LINES": {
+   "name": "Edit.SplitLine",
+   "keys": [
+    "Ctrl+K,K"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FORMAT_SQL": {
+   "name": "Edit.FormatSQL",
+   "keys": [
+    "Ctrl+K,E"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FORMAT_TRIM_EXCESSIVE_SPACES": {
+   "name": "Edit.TrimExcessiveSpaces",
+   "keys": [
+    "Ctrl+K,P"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FORMAT_TRIM_LEADING_SPACES": {
+   "name": "Edit.TrimLeadingSpaces",
+   "keys": [
+    "Ctrl+K,O"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_FORMAT_TRIM_TRAILING_SPACES": {
+   "name": "Edit.TrimTrailingSpaces",
+   "keys": [
+    "Ctrl+K,R"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_GOTO": {
+   "name": "Edit.GoTo",
+   "keys": [
+    "Ctrl+G"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_INDENT": {
+   "name": "Edit.IndentSelection",
+   "keys": [
+    "Ctrl+I"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_INVERT_CASE": {
+   "name": "Edit.InvertCase",
+   "keys": [
+    "Ctrl+K,I"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_LOWER": {
+   "name": "Edit.Lowercase",
+   "keys": [
+    "Ctrl+Shift+Down"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_NORMALIZE_TEXT": {
+   "name": "Edit.NormalizeKeyword",
+   "keys": [
+    "Ctrl+K,N"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_OPENFILEUNDERCURSOR": {
+   "name": "Edit.OpenFileUnderCursor",
+   "keys": [
+    "Ctrl+K,F"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_PASTE": {
+   "name": "Edit.Paste",
+   "keys": [
+    "Ctrl+V",
+    "Shift+Insert"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_PRINT_PAGE_SETUP": {
+   "name": "File.PageSetup",
+   "keys": [],
+   "help": ""
+  },
+  "ID_EDIT_REDO": {
+   "name": "Edit.Redo",
+   "keys": [
+    "Ctrl+R"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_REPLACE": {
+   "name": "Edit.Replace",
+   "keys": [
+    "Ctrl+H"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_SCROLL_CENTER": {
+   "name": "Edit.ScrollToCenter",
+   "keys": [
+    "Num5"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_SCROLL_DOWN": {
+   "name": "Edit.ScrollDown",
+   "keys": [
+    "Ctrl+Down"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_SCROLL_UP": {
+   "name": "Edit.ScrollUp",
+   "keys": [
+    "Ctrl+Up"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_SELECT_ALL": {
+   "name": "Edit.SelectAll",
+   "keys": [
+    "Ctrl+A"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_SELECT_LINE": {
+   "name": "Edit.SelectLine",
+   "keys": [
+    "Ctrl+L"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_SELECT_WORD": {
+   "name": "Edit.SelectWord",
+   "keys": [
+    "Ctrl+W"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_SORT": {
+   "name": "Edit.Sort",
+   "keys": [
+    "Ctrl+K,S"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_STREAM_SEL": {
+   "name": "Edit.StreamSelection",
+   "keys": [
+    "F8"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_TABIFY": {
+   "name": "Edit.TabifySelectionAll",
+   "keys": [
+    "Ctrl+K,T"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_TABIFY_LEADING": {
+   "name": "Edit.TabifySelectionLeading",
+   "keys": [
+    "Ctrl+K,L"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_TOGGLES_SEL": {
+   "name": "Edit.ToggleSelectionMode",
+   "keys": [
+    "Ctrl+Q,B"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_UNCOMMENT": {
+   "name": "Edit.UncommentLine",
+   "keys": [
+    "Ctrl+<"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_UNDENT": {
+   "name": "Edit.UndentSelection",
+   "keys": [
+    "Ctrl+U"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_UNDO": {
+   "name": "Edit.Undo",
+   "keys": [
+    "Alt+Backspace",
+    "Ctrl+Z"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_UNTABIFY": {
+   "name": "Edit.UntabifySelection",
+   "keys": [
+    "Ctrl+K,U"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_UPPER": {
+   "name": "Edit.Uppercase",
+   "keys": [
+    "Ctrl+Shift+Up"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_VIEW_COLUMN_MARKERS": {
+   "name": "Edit.ColumnMarkers",
+   "keys": [
+    "Ctrl+Q,M"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_VIEW_INDENT_GUIDE": {
+   "name": "Edit.IndentGuide",
+   "keys": [
+    "Ctrl+Q,G"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_VIEW_LINE_NUMBERS": {
+   "name": "Edit.LineNumbers",
+   "keys": [
+    "Ctrl+Q,L"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_VIEW_RULER": {
+   "name": "Edit.Ruler",
+   "keys": [
+    "Ctrl+Q,U"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_VIEW_SYNTAX_GUTTER": {
+   "name": "Edit.SyntaxGutter",
+   "keys": [
+    "Ctrl+Q,Y"
+   ],
+   "help": ""
+  },
+  "ID_EDIT_VIEW_WHITE_SPACE": {
+   "name": "Edit.VisibleSpaces",
+   "keys": [
+    "Ctrl+Q,I"
+   ],
+   "help": ""
+  },
+  "ID_FILE_CLOSE": {
+   "name": "File.Close",
+   "keys": [
+    "Ctrl+F4"
+   ],
+   "help": ""
+  },
+  "ID_FILE_CLOSE_ALL": {
+   "name": "File.CloseAll",
+   "keys": [
+    "Alt+Shift+F4"
+   ],
+   "help": ""
+  },
+  "ID_FILE_COPY_LOCATION": {
+   "name": "File.CopyFileLocation",
+   "keys": [],
+   "help": ""
+  },
+  "ID_FILE_ENCODING_ANSI": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_FILE_ENCODING_CODEPAGE_FIRST": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_FILE_ENCODING_OEM": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_FILE_ENCODING_UTF16_BOM": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_FILE_ENCODING_UTF8": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_FILE_ENCODING_UTF8_BOM": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_FILE_FIND_IN_FILE": {
+   "name": "Edit.FindInFile",
+   "keys": [
+    "Ctrl+Shift+F"
+   ],
+   "help": ""
+  },
+  "ID_FILE_MRU_FILE1": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_FILE_NEW": {
+   "name": "File.New",
+   "keys": [
+    "Ctrl+N"
+   ],
+   "help": ""
+  },
+  "ID_FILE_NEW_EXT": {
+   "name": "File.NewExtended",
+   "keys": [
+    "Ctrl+Shift+N"
+   ],
+   "help": ""
+  },
+  "ID_FILE_OPEN": {
+   "name": "File.Open",
+   "keys": [
+    "Ctrl+O"
+   ],
+   "help": ""
+  },
+  "ID_FILE_PRINT": {
+   "name": "File.Print",
+   "keys": [
+    "Ctrl+P"
+   ],
+   "help": ""
+  },
+  "ID_FILE_PRINT_PREVIEW": {
+   "name": "File.PrintPreview",
+   "keys": [
+    "Ctrl+Shift+P"
+   ],
+   "help": ""
+  },
+  "ID_FILE_PRINT_SETUP": {
+   "name": "File.PrintSetup",
+   "keys": [],
+   "help": ""
+  },
+  "ID_FILE_RELOAD": {
+   "name": "File.Reload",
+   "keys": [
+    "Ctrl+Q,R"
+   ],
+   "help": ""
+  },
+  "ID_FILE_RENAME": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_FILE_SAVE": {
+   "name": "File.Save",
+   "keys": [
+    "Ctrl+S"
+   ],
+   "help": ""
+  },
+  "ID_FILE_SAVE_ALL": {
+   "name": "File.SaveAll",
+   "keys": [
+    "Alt+Shift+S"
+   ],
+   "help": ""
+  },
+  "ID_FILE_SAVE_AS": {
+   "name": "File.SaveAs",
+   "keys": [
+    "Ctrl+Shift+S"
+   ],
+   "help": ""
+  },
+  "ID_FILE_SEND_MAIL": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_FILE_SHOW_GREP_OUTPUT": {
+   "name": "View.FindInFiles",
+   "keys": [
+    "Alt+7"
+   ],
+   "help": "Show "
+  },
+  "ID_FILE_SYNC_LOCATION": {
+   "name": "File.ShowFileLocation",
+   "keys": [
+    "Ctrl+Q,O"
+   ],
+   "help": ""
+  },
+  "ID_GRIDPOPUP_HTML": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRIDPOPUP_TEXT": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRIDPOPUP_WORDWRAP": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_CLEAR_RECORDS": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_COPY_ALL": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_COPY_COL_HEADER": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_COPY_HEADERS": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_COPY_ROW": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_DATA_FIT": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_EXPORT": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_HEADER_FIT": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_MOVE_DOWN": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_MOVE_END": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_MOVE_HOME": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_MOVE_PGDOWN": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_MOVE_PGUP": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_MOVE_UP": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_OPEN_WITH_EXCEL": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_OPEN_WITH_IE": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_OUTPUT_EXPORT": {
+   "name": "",
+   "keys": [],
+   "help": "Export the output in file\nSave"
+  },
+  "ID_GRID_OUTPUT_EXPORT_AND_OPEN": {
+   "name": "",
+   "keys": [],
+   "help": "Export and Open with a Default Editor\nSave and Open"
+  },
+  "ID_GRID_OUTPUT_OPEN": {
+   "name": "",
+   "keys": [],
+   "help": "Open the output in editor window\nOpen in Editor"
+  },
+  "ID_GRID_OUTPUT_OPTIONS": {
+   "name": "",
+   "keys": [],
+   "help": "Change save format options\nSave option"
+  },
+  "ID_GRID_ROTATE": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_GRID_SETTINGS": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_HELP_FINDER": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_OCIGRID_COLS_TO_HEADERS": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_OCIGRID_DATA_FIT": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_SQLTOOLS_ON_THE_WEB": {
+   "name": "",
+   "keys": [],
+   "help": "Opens SQLTools download page"
+  },
+  "ID_SQL_CANCEL": {
+   "name": "Session.Cancel",
+   "keys": [
+    "Ctrl+D,A"
+   ],
+   "help": "Cancel the current execution\nCancel "
+  },
+  "ID_SQL_COMMIT": {
+   "name": "Session.Commit",
+   "keys": [
+    "Ctrl+D,T"
+   ],
+   "help": "Commit\nCommit"
+  },
+  "ID_SQL_CONNECT": {
+   "name": "Session.Connect",
+   "keys": [
+    "Ctrl+D,C"
+   ],
+   "help": "Connect to database\nConnect"
+  },
+  "ID_SQL_CONN_DESCRIPTION": {
+   "name": "",
+   "keys": [],
+   "help": "Connection description\\\\Execution indicator\nConnection"
+  },
+  "ID_SQL_DBMS_OUTPUT": {
+   "name": "Session.EnableDbmsOutput",
+   "keys": [],
+   "help": "Enable/Disable the Dbms Output\nDbms Output"
+  },
+  "ID_SQL_DB_SOURCE": {
+   "name": "View.ObjectList",
+   "keys": [
+    "Alt+3"
+   ],
+   "help": "Show or hide "
+  },
+  "ID_SQL_DESCRIBE": {
+   "name": "Script.FindObject",
+   "keys": [
+    "F12"
+   ],
+   "help": "Find and describe database object\nFind object"
+  },
+  "ID_SQL_DISCONNECT": {
+   "name": "Session.Disconnect",
+   "keys": [
+    "Ctrl+D,D"
+   ],
+   "help": "Disconnect from database\nDisconnect"
+  },
+  "ID_SQL_EXECUTE": {
+   "name": "Script.Execute",
+   "keys": [
+    "F5"
+   ],
+   "help": "Execute the whole script\nExecute script"
+  },
+  "ID_SQL_EXECUTE_CURRENT": {
+   "name": "Script.ExecuteCurrent",
+   "keys": [
+    "F10",
+    "Ctrl+Enter"
+   ],
+   "help": "Execute the current sql statement\nExecute current"
+  },
+  "ID_SQL_EXECUTE_CURRENT_ALT": {
+   "name": "Script.ExecuteCurrentAlt",
+   "keys": [
+    "Alt+F10"
+   ],
+   "help": "Execute the current sql statement in Alternative Mode\nExecute current (Alt)"
+  },
+  "ID_SQL_EXECUTE_CURRENT_AND_STEP": {
+   "name": "Script.ExecuteCurrentAndStep",
+   "keys": [
+    "Ctrl+F10"
+   ],
+   "help": "Execute the current sql statement and step\nExecute current and step"
+  },
+  "ID_SQL_EXECUTE_FROM_CURSOR": {
+   "name": "Script.ExecuteFromCursor",
+   "keys": [
+    "Ctrl+F5"
+   ],
+   "help": "Execute the script from current cursor position\nExecute script from cursor"
+  },
+  "ID_SQL_EXECUTE_IN_SQLPLUS": {
+   "name": "Script.ExecuteInSQLPlus",
+   "keys": [
+    "Ctrl+Shift+F5"
+   ],
+   "help": "Execute the current selection/script in SQL*Plus\nExecute in SQL*Plus"
+  },
+  "ID_SQL_EXPLAIN_PLAN": {
+   "name": "Script.ExplainPlan",
+   "keys": [
+    "F9"
+   ],
+   "help": "Explain plan for the current sql statement\nExplain plan"
+  },
+  "ID_SQL_EXTRACT_SCHEMA": {
+   "name": "Tools.ExtractSchemaDDL",
+   "keys": [],
+   "help": "Extract Schema DDL"
+  },
+  "ID_SQL_HALT_ON_ERROR": {
+   "name": "Script.HaltOnError",
+   "keys": [],
+   "help": "Enable/disable Halting script execution on error\nHalt on error"
+  },
+  "ID_SQL_HELP": {
+   "name": "Help.SqlHelp",
+   "keys": [
+    "Ctrl+F1"
+   ],
+   "help": ""
+  },
+  "ID_SQL_HISTORY_GET_AND_STEPBACK": {
+   "name": "Script.GetHistoryAndStepBack",
+   "keys": [
+    "Ctrl+D,S"
+   ],
+   "help": "Get SQL from history and step back"
+  },
+  "ID_SQL_HISTORY_STEPFORWARD_AND_GET": {
+   "name": "Script.StepForwardAndGetHistory",
+   "keys": [
+    "Ctrl+D,F"
+   ],
+   "help": "Step forward and get SQL from history"
+  },
+  "ID_SQL_LOAD": {
+   "name": "Script.LoadDDL",
+   "keys": [
+    "Ctrl+F12",
+    "Ctrl+Shift+F12"
+   ],
+   "help": "Load database DDL script object\nLoad DDL script"
+  },
+  "ID_SQL_LOAD_WITH_DBMS_METADATA": {
+   "name": "Script.LoadDDLWithDbmsMetadata",
+   "keys": [
+    "Alt+F12"
+   ],
+   "help": "Load database DDL script object with Dbms_Metadata\nLoad DDL script"
+  },
+  "ID_SQL_NEXT_ERROR": {
+   "name": "Script.NextError",
+   "keys": [
+    "F4"
+   ],
+   "help": "Move to line containing the next error\nNext Error"
+  },
+  "ID_SQL_OBJ_VIEWER": {
+   "name": "View.ObjectTree",
+   "keys": [
+    "Alt+1"
+   ],
+   "help": "Show or hide "
+  },
+  "ID_SQL_PREV_ERROR": {
+   "name": "Script.PreviousError",
+   "keys": [
+    "Shift+F4"
+   ],
+   "help": "Move to line containing the previous error\nPrevious Error"
+  },
+  "ID_SQL_QUICK_COUNT": {
+   "name": "Script.QuickCount",
+   "keys": [
+    "Ctrl+F11"
+   ],
+   "help": "Run count for the table (or selection) under cursor"
+  },
+  "ID_SQL_QUICK_QUERY": {
+   "name": "Script.QuickQuery",
+   "keys": [
+    "F11"
+   ],
+   "help": "Query the table (or selection) under cursor"
+  },
+  "ID_SQL_READ_ONLY": {
+   "name": "Session.ToggleReadOnly",
+   "keys": [
+    "Ctrl+D,O"
+   ],
+   "help": "Toggle Read-Only mode for the session\nToggle Read-Only mode"
+  },
+  "ID_SQL_RECONNECT": {
+   "name": "Session.Reconnect",
+   "keys": [
+    "Ctrl+D,E"
+   ],
+   "help": "Test connection/Reconnect\nReconnect"
+  },
+  "ID_SQL_REFRESH_OBJECT_CACHE": {
+   "name": "Session.RefreshObjectCache",
+   "keys": [],
+   "help": ""
+  },
+  "ID_SQL_ROLLBACK": {
+   "name": "Session.Rollback",
+   "keys": [
+    "Ctrl+D,R"
+   ],
+   "help": "Rollback\nRollback"
+  },
+  "ID_SQL_SESSION_STATISTICS": {
+   "name": "Session.EnableSessionStatistics",
+   "keys": [],
+   "help": "Enable/Disable show session statistics\nStatistics"
+  },
+  "ID_SQL_SUBSTITUTION_VARIABLES": {
+   "name": "Script.SubstitutionVariables",
+   "keys": [],
+   "help": "Enable/Disable scan for the substitution variables\nSubstitution variables"
+  },
+  "ID_SQL_TABLE_TRANSFORMER": {
+   "name": "Tools.TableTransformationHelper",
+   "keys": [],
+   "help": ""
+  },
+  "ID_VIEW_CODE_OUTLINE": {
+   "name": "View.CodeOutline",
+   "keys": [
+    "Alt+4"
+   ],
+   "help": "Show or hide "
+  },
+  "ID_VIEW_CONNECT_TOOLBAR": {
+   "name": "",
+   "keys": [],
+   "help": "Show or hide the toolbar\nToggle ToolBar"
+  },
+  "ID_VIEW_FILE_PANEL": {
+   "name": "View.FilePanel",
+   "keys": [
+    "Alt+0"
+   ],
+   "help": ""
+  },
+  "ID_VIEW_FILE_TOOLBAR": {
+   "name": "",
+   "keys": [],
+   "help": "Show or hide the toolbar\nToggle ToolBar"
+  },
+  "ID_VIEW_HISTORY": {
+   "name": "View.History",
+   "keys": [
+    "Alt+8"
+   ],
+   "help": ""
+  },
+  "ID_VIEW_OPEN_FILES": {
+   "name": "View.OpenFiles",
+   "keys": [
+    "Alt+9"
+   ],
+   "help": "Show or hide "
+  },
+  "ID_VIEW_PROPERTIES": {
+   "name": "View.Properties",
+   "keys": [
+    "Alt+2"
+   ],
+   "help": "Show or hide "
+  },
+  "ID_VIEW_SNIPPETS": {
+   "name": "View.Snippets",
+   "keys": [
+    "Alt+5"
+   ],
+   "help": "Show or hide "
+  },
+  "ID_VIEW_SQL_TOOLBAR": {
+   "name": "",
+   "keys": [],
+   "help": "Show or hide the toolbar\nToggle ToolBar"
+  },
+  "ID_VIEW_STATUS_BAR": {
+   "name": "View.StatusBar",
+   "keys": [],
+   "help": ""
+  },
+  "ID_WINDOW_SPLIT": {
+   "name": "Window.ActivateSplitter",
+   "keys": [
+    "Shift+Alt+P"
+   ],
+   "help": ""
+  },
+  "ID_WORKSPACE_CLOSE": {
+   "name": "Workspace.OpenClose",
+   "keys": [
+    "Ctrl+Shift+W,L"
+   ],
+   "help": ""
+  },
+  "ID_WORKSPACE_COPY": {
+   "name": "Workspace.Copy",
+   "keys": [
+    "Ctrl+Shift+W,C"
+   ],
+   "help": ""
+  },
+  "ID_WORKSPACE_MRU_FILE1": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_WORKSPACE_OPEN": {
+   "name": "Workspace.Open",
+   "keys": [
+    "Ctrl+Shift+W,O"
+   ],
+   "help": ""
+  },
+  "ID_WORKSPACE_OPEN_AUTOSAVED": {
+   "name": "Workspace.OpenAutosaved",
+   "keys": [
+    "Ctrl+Shift+W,T"
+   ],
+   "help": ""
+  },
+  "ID_WORKSPACE_PASTE": {
+   "name": "Workspace.Paste",
+   "keys": [
+    "Ctrl+Shift+W,V"
+   ],
+   "help": ""
+  },
+  "ID_WORKSPACE_QUICK_MRU_FIRST": {
+   "name": "",
+   "keys": [],
+   "help": ""
+  },
+  "ID_WORKSPACE_SAVE": {
+   "name": "Workspace.Save",
+   "keys": [
+    "Ctrl+Shift+W,S"
+   ],
+   "help": ""
+  },
+  "ID_WORKSPACE_SAVE_AS": {
+   "name": "Workspace.SaveAs",
+   "keys": [
+    "Ctrl+Shift+W,A"
+   ],
+   "help": ""
+  },
+  "ID_WORKSPACE_SAVE_QUICK": {
+   "name": "Workspace.SaveQuick",
+   "keys": [
+    "Ctrl+Shift+W,Q"
+   ],
+   "help": ""
+  }
+ }
+}

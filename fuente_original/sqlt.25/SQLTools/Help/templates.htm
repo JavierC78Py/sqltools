@@ -1,0 +1,311 @@
+<HTML>
+<HEAD>
+    <TITLE>Templates</TITLE>
+    <META content="Microsoft Visual Studio 7.0" name="GENERATOR">
+    <LINK href="_sqltools.css" type="text/css" rel="stylesheet">
+</HEAD>
+<BODY>
+    <OBJECT id="Object1" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" type="application/x-oleobject"
+            VIEWASTEXT>
+        <PARAM NAME="Keyword" VALUE="Templates">
+        <PARAM NAME="Keyword" VALUE="Template">
+        <PARAM NAME="Keyword" VALUE="Expand Template">
+        <PARAM NAME="Keyword" VALUE="Create Template">
+        <PARAM NAME="Keyword" VALUE="Auto-text">
+        <PARAM NAME="Keyword" VALUE="Keyword expansion">
+        <PARAM NAME="Keyword" VALUE="Minimum length">
+        <PARAM NAME="Keyword" VALUE="Snippets">
+    </OBJECT>
+
+    <h3>Templates</h3>
+    <HR SIZE="3">
+
+    <p>
+        A <strong>template</strong> is a short keyword that expands into a block of text you
+        would otherwise have to type. Type <code>sel</code> in the editor, press
+        <span class="key">Ctrl</span>+<span class="key">Space</span>, and you get a complete
+        <strong>SELECT</strong> statement with the caret already sitting where you need to
+        keep typing.
+    </p>
+    <p>
+        Templates serve two different jobs, and it is worth keeping them apart:
+    </p>
+    <ul>
+        <li>
+            <strong>Expansion at the caret</strong> &mdash; what this page covers. The keyword
+            you type in the editor, the rule that decides whether it expands, and where the
+            caret ends up.
+        </li>
+        <li>
+            <strong>Browsing in the Snippets pane</strong> &mdash; covered on
+            <a href="snippets_pane.htm">its own page</a>. A searchable list of every template,
+            showing what each one expands to, that you can insert from with the mouse.
+        </li>
+    </ul>
+    <p>
+        Both read the same collection, so a template you add is immediately available to both.
+        A template can also be hidden from the pane while still expanding on its keyword
+        &mdash; see <a href="#exclude">Exclude from snippets</a>.
+    </p>
+
+    <h4>What Ships With SQLTools</h4>
+    <p>
+        SQLTools comes with <strong>31 templates across 8 languages</strong>: PL/SQL, C++, Java,
+        SQR, Shell, Text, XML and PERL. Only the templates belonging to the language of the file
+        you are editing are offered, so a PL/SQL script sees <code>begin</code>, <code>cursor</code>
+        and <code>exception</code>, and nothing from the Java set. You can edit or delete any of
+        the shipped entries and add your own.
+    </p>
+
+    <h4><a name="expand"></a>Expanding a Template</h4>
+    <p>
+        Type the beginning of a keyword and choose
+        <strong>Text &rarr; Expand Template</strong>
+        (<span class="key">Ctrl</span>+<span class="key">Space</span> by default). The keyword is
+        replaced by the template's text and the caret moves to the position the template author
+        marked.
+    </p>
+    <p>
+        Two conditions have to hold before a template expands:
+    </p>
+    <ol>
+        <li>
+            What you typed must be the <strong>beginning of</strong> the template's keyword. Typing
+            <code>sel</code> matches <code>select</code>; typing <code>sel</code> does not match
+            <code>update</code>.
+        </li>
+        <li>
+            What you typed must be <strong>at least the template's minimum length</strong>. This is
+            the <em>Min length</em> field, and it exists so that a one- or two-letter keyword does
+            not fire before you have said which template you mean.
+        </li>
+    </ol>
+    <p>
+        Because the first condition is a <em>prefix</em> test, you never have to type the whole
+        keyword. With <code>select</code> at a minimum length of 1, any of
+        <code>s</code>, <code>se</code>, <code>sel</code> or <code>select</code> expands it.
+    </p>
+
+    <div class="note">
+        <strong>Minimum length decides who wins when keywords overlap.</strong>
+        The shipped PL/SQL set contains <code>if</code> (minimum 1), <code>ife</code> (minimum 3)
+        and <code>ifeif</code> (minimum 4). Typing <code>if</code> expands <em>If</em>, because
+        <code>ife</code> and <code>ifeif</code> have not reached their minimum yet. Typing
+        <code>ife</code> expands <em>If Else</em>. Typing <code>ifeif</code> expands
+        <em>If Else If</em>. Each longer keyword is protected from the shorter one by its own
+        minimum, which is why the values are not all 1.
+    </div>
+
+    <h4><a name="alternative"></a>When Expansion Shows a List Instead</h4>
+    <p>
+        Sometimes more than one template starts with what you typed, and expanding the first one
+        would be a guess. The setting
+        <strong>Always show Autocomplete list if there is an alternative</strong> on the
+        <a href="#settings">Templates settings page</a> decides what happens:
+    </p>
+    <ul>
+        <li>
+            <strong>Unchecked</strong> (the shipped default) &mdash; the first template that
+            matches is expanded immediately.
+        </li>
+        <li>
+            <strong>Checked</strong> &mdash; if anything else also starts with what you typed,
+            expansion is handed to <a href="autocomplete.htm">Autocomplete</a> instead, which
+            lists the candidates and lets you pick. Nothing is inserted until you choose.
+        </li>
+    </ul>
+    <p>
+        This setting is stored per language, so PL/SQL can behave differently from Java.
+    </p>
+
+    <h4><a name="caret"></a>Where the Caret Lands</h4>
+    <p>
+        A template is only half useful if the caret ends up at the bottom of the text it just
+        inserted. Each template records a caret position, and you set it by typing a
+        <strong>caret marker</strong> &mdash; <code>^</code> &mdash; into the template's text where
+        you want to land.
+    </p>
+    <p>
+        For example, the shipped <em>If</em> template is stored as:
+    </p>
+    <pre>IF ^ THEN
+END IF;</pre>
+    <p>
+        The <code>^</code> is <strong>not part of the inserted text</strong>. It is removed when you
+        save, its position is remembered, and expanding the template leaves the caret between the
+        two spaces of <code>IF  THEN</code>, ready for the condition. Reopening the template in the
+        editor puts the <code>^</code> back where it was, so you can see and move it.
+    </p>
+    <p>
+        A template with no marker leaves the caret at the very start of the inserted text.
+    </p>
+
+    <h4><a name="create"></a>Creating a Template From a Selection</h4>
+    <p>
+        The quickest way to add a template is to write the text once, in the editor, and then keep
+        it. Select the text and choose <strong>Text &rarr; Create Template</strong>. The
+        <a href="#form">Template Form</a> opens with the <em>Text</em> field already filled in from
+        your selection, so all you have to supply is a name and the keyword that will bring it back.
+    </p>
+    <p>
+        There is no default shortcut for <strong>Create Template</strong>. If you use it often, bind
+        one under <strong>Tools &rarr; Settings &rarr; Keymap</strong>, where the command is listed
+        as <code>Edit.CreateTemplate</code>. Its companion
+        <code>Edit.ExpandTemplate</code> is what <span class="key">Ctrl</span>+<span
+        class="key">Space</span> is bound to.
+    </p>
+
+    <h4><a name="form"></a>The Template Form</h4>
+    <p>
+        The Template Form is where a single template is edited. It opens from
+        <strong>Create Template</strong>, and from the <strong>Add&hellip;</strong> and
+        <strong>Edit&hellip;</strong> buttons on the settings page and in the
+        <a href="snippets_pane.htm">Snippets pane</a>. The dialog can be resized, which is worth
+        doing before pasting in a long block of SQL.
+    </p>
+    <table class="kbd">
+        <tr><th>Field</th><th>What it does</th></tr>
+        <tr>
+            <td><strong>Name</strong></td>
+            <td>
+                The label shown in the settings list and on the card in the Snippets pane. Purely
+                descriptive &mdash; it plays no part in matching, and two templates may share a
+                name.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Keyword</strong></td>
+            <td>
+                What you type to trigger the template. Matching is by prefix, so the keyword only
+                has to <em>start</em> with what you type.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Min length</strong></td>
+            <td>
+                How many characters of the keyword you must type before it will expand. Raising it
+                is how you stop a short keyword from firing too eagerly, and how the
+                <code>if</code> / <code>ife</code> / <code>ifeif</code> family coexists. Setting it
+                equal to the keyword's full length means the whole keyword must be typed.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Exclude from snippets</strong></td>
+            <td>
+                Hides the template in the Snippets pane while leaving expansion untouched. See
+                <a href="#exclude">below</a>.
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Text</strong></td>
+            <td>
+                The block that gets inserted. Use <code>^</code> once, anywhere, to mark where the
+                caret should land &mdash; see <a href="#caret">Where the Caret Lands</a>.
+            </td>
+        </tr>
+    </table>
+
+    <h4><a name="exclude"></a>Exclude From Snippets</h4>
+    <p>
+        The two audiences for a template genuinely differ. A one-word expansion such as
+        <code>number</code> &rarr; <code>NUMBER</code> is valuable at the caret and is noise in a
+        browser, where it takes up a card to say almost nothing.
+        <strong>Exclude from snippets</strong> opts a template out of the pane without disabling
+        it: it keeps expanding on its keyword exactly as before, it simply stops appearing in the
+        list.
+    </p>
+    <p>
+        Excluded templates are not lost. Turn on <strong>Show excluded</strong> in the Snippets
+        pane and they reappear, dimmed, so you can still reach them and un-exclude them. The
+        settings page also has an <em>Excluded</em> column marking the same entries.
+    </p>
+
+    <h4><a name="settings"></a>The Templates Settings Page</h4>
+    <p>
+        <strong>Tools &rarr; Settings&hellip; &rarr; Editor &rarr; Templates</strong> lists every
+        template for the language chosen in the <strong>Category</strong> drop-down at the top. The
+        page opens on the language of the file you were editing, so from a PL/SQL script you land on
+        the PL/SQL set.
+    </p>
+    <p>The list has four columns:</p>
+    <table class="kbd">
+        <tr><th>Column</th><th>Shows</th></tr>
+        <tr><td><strong>Name</strong></td><td>the descriptive label</td></tr>
+        <tr><td><strong>Keyword</strong></td><td>what you type to trigger it</td></tr>
+        <tr><td><strong>Min length</strong></td><td>how much of the keyword is required</td></tr>
+        <tr>
+            <td><strong>Excluded</strong></td>
+            <td>marked for templates hidden from the Snippets pane</td>
+        </tr>
+    </table>
+    <p>
+        <strong>Add&hellip;</strong>, <strong>Edit&hellip;</strong> and <strong>Delete&hellip;</strong>
+        below the list open the <a href="#form">Template Form</a>. Double-clicking a row is the same
+        as <strong>Edit&hellip;</strong>.
+    </p>
+    <p>
+        The <strong>Always show Autocomplete list if there is an alternative</strong> checkbox
+        beneath the list controls the behaviour described
+        <a href="#alternative">above</a>, for the category currently selected.
+    </p>
+
+    <h4><a name="storage"></a>Where Templates Are Stored</h4>
+    <p>
+        Templates live in <code>templates.xml</code> in the SQLTools settings folder, grouped by
+        language. The file is plain XML and safe to edit by hand or to share between machines,
+        though SQLTools rewrites it whenever you change a template through the UI. The structure is:
+    </p>
+    <pre>&lt;OpenEditor&gt;
+  &lt;Templates MajorVersion="1" MinorVersion="1"&gt;
+    &lt;Language Name="PL/SQL" AlwaysListIfAlternative="0"&gt;
+      &lt;Template Name="If" Keyword="if" MinLength="1"
+                CurLine="0" CurPos="3"&gt;IF  THEN&amp;#13;&amp;#10;END IF;&lt;/Template&gt;
+      &hellip;</pre>
+    <table class="kbd">
+        <tr><th>Attribute</th><th>Meaning</th></tr>
+        <tr><td><code>Language/@Name</code></td><td>the category the group belongs to</td></tr>
+        <tr>
+            <td><code>Language/@AlwaysListIfAlternative</code></td>
+            <td><code>1</code> to defer to Autocomplete when several templates match</td>
+        </tr>
+        <tr><td><code>Template/@Name</code></td><td>the label</td></tr>
+        <tr><td><code>Template/@Keyword</code></td><td>the trigger text</td></tr>
+        <tr><td><code>Template/@MinLength</code></td><td>required prefix length</td></tr>
+        <tr>
+            <td><code>Template/@CurLine</code>, <code>@CurPos</code></td>
+            <td>where the caret lands, zero-based, relative to the inserted text</td>
+        </tr>
+        <tr><td><code>Template/@Uuid</code></td><td>stable identity; see the note below</td></tr>
+        <tr>
+            <td><code>Template/@ExcludeFromSnippets</code></td>
+            <td><code>1</code> to hide the template from the pane</td>
+        </tr>
+    </table>
+    <div class="note">
+        <strong>Editing the file by hand?</strong> Leave out <code>Uuid</code> and SQLTools will
+        generate one the first time it loads the entry, and leave out
+        <code>ExcludeFromSnippets</code> to mean "not excluded". Both are written back on the next
+        save. Do not copy a <code>Uuid</code> between two templates &mdash; it is what tells them
+        apart.
+    </div>
+
+    <h4>Copying a Template for Re-indenting</h4>
+    <p>
+        When you copy a template out of the Snippets pane, or drag it into the editor, the clipboard
+        carries a private marker alongside the text. The editor recognises it on paste and
+        <strong>re-indents the block to the column you dropped it at</strong>, instead of leaving it
+        flush-left the way a plain copy would. Pasting the same text from another application has no
+        marker and is inserted verbatim. This is handled for you; there is nothing to configure.
+    </p>
+
+    <HR SIZE="1">
+    <h4>See Also</h4>
+    <ul>
+        <li><a href="snippets_pane.htm">Snippets Pane</a> &mdash; browsing and inserting templates</li>
+        <li><a href="autocomplete.htm">Autocomplete</a></li>
+        <li><a href="menu_text.htm">Text menu</a></li>
+        <li><a href="editor_features.htm#templates">Editor Feature Reference &mdash; Templates</a></li>
+    </ul>
+
+</BODY>
+</HTML>

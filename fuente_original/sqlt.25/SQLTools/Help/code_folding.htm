@@ -1,0 +1,209 @@
+<HTML>
+<HEAD>
+    <TITLE>Code Folding</TITLE>
+    <META content="Microsoft Visual Studio 7.0" name="GENERATOR">
+    <LINK href="_sqltools.css" type="text/css" rel="stylesheet">
+</HEAD>
+<BODY>
+    <OBJECT id="Object1" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" type="application/x-oleobject"
+            VIEWASTEXT>
+        <PARAM NAME="Keyword" VALUE="Code Folding">
+        <PARAM NAME="Keyword" VALUE="Folding">
+        <PARAM NAME="Keyword" VALUE="Outlining">
+        <PARAM NAME="Keyword" VALUE="Collapse">
+        <PARAM NAME="Keyword" VALUE="Expand">
+    </OBJECT>
+
+    <h3>Code Folding</h3>
+    <HR SIZE="3">
+
+    <p>
+        <strong>Code folding</strong> lets you temporarily hide blocks of code in the
+        PL/SQL editor &mdash; procedure bodies, <strong>IF</strong> and <strong>LOOP</strong>
+        blocks, whole SELECT statements, comment blocks and more. A collapsed block
+        shrinks to a single line with a <strong>[...]</strong> marker at its end, so you
+        can concentrate on the part of the file you are working on. Hiding lines never
+        changes the file: the full text is always there for editing, searching and
+        printing.
+    </p>
+    <p>
+        Folding is driven by the same syntax analysis as the
+        <a href="code_outline.htm">Code Outline</a> pane, and it is
+        <strong>switched on by default</strong>.
+    </p>
+
+    <h4>Turning Folding On and Off</h4>
+    <p>Two ways to switch folding:</p>
+    <ul>
+        <li>
+            <strong>Tools &rarr; Settings&hellip; &rarr; Editor &rarr; Navigation and Outline</strong>,
+            group <em>Code folding</em>: check <strong>Enabled</strong>.
+        </li>
+        <li>
+            Right-click anywhere in the editor's left margin (the line-number gutter)
+            and toggle <strong>Folding Enabled</strong> in the context menu. The item
+            carries a check mark while folding is on.
+        </li>
+    </ul>
+    <p>
+        Because folding comes from the outline parser, it requires <strong>PL/SQL keyword
+        navigation</strong> to be enabled on the same settings page. Files without
+        recognisable PL/SQL structure (plain SQL*Plus scripts, text documents) show no
+        fold boxes.
+    </p>
+
+    <h4>The Folding Gutter</h4>
+    <p>
+        When folding is on, a narrow band appears between the line numbers and the text.
+        Every foldable block gets a small box in this band:
+    </p>
+    <ul>
+        <li>Click a <strong>&minus;</strong> box to collapse the block. The box turns
+            into a <strong>+</strong> and the hidden lines are replaced by a
+            <strong>[...]</strong> marker at the end of the block's first line.</li>
+        <li>Click a <strong>+</strong> box, or anywhere on the <strong>[...]</strong>
+            marker, to expand the block again.</li>
+    </ul>
+    <p>
+        The block around the caret is lightly tinted in the gutter so you can see at a
+        glance which region the fold commands will act on. This tint is purely visual
+        and can be switched off (see Settings below) without affecting folding itself.
+    </p>
+
+    <h4>Commands and Shortcuts</h4>
+    <p>
+        All folding commands are on the <strong>Edit &rarr; Outlining</strong> submenu
+        and in the gutter context menu. The default shortcuts are two-key chords:
+        press <strong>Ctrl+M</strong>, release, then press the second key.
+    </p>
+    <TABLE id="Table1" width="600" cols="3">
+        <TR vAlign="top">
+            <TD width="180"><STRONG>Command</STRONG></TD>
+            <TD width="90"><STRONG>Shortcut</STRONG></TD>
+            <TD><STRONG>What it does</STRONG></TD>
+        </TR>
+        <TR vAlign="top">
+            <TD>Collapse Current Region</TD>
+            <TD>Ctrl+M, S</TD>
+            <TD>Collapse the fold region around the caret</TD>
+        </TR>
+        <TR vAlign="top">
+            <TD>Expand Current Region</TD>
+            <TD>Ctrl+M, E</TD>
+            <TD>Expand the fold region around the caret</TD>
+        </TR>
+        <TR vAlign="top">
+            <TD>Toggle Current Region</TD>
+            <TD>Ctrl+M, M</TD>
+            <TD>Collapse or expand the fold region around the caret</TD>
+        </TR>
+        <TR vAlign="top">
+            <TD>Expand Current Subtree</TD>
+            <TD>Ctrl+M, J</TD>
+            <TD>Expand the region around the caret and everything nested inside it</TD>
+        </TR>
+        <TR vAlign="top">
+            <TD>Collapse All</TD>
+            <TD>Ctrl+M, A</TD>
+            <TD>Collapse every fold region in the document</TD>
+        </TR>
+        <TR vAlign="top">
+            <TD>Expand All</TD>
+            <TD>Ctrl+M, X</TD>
+            <TD>Expand every collapsed region in the document</TD>
+        </TR>
+        <TR vAlign="top">
+            <TD>Toggle All</TD>
+            <TD>Ctrl+M, L</TD>
+            <TD>Expand all folds, or collapse all when nothing is folded</TD>
+        </TR>
+        <TR vAlign="top">
+            <TD>Collapse to Level 1</TD>
+            <TD>Ctrl+M, 1</TD>
+            <TD>Collapse every region; only top-level anchors stay visible</TD>
+        </TR>
+        <TR vAlign="top">
+            <TD>Collapse to Level 2</TD>
+            <TD>Ctrl+M, 2</TD>
+            <TD>Collapse regions nested two levels or deeper</TD>
+        </TR>
+        <TR vAlign="top">
+            <TD>Collapse to Level 3</TD>
+            <TD>Ctrl+M, 3</TD>
+            <TD>Collapse regions nested three levels or deeper</TD>
+        </TR>
+    </TABLE>
+    <p>
+        The commands that act on the region around the caret are only available when the
+        caret is inside a foldable region; the whole-document commands are available as
+        soon as the file contains any. The shortcuts shown are the defaults of the
+        standard keymap; a different keymap layout can be selected on the
+        <strong>Editor &rarr; General</strong> settings page.
+    </p>
+
+    <h4>What Can Be Folded</h4>
+    <ul>
+        <li>Packages, package bodies, and the procedures, functions and types declared
+            in them</li>
+        <li>Standalone <strong>CREATE [OR REPLACE] PROCEDURE / FUNCTION /
+            TYPE BODY</strong> units</li>
+        <li><strong>BEGIN &hellip; END</strong> blocks, including anonymous
+            <strong>DECLARE</strong> blocks</li>
+        <li><strong>IF</strong>, <strong>CASE</strong>, <strong>FOR</strong> and
+            <strong>WHILE LOOP</strong> blocks that span several lines</li>
+        <li>Multiline SQL statements: SELECT (including its clauses), INSERT, UPDATE,
+            DELETE, MERGE, OPEN &hellip; FOR, CREATE TRIGGER</li>
+        <li>Blocks of consecutive comment lines</li>
+    </ul>
+    <p>
+        Single-line constructs, expressions and SQL*Plus commands do not fold. Blocks
+        nested very deeply (more than four levels) may not offer a fold box; everything
+        above that depth still folds normally.
+    </p>
+
+    <h4>Working with Folded Text</h4>
+    <ul>
+        <li><strong>Nothing is lost.</strong> Collapsing only hides lines; the document
+            keeps its full content. Printing and print preview always include the
+            hidden lines.</li>
+        <li><strong>Search reaches hidden text.</strong> Find, Replace and bookmark
+            jumps work on the whole document, and a hit inside a collapsed region
+            expands it automatically so you can see the result.</li>
+        <li><strong>The caret is never hidden.</strong> If a command would put the caret
+            on a hidden line, that region expands first.</li>
+        <li><strong>Selections span folds.</strong> A selection that reaches over a
+            collapsed region includes the hidden lines: copy, cut and delete act on the
+            full range.</li>
+        <li><strong>Editing keeps folds.</strong> Typing inside a region adjusts the fold
+            as the outline is reparsed; regions stay collapsed where possible.</li>
+    </ul>
+
+    <h4>Settings</h4>
+    <p>
+        Both switches are in <strong>Tools &rarr; Settings&hellip; &rarr; Editor &rarr;
+        Navigation and Outline</strong>, group <em>Code folding</em>:
+    </p>
+    <p>
+        <strong>Enabled</strong><br>
+        Master switch for code folding. On by default. Turning it off expands every
+        hidden line immediately; turning it back on restores the fold boxes with all
+        regions expanded. The same switch is available as <em>Folding Enabled</em> in
+        the gutter context menu.
+    </p>
+    <p>
+        <strong>Highlight the current region</strong><br>
+        On by default. Tints the gutter next to the region around the caret so it is
+        easy to see which region the fold commands will affect. This is a visual aid
+        only: switching it off does not disable any folding command.
+    </p>
+
+    <h4>Notes</h4>
+    <ul>
+        <li>If a file has syntax errors, fold regions may be missing or approximate
+            while the parser recovers; fixing the syntax restores them.</li>
+        <li>Folding also works in read-only files &mdash; collapsing does not modify
+            the document.</li>
+    </ul>
+
+</BODY>
+</HTML>

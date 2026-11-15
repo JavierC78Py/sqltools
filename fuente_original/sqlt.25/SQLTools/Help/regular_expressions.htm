@@ -1,0 +1,291 @@
+<HTML>
+    <HEAD>
+        <TITLE>Regular Expressions</TITLE>
+        <meta content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+        <LINK href="_sqltools.css" type="text/css" rel="stylesheet">
+    </HEAD>
+    <BODY>
+        <OBJECT id="Object1" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" type="application/x-oleobject"
+            VIEWASTEXT>
+            <PARAM NAME="Keyword" VALUE="Regular Expressions">
+            <PARAM NAME="Keyword" VALUE="regex">
+            <PARAM NAME="Keyword" VALUE="pattern">
+            <PARAM NAME="Keyword" VALUE="Expression Builder">
+            <PARAM NAME="Keyword" VALUE="POSIX Extended">
+        </OBJECT>
+        <H3>Regular Expressions</H3>
+        <HR SIZE="3">
+        <P>Both the editor <A href="editor_search.htm">Find and Replace</A> dialog and
+            <A href="file_find.htm">Find in Files</A> accept regular expressions when the
+            <STRONG>Regular expression</STRONG> check box is on. SQLTools uses the
+            <STRONG>POSIX Extended</STRONG> syntax (the one used by <CODE>egrep</CODE> and
+            <CODE>awk</CODE>), implemented by the Boost.Regex library, with a few
+            Boost-compatible extensions noted below. With the check box off, the search text
+            is always matched literally, whatever characters it contains.</P>
+
+        <H4><A name="syntax">Syntax basics</A></H4>
+        <P>Every character matches itself except the special characters
+            <CODE>. [ ] { } ( ) \ * + ? | ^ $</CODE>:</P>
+        <P>
+            <table>
+                <tr>
+                    <th class="col-narrow">Construct</th>
+                    <th>Meaning</th>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>.</CODE></td>
+                    <td>Any single character.</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>^</CODE> / <CODE>$</CODE></td>
+                    <td>Start / end of line (searching in SQLTools is line-based).</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>*</CODE></td>
+                    <td>Zero or more repetitions of the preceding atom, e.g.
+                        <CODE>ab*c</CODE>.</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>+</CODE></td>
+                    <td>One or more repetitions, e.g. <CODE>[0-9]+</CODE>.</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>?</CODE></td>
+                    <td>Zero or one repetition, e.g. <CODE>colou?r</CODE> matches
+                        <CODE>color</CODE> and <CODE>colour</CODE>.</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>{n}</CODE>, <CODE>{n,}</CODE>,
+                        <CODE>{n,m}</CODE></td>
+                    <td>Exactly <EM>n</EM>, at least <EM>n</EM>, or between <EM>n</EM> and
+                        <EM>m</EM> repetitions, e.g. <CODE>^[0-9]{4,6}$</CODE>.</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>(...)</CODE></td>
+                    <td>Marked sub-expression (group): limits the scope of the operators and
+                        captures text for back-references and for the
+                        <A href="#replace">replace</A> references <CODE>\1</CODE>&hellip;<CODE>\9</CODE>.</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>|</CODE></td>
+                    <td>Alternation: <CODE>cat|dog</CODE> matches either word. Group it as
+                        <CODE>ab(d|ef)</CODE>.</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>\1</CODE>&hellip;<CODE>\9</CODE></td>
+                    <td>Back-reference: matches the same text as group <EM>n</EM> matched,
+                        e.g. <CODE>^(a*)[^a]*\1$</CODE> matches <CODE>aaabbaaa</CODE>.
+                        (A Boost extension - standard POSIX Extended has no
+                        back-references.)</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>\x</CODE></td>
+                    <td>Escapes a special character: <CODE>\.</CODE> matches a literal dot,
+                        <CODE>\\</CODE> a literal backslash.</td>
+                </tr>
+            </table>
+        </P>
+        <P>Quantifiers are greedy (they match as much text as possible), and when there is
+            more than one way to match, the <EM>leftmost-longest</EM> match wins - the POSIX
+            rule, not Perl's first-alternative-wins rule. So <CODE>a|ab</CODE> against the
+            text <CODE>ab</CODE> matches <CODE>ab</CODE>, and there are no lazy quantifiers
+            such as <CODE>*?</CODE>.</P>
+
+        <H4><A name="sets">Character sets</A></H4>
+        <UL>
+            <LI><CODE>[abc]</CODE> - any one character of the set; <CODE>[a-z]</CODE> - any
+                character of the range.</LI>
+            <LI><CODE>[^abc]</CODE> - any character <EM>not</EM> in the set.</LI>
+            <LI><CODE>[[:name:]]</CODE> - a named character class inside a set. The most
+                useful names: <CODE>alnum</CODE>, <CODE>alpha</CODE>, <CODE>blank</CODE>,
+                <CODE>cntrl</CODE>, <CODE>digit</CODE>, <CODE>graph</CODE>,
+                <CODE>lower</CODE>, <CODE>print</CODE>, <CODE>punct</CODE>,
+                <CODE>space</CODE>, <CODE>upper</CODE>, <CODE>word</CODE>,
+                <CODE>xdigit</CODE>. Example: <CODE>[[:alpha:]_][[:alnum:]_]*</CODE> matches
+                an identifier.</LI>
+            <LI>All of the above can be combined: <CODE>[[:digit:]a-c_]</CODE>.</LI>
+        </UL>
+
+        <H4><A name="escapes">Escape sequences</A></H4>
+        <P>Beyond the POSIX basics, Boost.Regex supports these escapes (SQLTools inherits
+            them):</P>
+        <P>
+            <table>
+                <tr>
+                    <th class="col-narrow">Escape</th>
+                    <th>Meaning</th>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>\a \e \f \n \r \t \v</CODE></td>
+                    <td>Bell, Escape (0x1B), form feed, new line, carriage return, tab,
+                        vertical tab.</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>\d \s \w</CODE></td>
+                    <td>A digit, a white-space character, a word character - the same as
+                        <CODE>[[:digit:]]</CODE>, <CODE>[[:space:]]</CODE>,
+                        <CODE>[[:word:]]</CODE>. Upper case <CODE>\D \S \W</CODE> match the
+                        complements.</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>\b \B</CODE></td>
+                    <td>A word boundary / not a word boundary. Inside a character set
+                        <CODE>[\b]</CODE> means backspace.</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>\&lt; \&gt;</CODE></td>
+                    <td>Start / end of a word.</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>\xdd \x{dddd} \0ddd</CODE></td>
+                    <td>The character with the hexadecimal / octal code, e.g.
+                        <CODE>\x41</CODE> is <CODE>A</CODE>.</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>\cx</CODE></td>
+                    <td>An ASCII control character, e.g. <CODE>\cI</CODE> is tab.</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>\Q&hellip;\E</CODE></td>
+                    <td>Everything between <CODE>\Q</CODE> and <CODE>\E</CODE> is matched
+                        literally.</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>\</CODE> + other</td>
+                    <td>Any other escaped character matches itself, e.g. <CODE>\@</CODE> is
+                        <CODE>@</CODE>.</td>
+                </tr>
+            </table>
+        </P>
+
+        <H4><A name="builder">The Expression Builder</A></H4>
+        <P>The button next to the <STRONG>Find what</STRONG> box (in both dialogs, enabled
+            with the <STRONG>Regular expression</STRONG> option) inserts the commonly used
+            constructs at the cursor position:</P>
+        <P>
+            <table>
+                <tr>
+                    <th class="col-narrow">Inserts</th>
+                    <th>Meaning</th>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>\t</CODE></td>
+                    <td>Tab character</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>.</CODE></td>
+                    <td>Any single character</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>*</CODE> / <CODE>+</CODE></td>
+                    <td>Zero or more / one or more</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>^</CODE> / <CODE>$</CODE></td>
+                    <td>Beginning / end of line</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>[]</CODE> / <CODE>[^]</CODE></td>
+                    <td>Any one character in the set / not in the set</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>|</CODE></td>
+                    <td>Or</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>\</CODE></td>
+                    <td>Escape a special character</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>([a-zA-Z0-9])</CODE></td>
+                    <td>Alpha-numeric character</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>([a-zA-Z])</CODE></td>
+                    <td>Alphabetic character</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>([0-9])</CODE></td>
+                    <td>Decimal digit</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>([0-9a-fA-F]+)</CODE></td>
+                    <td>Hexadecimal digits</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>([a-zA-Z_$][a-zA-Z0-9_$]*)</CODE></td>
+                    <td>C-identifier</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>(([0-9]+\.[0-9]*)|([0-9]*\.[0-9]+)|([0-9]+))</CODE></td>
+                    <td>Rational number</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>(("[^"]*")|('[^']*'))</CODE></td>
+                    <td>Quoted string</td>
+                </tr>
+            </table>
+        </P>
+        <P>The <STRONG>Replace with</STRONG> box of the editor dialog has its own builder
+            button that inserts the group references described below.</P>
+
+
+
+        <H4><A name="replace">Group references in Replace</A></H4>
+        <P>With <STRONG>Regular expression</STRONG> on, the <STRONG>Replace with</STRONG>
+            text of the editor <A href="editor_search.htm">Find and Replace</A> dialog can
+            refer to what the groups of the pattern matched:</P>
+        <P>
+            <table>
+                <tr>
+                    <th class="col-narrow">Reference</th>
+                    <th>Meaning</th>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>\0</CODE></td>
+                    <td>The whole matched text (Find What Text).</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><CODE>\1</CODE>&hellip;<CODE>\9</CODE></td>
+                    <td>The text matched by the <EM>n</EM>-th parenthesised group
+                        (Tagged Expression <EM>n</EM>), counted by opening parentheses.
+                        A reference to a group that did not participate in the match
+                        inserts nothing.</td>
+                </tr>
+            </table>
+        </P>
+        <P>Example: find <CODE>([[:alpha:]]+)=([[:digit:]]+)</CODE> and replace with
+            <CODE>\2 /* \1 */</CODE> turns <CODE>width=10</CODE> into
+            <CODE>10 /* width */</CODE>. The replacement text must be a single line -
+            carriage returns are not supported.</P>
+
+        <H4><A name="backslash">The "Backslash expressions" option</A></H4>
+        <P>This option is independent of the regular-expression one. When checked, the
+            backslash sequences in the <EM>typed</EM> search/replace text are converted to
+            the corresponding control characters before the search runs:
+            <CODE>\a \b \f \n \r \t \v \' \" \\ \?</CODE> and <CODE>\ddd</CODE>, where
+            <EM>ddd</EM> is a decimal character code of up to 3 digits (e.g.
+            <CODE>\65</CODE> is <CODE>A</CODE>). It lets you search for tabs and other
+            unprintable characters without knowing their regex escapes. Note that with
+            <STRONG>Regular expression</STRONG> also on, <CODE>\<EM>digit</EM></CODE> in
+            the <STRONG>Replace with</STRONG> text stays a group reference.</P>
+
+        <H4><A name="notes">Good to know</A></H4>
+        <UL>
+            <LI>Searching is <EM>line-based</EM> in both the editor and Find in Files:
+                <CODE>^</CODE>/<CODE>$</CODE> mean line start/end and a pattern can never
+                match across a line break.</LI>
+            <LI><STRONG>Match whole word only</STRONG> works together with regex patterns -
+                only matches at word boundaries are reported.</LI>
+            <LI>An invalid pattern reports <EM>"Regular expression error"</EM> when a
+                search is started explicitly; the editor's search-as-you-type preview
+                simply shows no match while the pattern is incomplete (e.g. an unclosed
+                <CODE>(</CODE> or <CODE>[a-</CODE>).</LI>
+            <LI>The full syntax reference of the underlying engine is the
+                <EM>POSIX Extended Regular Expression Syntax</EM> chapter of the Boost.Regex
+                documentation.</LI>
+        </UL>
+        <P>See also: <A href="editor_search.htm">Find and Replace in the Editor</A> &middot;
+            <A href="file_find.htm">Find in Files</A></P>
+    </BODY>
+</HTML>

@@ -1,0 +1,29 @@
+# macOS / editores
+.DS_Store
+.idea/
+.vscode/
+*.user
+
+# Compilación
+build/
+build-release/
+dist/
+*.o
+*.a
+
+# Oracle Instant Client (licencia OTN: no se redistribuye aquí; cada persona lo descarga)
+instantclient_*/
+instantclient-*.dmg
+instantclient-*.zip
+
+# Datos privados (conexiones de SQLTools de Windows, usuarios y hosts internos)
+importar/
+tests/import_test.cpp
+
+# Binarios de las pruebas de la etapa 1
+etapa1/fetch_baseline
+etapa1/lob_probe
+etapa1/oci_test
+
+# Capturas y temporales de trabajo
+etapa2/

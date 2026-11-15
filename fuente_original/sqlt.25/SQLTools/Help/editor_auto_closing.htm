@@ -1,0 +1,288 @@
+<HTML>
+    <HEAD>
+        <TITLE>Editor &mdash; Auto-closing and Auto-surround</TITLE>
+        <META content="Microsoft Visual Studio 7.0" name="GENERATOR">
+        <META http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+        <LINK href="_sqltools.css" type="text/css" rel="stylesheet">
+    </HEAD>
+    <BODY>
+        <OBJECT id="Object1" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" type="application/x-oleobject"
+                VIEWASTEXT>
+            <PARAM NAME="Keyword" VALUE="Auto-closing">
+            <PARAM NAME="Keyword" VALUE="Auto-surround">
+            <PARAM NAME="Keyword" VALUE="brackets">
+            <PARAM NAME="Keyword" VALUE="quotes">
+            <PARAM NAME="Keyword" VALUE="PL/SQL">
+            <PARAM NAME="Keyword" VALUE="q-quote">
+            <PARAM NAME="Keyword" VALUE="Editor settings">
+        </OBJECT>
+
+        <H3>Editor &mdash; Auto-closing and Auto-surround</H3>
+        <HR SIZE="3">
+
+        <P>
+            <A href="main_window.htm">&larr; Main Window</A>
+        </P>
+
+        <H4>Contents</H4>
+        <UL>
+            <LI><A href="#autoclose">Auto-closing brackets and quotes</A></LI>
+            <LI><A href="#overtype">Typing over the auto-inserted closer</A></LI>
+            <LI><A href="#undo">Undo behavior</A></LI>
+            <LI><A href="#surround">Auto-surround a selection</A></LI>
+            <LI><A href="#column">Auto-surround in column (block) selections</A></LI>
+            <LI><A href="#plsql">PL/SQL-aware auto-surround</A></LI>
+            <LI><A href="#strings">Suppression inside strings</A></LI>
+            <LI><A href="#settings">Settings</A></LI>
+        </UL>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="autoclose">Auto-closing brackets and quotes</A></H4>
+
+        <P>
+            When you type an opening bracket or quote character, the editor
+            automatically inserts the matching closing character right after
+            the cursor, leaving the cursor positioned between the pair so you
+            can keep typing the contents.
+        </P>
+
+        <P>Supported pairs:</P>
+        <TABLE class="setting-col" border="1" cellpadding="4" cellspacing="0">
+            <TR><TH>Opening</TH><TH>Closing</TH></TR>
+            <TR><TD><CODE>(</CODE></TD><TD><CODE>)</CODE></TD></TR>
+            <TR><TD><CODE>[</CODE></TD><TD><CODE>]</CODE></TD></TR>
+            <TR><TD><CODE>{</CODE></TD><TD><CODE>}</CODE></TD></TR>
+            <TR><TD><CODE>"</CODE></TD><TD><CODE>"</CODE></TD></TR>
+            <TR><TD><CODE>'</CODE></TD><TD><CODE>'</CODE></TD></TR>
+        </TABLE>
+
+        <P>
+            Auto-closing is suppressed while overtype (Insert/Overtype) mode is
+            active, and is suppressed for quote characters when the cursor is
+            already positioned inside a quoted string &mdash; see
+            <A href="#strings">Suppression inside strings</A> below.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="overtype">Typing over the auto-inserted closer</A></H4>
+
+        <P>
+            If the character immediately to the right of the cursor is a
+            closing character that was auto-inserted earlier on the same
+            line, and you type that same closing character again, the editor
+            simply moves the cursor past it instead of inserting a duplicate.
+            This lets you type <CODE>(1+2)</CODE> naturally, typing the
+            closing <CODE>)</CODE> yourself without ending up with
+            <CODE>(1+2))</CODE>.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="undo">Undo behavior</A></H4>
+
+        <P>
+            Pressing <STRONG>Ctrl+Z</STRONG> immediately after an auto-closed
+            pair was inserted removes only the auto-inserted closing
+            character, leaving the opening character in place and the cursor
+            where the pair was opened. Skipping over an auto-closer by typing
+            it yourself (see above) is a caret move only and is not recorded
+            on the undo stack.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="surround">Auto-surround a selection</A></H4>
+
+        <P>
+            When there is an active (non-empty) selection and you type an
+            opening bracket or quote character, the editor wraps the selected
+            text with the matching pair instead of replacing it. Typing the
+            <EM>closing</EM> bracket of a pair (<CODE>)</CODE>,
+            <CODE>]</CODE>, <CODE>}</CODE>) does the same thing &mdash; the
+            selection is wrapped in the complete pair, exactly as if the
+            opening bracket had been typed. The original
+            selection is preserved, now covering the wrapped text.
+        </P>
+
+        <P>Supported pairs: <CODE>(</CODE> <CODE>)</CODE>, <CODE>[</CODE> <CODE>]</CODE>,
+            <CODE>{</CODE> <CODE>}</CODE>, <CODE>'</CODE> <CODE>'</CODE>, <CODE>"</CODE> <CODE>"</CODE>,
+            <CODE>`</CODE> <CODE>`</CODE>.</P>
+
+        <P><STRONG>Example:</STRONG> selecting <CODE>text</CODE> and typing <CODE>(</CODE>
+            &mdash; or <CODE>)</CODE> &mdash; produces <CODE>(text)</CODE>, with
+            <CODE>text</CODE> still selected.</P>
+
+        <P>
+            A single <STRONG>Ctrl+Z</STRONG> undoes the whole action, restoring
+            both the original text and the original selection.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="column">Auto-surround in column (block) selections</A></H4>
+
+        <P>
+            Auto-surround also works with a column (block) selection: when the
+            selected block is not zero-width, typing an opening character
+            &mdash; or its closing counterpart &mdash;
+            surrounds every line of the block with the matching pair at the
+            block's edges, and the original block selection is preserved,
+            shifted to account for the inserted opening character. A single
+            <STRONG>Ctrl+Z</STRONG> undoes the whole block operation.
+        </P>
+
+        <P>
+            A zero-width column block (a plain column-mode caret with no
+            selected width) keeps the editor's normal column-insert behavior
+            and is not affected by auto-surround.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="plsql">PL/SQL-aware auto-surround (escaped quotes and q-quote literals)</A></H4>
+
+        <P>
+            In documents whose language supports Oracle alternative quoting
+            (PL/SQL), auto-surround of a normal (stream) selection understands
+            Oracle string-literal syntax. This behavior is controlled by the
+            <STRONG>PL/SQL-aware auto-surround</STRONG> setting (on by
+            default); while it is on, it takes the place of the two
+            &quot;Auto-surround&hellip;&quot; settings for the characters
+            described below &mdash; those characters surround the selection
+            even when the corresponding older setting is off. Column (block)
+            selections are not affected and keep their standard behavior
+            described above, as do all other characters and all languages
+            without alternative quoting.
+        </P>
+
+        <UL>
+            <LI>
+                Typing <CODE>'</CODE> surrounds the selection with single
+                quotes, first doubling every single quote inside it so the
+                result is a valid PL/SQL string literal: selecting
+                <CODE>it's</CODE> and typing <CODE>'</CODE> produces
+                <CODE>'it''s'</CODE>, with the escaped text left selected.
+                When the selection contains no single quotes, the result is
+                identical to the standard quote surround
+                (<CODE>'abc'</CODE>).
+            </LI>
+            <LI>
+                Typing <CODE>{</CODE> or <CODE>[</CODE> surrounds the
+                selection with an Oracle alternative-quoting (q-quote)
+                literal instead of the plain bracket pair: selecting
+                <CODE>abc</CODE> and typing <CODE>{</CODE> produces
+                <CODE>q'{abc}'</CODE>; typing <CODE>[</CODE> produces
+                <CODE>q'[abc]'</CODE>. Typing the closing bracket
+                <CODE>}</CODE> or <CODE>]</CODE> does the same as typing
+                the opening one. The original text is left selected in
+                all cases.
+            </LI>
+        </UL>
+
+        <P>
+            The q-quote form is produced only when it yields a valid literal.
+            If the selection starts inside a string, or the selected text
+            itself contains the closing sequence (<CODE>}'</CODE> for a typed
+            <CODE>{</CODE>, <CODE>]'</CODE> for a typed <CODE>[</CODE>), the
+            editor falls back to the standard bracket-surround rules: a plain
+            <CODE>{&hellip;}</CODE> / <CODE>[&hellip;]</CODE> pair when
+            &quot;Auto-surround with brackets&quot; is on, or the ordinary
+            replacement of the selection by the typed character when it is
+            off. The escaped-quote surround is likewise suppressed while the
+            selection starts inside a string &mdash; see
+            <A href="#strings">Suppression inside strings</A>.
+        </P>
+
+        <P>
+            As with the standard surround, a single
+            <STRONG>Ctrl+Z</STRONG> undoes the whole operation and restores
+            both the text and the selection.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="strings">Suppression inside strings</A></H4>
+
+        <P>
+            To avoid interfering with quote characters that are part of SQL
+            or PL/SQL string literals, both auto-closing and auto-surround of
+            quote characters are suppressed while the cursor is positioned
+            inside a string &mdash; including a case where the quote kind
+            typed does not match the enclosing string's quote kind. Inside
+            comments, both features behave exactly as they do on plain text.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="settings">Settings</A></H4>
+
+        <P>
+            These options are available on <STRONG>Tools &gt; Settings&hellip;</STRONG>,
+            <STRONG>Editor</STRONG> page, in the &quot;Auto-closing and
+            auto-surround&quot; group:
+        </P>
+
+        <TABLE border="1" cellpadding="4" cellspacing="0">
+            <TR>
+                <TH class="setting-col">Setting</TH>
+                <TH class="default-col">Default</TH>
+                <TH>Description</TH>
+            </TR>
+            <TR>
+                <TD class="setting-col">Auto-close brackets and quotes</TD>
+                <TD class="default-col">On</TD>
+                <TD>Master on/off switch for auto-closing brackets and quotes.</TD>
+            </TR>
+            <TR>
+                <TD class="setting-col">Auto-close only before whitespace</TD>
+                <TD class="default-col">Off</TD>
+                <TD>
+                    When enabled, the closing character is inserted only if
+                    the character to the right of the cursor is whitespace or
+                    end of line; otherwise the closing character is inserted
+                    regardless of what follows.
+                </TD>
+            </TR>
+            <TR>
+                <TD class="setting-col">Auto-surround with quotes</TD>
+                <TD class="default-col">On</TD>
+                <TD>Enables wrapping a selection with matching quote characters.</TD>
+            </TR>
+            <TR>
+                <TD class="setting-col">Auto-surround with brackets</TD>
+                <TD class="default-col">On</TD>
+                <TD>Enables wrapping a selection with matching bracket characters.</TD>
+            </TR>
+            <TR>
+                <TD class="setting-col">PL/SQL-aware auto-surround</TD>
+                <TD class="default-col">On</TD>
+                <TD>
+                    In PL/SQL files: typing <CODE>'</CODE> around a selection
+                    doubles embedded quotes; typing <CODE>{</CODE> or
+                    <CODE>[</CODE> produces a <CODE>q'{&hellip;}'</CODE> /
+                    <CODE>q'[&hellip;]'</CODE> literal. For those characters
+                    this setting replaces the two auto-surround settings
+                    above; it does not affect column (block) selections or
+                    other languages. See
+                    <A href="#plsql">PL/SQL-aware auto-surround</A>.
+                </TD>
+            </TR>
+        </TABLE>
+
+        <HR SIZE="1">
+        <P>
+            <A href="main_window.htm">&larr; Main Window</A>
+        </P>
+
+    </BODY>
+</HTML>

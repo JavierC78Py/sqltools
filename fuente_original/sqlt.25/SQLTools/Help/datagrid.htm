@@ -1,0 +1,227 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+<META content="Microsoft Visual Studio 7.0" name="GENERATOR">
+<LINK href="_sqltools.css" type="text/css" rel="stylesheet">
+</HEAD>
+<BODY>
+    <OBJECT id="Object1" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" type="application/x-oleobject" VIEWASTEXT>
+        <PARAM NAME="Keyword" VALUE="Datagrid">
+        <PARAM NAME="Keyword" VALUE="Query result">
+        <PARAM NAME="Keyword" VALUE="Sorting">
+        <PARAM NAME="Keyword" VALUE="Sort">
+        <PARAM NAME="Keyword" VALUE="Copy As">
+        <PARAM NAME="Keyword" VALUE="Insert SQL Value">
+        <PARAM NAME="Keyword" VALUE="Editing">
+        <PARAM NAME="Keyword" VALUE="Insert Row">
+        <PARAM NAME="Keyword" VALUE="Delete Row">
+        <PARAM NAME="Keyword" VALUE="ROWID">
+        <PARAM NAME="Keyword" VALUE="Export">
+        <PARAM NAME="Keyword" VALUE="JSON">
+        <PARAM NAME="Keyword" VALUE="Excel">
+    </OBJECT>
+    <H3>Data Grid - Query Result</H3>
+    <h4 class="toc-list">
+    <br><a href="#selection">Range Selection / Copy / Export</a>
+    <br><a href="#sorting">Sorting</a>
+    <br><a href="#editing">Editing Data - Insert, Update and Delete</a>
+    <br><a href="#values">Values, NULLs and SQL Output</a>
+    <br><a href="#dad">Drag and Drop</a>
+    <br><a href="#insertvalue">Insert SQL Value with mouse click</a>
+    <br><a href="#popup">Popup Viewer</a>
+    <br><a href="#settings">Settings</a>
+    </h4>
+    <HR SIZE="3">
+    <P>
+     The Query (result) tab displays a data grid for executed SQL statements and scripts that return data.
+    </P>
+    <a name="tips"></a>
+    <H5>Tips for Working with Data</H5>
+    <ul>
+    <li>The data grid needs considerably less memory on large result sets: a value that repeats across many rows is now stored once instead of once per row.</li>
+    <li>The grid now stores each cell's value in its native Oracle data type; previously a cell held only the text displayed for it. That is what lets the SQL copy formats reproduce your data exactly.</li>
+    <li>This data grid can be pivoted, which consists of swapping the rows with the columns to provide a different perspective of the same data;</li>
+    <li>An individual data cell can be open with Popup viewer, which can display text / html or xml content;</li>
+    <li>The data grid allows range selection and supports copy or drag&drop selected cells in multiple formats</li>
+    <li>A result set can be sorted on any column from the context menu, without sending the query to the database again;</li>
+    <li>The grid can write back to the database &mdash; change a cell, insert a row or delete one &mdash;
+    whenever the query returns a ROWID column and reads a single table; see
+    <a href="#editing">Editing Data</a>;</li>
+    <li>A result set can be exported as JSON or as a native Excel workbook (.xlsx); see
+    <a href="#selection">Range Selection / Copy / Export</a>.</li>
+    </ul>
+    <a name="selection"></a>
+    <H4>Range Selection / Copy / Export</H4>
+    <img src="Images\grid_range_selection.jpg">
+    <P>You can select a range by using either the keyboard or the mouse. An entire row or column can also be selected with mouse.</P>
+    <P>The selected range can be copied either in a default format (one of text, html, sql ...) or chosen the current operation only.
+    <br>The last can be done with pressing &lt;Shift&gt; while invoking <b>Copy</b> from the context menu. 
+    <br>The same is applied to <b>Export</b> and <b>Open In Editor</b> commands.</P>
+    <P>Besides the text, HTML and SQL formats, <b>Export</b> can write <b>JSON</b> &mdash; one document
+    holding a <code>meta</code> object with the column names and types and then the rows as objects
+    keyed by column name, pretty-printed or compact &mdash; and a real <b>Excel workbook (.xlsx)</b>,
+    in which numbers stay numbers, a DATE or TIMESTAMP stays a date Excel can sort and filter, and a
+    NULL becomes an empty cell. Both are chosen in <b>Copy/Export Options</b>. The workbook is a file
+    format only: the clipboard and <b>Open in Editor</b> carry text, and fall back to CSV.</P>
+    <a name="sorting"></a>
+    <H4>Sorting</H4>
+    <P>Right-click the column you want to sort by and choose <b>Sort</b> &rarr; <b>Ascending</b> or
+    <b>Descending</b>. An arrow then appears in that column's header, showing both which column is
+    sorted and in which direction: the arrow points <i>down</i> for ascending and <i>up</i> for
+    descending, following the Windows Explorer convention. A check mark in the <b>Sort</b> submenu
+    confirms the direction currently in force.</P>
+    <P>Sorting reorders the rows already fetched &mdash; it does not send the query to the database
+    again &mdash; so it takes effect immediately even on a large result set.</P>
+    <P>Because every cell holds the value the database returned, the order follows the column's data
+    type rather than the text displayed for it:</P>
+    <ul>
+    <li>numbers sort numerically, so 2 comes before 10 rather than after it;</li>
+    <li>dates, timestamps and intervals sort chronologically, whatever display format you have configured;</li>
+    <li>a NULL is ordered as a NULL, not by the text your settings happen to show for it.</li>
+    </ul>
+    <P>Rows that compare equal keep their relative order, so sorting the same column repeatedly does not
+    reshuffle them.</P>
+    <P class="note">If the result set is still being fetched when you ask for a sort, SQL Tools completes
+    the fetch first &mdash; a <i>Fetching data, please wait&hellip;</i> dialog appears and closes by
+    itself &mdash; and only then sorts, so the order you see always covers every row and cannot be
+    contradicted by rows arriving afterwards.</P>
+    <P>A sort keeps the same screen positions selected rather than following the selected rows to their
+    new places, and clears any row heights you had adjusted manually.</P>
+    <a name="editing"></a>
+    <H4>Editing Data - Insert, Update and Delete</H4>
+    <P>The grid can write to the database directly: change a cell, add a row or delete one, without
+    composing the statement yourself. Every command below is on the grid's context menu under
+    <b>Edit</b>, and the key that reaches it is given with it.</P>
+
+    <h5>Making a result set editable</h5>
+    <P>A write has to name one row of one table, so the grid offers editing only where the query gives
+    it both. Three things must hold:</P>
+    <ul>
+    <li>the result set carries <b>exactly one</b> <code>ROWID</code> column &mdash; write
+        <code>SELECT e.*, ROWID FROM emp e</code> instead of <code>SELECT * FROM emp e</code>. Two
+        ROWID columns, as a join produces, are ambiguous and refuse just as a missing one does;</li>
+    <li>the query reads a <b>single table</b>: a join, a comma-separated list of tables or an inline
+        view leaves the grid read-only, there being no one table to write to;</li>
+    <li>no fetch is still running against the grid.</li>
+    </ul>
+    <P>This is all or nothing &mdash; a query the test refuses gives a read-only grid, never a partly
+    editable one, and the commands are simply greyed. Two further rules narrow what you can write:
+    the <code>ROWID</code> column itself is never editable, being the address rather than data, and a
+    column whose header is not one bare name &mdash; <code>UPPER(x)</code> or <code>t.COL</code>, say
+    &mdash; cannot be updated. Insert and delete also need the normal row-wise orientation; a rotated
+    (form) grid offers cell editing only.</P>
+
+    <h5>The commands</h5>
+    <ul>
+    <li><b>Change</b> (&lt;F2&gt;, or double-click the cell) opens an editor on the cell.
+        &lt;Enter&gt; writes the change, &lt;Esc&gt; abandons it. Moving off a cell you have changed
+        asks whether to save it first.</li>
+    <li><b>Insert Row</b> (&lt;Ctrl&gt;+&lt;F2&gt;) stages a blank row at the end of the grid and
+        scrolls to it. <i>Staged</i> means the row exists in the grid only &mdash; nothing has been
+        sent to the database yet. Fill its cells with &lt;F2&gt;.</li>
+    <li><b>Duplicate Row</b> (&lt;Ctrl&gt;+&lt;Shift&gt;+&lt;F2&gt;) stages a row seeded from the
+        current one, which saves retyping the values a new row shares with it.</li>
+    <li><b>Post Row</b> (&lt;Ctrl&gt;+&lt;Enter&gt;) sends the staged row as an <code>INSERT</code>.</li>
+    <li><b>Discard Row</b> (&lt;Esc&gt;) throws the staged row away without touching the database.</li>
+    <li><b>Delete Row</b> (&lt;Ctrl&gt;+&lt;Del&gt;) deletes the current row, after asking you to
+        confirm. The statement is addressed by that row's <code>ROWID</code>, so only the row the grid
+        is showing goes.</li>
+    </ul>
+    <P>A staged row holds the cursor on itself until it is posted or discarded, so what you have typed
+    into it cannot be lost, and there is never more than one at a time. Staging a row drops an active
+    sort, which would otherwise move the row out from under the index the post and the discard both
+    name it by.</P>
+    <P>Only the cells you fill take part in the <code>INSERT</code>: a staged cell left blank is left
+    out of the statement rather than bound as NULL, so the column's own <code>DEFAULT</code>
+    answers.</P>
+
+    <h5>What is written, and when</h5>
+    <P>The value you type is sent through the conversion matching the column's type, under the grid's
+    own display formats &mdash; <code>TO_DATE</code>, <code>TO_TIMESTAMP</code> or
+    <code>TO_NUMBER</code> with the picture the grid showed that value in. What you see on screen is
+    what lands in the column; the session's NLS settings get no second chance to reinterpret your
+    text.</P>
+    <P>Every write runs on a background thread and the grid carries on at once, so the cell keeps
+    showing the old value until the write comes back and the grid repaints it. One write per grid is
+    in flight at a time; a second gesture before the first returns is refused with a message rather
+    than queued, because its values would be shown and never sent.</P>
+    <P>A write that does not affect <b>exactly one</b> row is a failure, not a success: it is reported
+    and the grid is left as it was. A row deleted elsewhere since the fetch answers 0 rows, and that
+    is the case this catches.</P>
+    <P>A row another session holds is <b>refused rather than waited for</b>. Before an
+    <code>UPDATE</code> or a <code>DELETE</code> is sent, the grid claims the row it names with
+    <code>SELECT &hellip; FOR UPDATE NOWAIT</code>. A row someone else has open and uncommitted
+    answers <code>ORA-00054</code> at once, and a row someone else has deleted answers nothing at all;
+    either way the write is reported as not made and the grid is left exactly as it was &mdash; the
+    cell keeps its old value, the row stays listed. Waiting instead would hold the single background
+    connection, and every other grid's write queued behind it, for as long as that other session
+    stayed open. Try the change again once it commits or rolls back.</P>
+    <P>A posted row comes back with the <code>ROWID</code> the server handed it, so it becomes an
+    ordinary editable row immediately &mdash; you can change or delete it without re-running the
+    query.</P>
+    <P><b>The grid does not commit behind your back.</b> Whether a write commits follows the
+    connection's <i>Autocommit</i> setting; with that off the change stays part of your transaction,
+    visible to your session only, until you commit it. To take back a write you have not committed,
+    issue a <code>ROLLBACK</code> and re-run the query.</P>
+
+    <a name="values"></a>
+    <H4>Values, NULLs and SQL Output</H4>
+    <P>The grid stores the value the database returned for each cell and renders the text you see from
+    it. Column alignment follows the column's actual data type.</P>
+    <P>The SQL members of the <b>Copy As</b> submenu &mdash; <i>SQL Values</i>, <i>SQL Expression</i>,
+    <i>SQL IN list</i> and <i>SQL Inserts</i> &mdash; build their output from those stored values rather
+    than from the text on screen, so what you paste back into the editor reproduces the data you were
+    looking at:</P>
+    <ul>
+    <li>dates and timestamps are written as <code>TO_DATE</code>, <code>TO_TIMESTAMP</code> or
+        <code>TO_TIMESTAMP_TZ</code> with a fixed format, so the literal no longer depends on the NLS
+        settings of the session that produced it;</li>
+    <li>intervals keep their full precision instead of being rounded to what was displayed;</li>
+    <li>numbers are written plain and unquoted, with no group separators and no display rounding;</li>
+    <li>a real NULL is written as <code>NULL</code> and is no longer confused with an empty string
+        &mdash; the two are different values, and they now come out differently.</li>
+    </ul>
+    <a name="dad"></a>
+    <H4>Drag and Drop</H4>
+    <P>Drag and Drop is an essential feature of the data grid. You can drag the context selected cells or column headers and drop into the editor. 
+    <br>&lt;Shift&gt; and &lt;Ctrl&gt; let you choose a desired format:</P>
+    <img src="Images\grid_drag_and_drop_resul.jpg">
+    <P><i>It is worth to mention that dragging the left top corner of the grid in the editor inserts the complete column list.</i></P>
+    <a name="insertvalue"></a>
+    <H4>Insert SQL Value with mouse click</H4>
+    <P>Hold &lt;Ctrl&gt; and left-click a cell to insert its value into the SQL worksheet editor at the
+    caret, written as a SQL literal in exactly the form <b>Copy As</b> &rarr;
+    <a href="#values"><i>SQL Values</i></a> produces &mdash; dates as <code>TO_DATE</code> calls, numbers
+    plain and unquoted, and a real NULL as <code>NULL</code>. The same command is available as <b>Insert
+    SQL Value</b> on the cell's context menu.
+    Clicking inside a multi-cell selection inserts every cell in it rather than just the one under the
+    pointer: cells across a row are separated by commas, while a selection spanning several rows writes one
+    grid row per line and leaves the caret on the line below the inserted text. The whole insert is a single
+    undo step.</P>
+    <a name="popup"></a>
+    <H4>Popup Viewer</H4>
+    <P>if data grid cell content is not completely visible because of size you might want to see in the Popup Viewer.
+    <br>The Popup Viewer can be activated with &lt;Alt&gt; + Left mouse button click or Middle mouse button click.</P>
+    <img src="Images\grid_popup_viewer.jpg">
+    <a name="settings"></a>
+    <H4>Settings</H4>
+    <h5>Tips</h5>
+    <ul>
+        <li>
+            Size of LOBs, CLOBs and BLOBs is limited by &quot;Max column fetch size&quot; of &quot;Data
+            Grid 1&quot; settings
+        </li>
+        <li>
+            Display formats for dates, timestamps, numbers can be changed in &quot;Data Grid 2&quot;
+            settings
+        </li>
+        <li>
+            The warning about a result set being too large measures the memory actually in use rather
+            than an estimate, so it may appear at a lower row count than before even though the grid is
+            using less memory.
+        </li>
+        <li>You can drag and drop in the editor any data grid cell</li>
+        <li>Drag and drop of the top left cell gives the list of all data grid columns</li>
+    </ul>
+</BODY>
+</HTML>

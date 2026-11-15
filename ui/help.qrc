@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="docs/GUIA_HERRAMIENTAS.md">../docs/GUIA_HERRAMIENTAS.md</file>
+  </qresource>
+</RCC>

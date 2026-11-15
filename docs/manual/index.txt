@@ -1,0 +1,18 @@
+# Orden de los capítulos del manual (rutas relativas a docs/). Líneas que empiezan por # se ignoran.
+manual/00_inicio.md
+manual/01_instalacion.md
+manual/02_conexiones.md
+manual/03_pantalla.md
+manual/04_editor.md
+manual/05_ejecutar.md
+manual/06_resultados.md
+manual/07_buscar_archivos.md
+manual/08_format_sql.md
+manual/09_configuracion.md
+manual/10_problemas.md
+# Apéndices
+@apendice:Apéndice A. Guía de todas las herramientas
+GUIA_HERRAMIENTAS.md
+@apendice:Apéndice B. Atajos de teclado
+ATAJOS.md
+manual/11_mantenimiento.md

@@ -1,0 +1,337 @@
+<HTML>
+<HEAD>
+    <TITLE>Snippets Pane</TITLE>
+    <META content="Microsoft Visual Studio 7.0" name="GENERATOR">
+    <LINK href="_sqltools.css" type="text/css" rel="stylesheet">
+</HEAD>
+<BODY>
+    <OBJECT id="Object1" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" type="application/x-oleobject"
+            VIEWASTEXT>
+        <PARAM NAME="Keyword" VALUE="Snippets">
+        <PARAM NAME="Keyword" VALUE="Snippets Pane">
+        <PARAM NAME="Keyword" VALUE="Snippet browser">
+        <PARAM NAME="Keyword" VALUE="Templates">
+        <PARAM NAME="Keyword" VALUE="Cards">
+        <PARAM NAME="Keyword" VALUE="Badge">
+        <PARAM NAME="Keyword" VALUE="Keyword">
+        <PARAM NAME="Keyword" VALUE="Exclude from snippets">
+        <PARAM NAME="Keyword" VALUE="Show excluded">
+    </OBJECT>
+
+    <h3>Snippets Pane</h3>
+    <HR SIZE="3">
+
+    <p>
+        The <strong>Snippets</strong> pane is a browsing list of every
+        <a href="templates.htm">template</a> SQLTools knows about. Where expanding a template
+        requires you to already know its keyword, the pane answers the opposite question:
+        <em>what is there, and what does each one produce?</em> Each template is a card showing its
+        name, the keyword that triggers it, and the text it expands to. You can insert a card into
+        the editor with the mouse, or copy it.
+    </p>
+
+    <h4><a name="open"></a>Opening the Pane</h4>
+    <p>
+        Choose <strong>View &rarr; Snippets</strong>
+        (<span class="key">Alt</span>+<span class="key">5</span> by default). It is a dockable pane
+        like the Database Browser or Code Outline, so it can be floated, tabbed alongside another
+        pane, or docked to any edge. The same command hides it again.
+    </p>
+
+    <h4><a name="status"></a>The Status Line</h4>
+    <p>
+        A line at the bottom of the pane always tells you what you are looking at, so a filtered
+        list never passes for the whole collection:
+    </p>
+    <table class="kbd">
+        <tr><th>Status line</th><th>Means</th></tr>
+        <tr><td><code>12 PL/SQL snippets</code></td><td>filtered to the language you are editing</td></tr>
+        <tr><td><code>31 snippets in 8 languages</code></td><td>showing everything</td></tr>
+        <tr><td><code>&hellip;, 3 excluded</code></td><td>appended when excluded cards are visible</td></tr>
+        <tr>
+            <td><code>All snippets excluded - turn on "Show excluded"</code></td>
+            <td>the language has templates, but every one is excluded and the toggle is off</td>
+        </tr>
+        <tr>
+            <td><code>No templates defined - use Settings... to add them</code></td>
+            <td>there is genuinely nothing to show</td>
+        </tr>
+    </table>
+    <p>
+        The two empty messages are deliberately different, because they have different remedies.
+        They appear in the pane rather than in a message box, so you can read them while you go and
+        fix the situation.
+    </p>
+
+    <h4><a name="card"></a>Anatomy of a Card</h4>
+    <p>Each card has three parts:</p>
+    <ul>
+        <li>
+            <strong>The name</strong> &mdash; the template's descriptive label, on its own line,
+            drawn in the standard interface font rather than the editor's code font. A card name is
+            chrome, not content.
+        </li>
+        <li>
+            <strong>The badge</strong> &mdash; the trigger keyword, in a tinted pill on the same line
+            as the name, and in the code font. Two-tone; see <a href="#badge">below</a>.
+        </li>
+        <li>
+            <strong>The body</strong> &mdash; the text the template inserts, in the editor's code
+            font, shown only while the card is expanded.
+        </li>
+    </ul>
+    <p>
+        Click the arrow, or anywhere on the name line, to <strong>expand or collapse</strong> a card.
+        <strong>Expand all</strong> and <strong>Collapse all</strong> are on the context menu.
+        Whichever cards you had open, and how far you had scrolled, survive a refresh &mdash; the
+        pane does not throw you back to the top when the template collection changes underneath you.
+    </p>
+
+    <h4><a name="badge"></a>Reading the Badge</h4>
+    <p>
+        The badge is the part of the pane worth understanding, because it answers a question the
+        keyword on its own cannot: <strong>how much of this do I actually have to type?</strong>
+    </p>
+    <p>
+        A badge is drawn in two tones. The <strong>bold, dark leading part</strong> is the minimum
+        you must type. The <strong>pale remainder</strong> is optional &mdash; it completes the
+        keyword, but you never have to reach it. Matching is by prefix, so anything from the bold
+        part up to the whole keyword works.
+    </p>
+    <table class="kbd">
+        <tr><th>Card</th><th>Badge reads</th><th>Typing this is enough</th></tr>
+        <tr>
+            <td>Select</td>
+            <td><span class="badge-req">s</span><span class="badge-opt">elect</span></td>
+            <td><code>s</code></td>
+        </tr>
+        <tr>
+            <td>Create or Replace</td>
+            <td><span class="badge-req">cr</span><span class="badge-opt">eate</span></td>
+            <td><code>cr</code></td>
+        </tr>
+        <tr>
+            <td>Exception</td>
+            <td><span class="badge-req">exc</span><span class="badge-opt">eption</span></td>
+            <td><code>exc</code></td>
+        </tr>
+        <tr>
+            <td>If Else</td>
+            <td><span class="badge-req">ife</span></td>
+            <td><code>ife</code> &mdash; all of it</td>
+        </tr>
+    </table>
+    <p>
+        <strong>An all-bold badge means the whole keyword is required.</strong> That is not a
+        rendering fault. It appears when a template's minimum length equals the length of its
+        keyword, so there is no optional remainder left to draw pale. <em>If Else</em> is stored with
+        keyword <code>ife</code> and a minimum of 3; the all-bold badge is the pane correctly saying
+        "no shortcut here, type all three".
+    </p>
+    <div class="note">
+        <strong>Why <code>ife</code> needs all three.</strong> The PL/SQL set also contains
+        <code>if</code> with a minimum of 1. If <em>If Else</em> also had a minimum of 1, typing
+        <code>i</code> would be ambiguous between two templates. Its minimum of 3 keeps them apart.
+        For the full rule &mdash; including what happens when several templates match at once &mdash;
+        see <a href="templates.htm#expand">Expanding a Template</a>.
+    </div>
+
+    <h4><a name="filter"></a>Which Templates You See</h4>
+    <p>
+        By default the pane shows <strong>only the language of the file you are editing</strong>, so
+        a PL/SQL script lists the PL/SQL templates and nothing else. Two context-menu toggles widen
+        the view:
+    </p>
+    <ul>
+        <li>
+            <strong>Show all languages</strong> &mdash; lists every template in every category,
+            grouped under a language heading so you can still tell them apart. Useful when you are
+            looking for something and cannot remember which set it belongs to.
+        </li>
+        <li>
+            <strong>Show excluded</strong> &mdash; adds back the templates that have been
+            <a href="#dimmed">hidden from the pane</a>.
+        </li>
+    </ul>
+    <p>
+        The language filter gives way automatically when it would show you nothing. If the file you
+        are editing has no templates of its own, or every one of them is excluded while
+        <strong>Show excluded</strong> is off, the pane drops the filter rather than presenting an
+        empty list that looks like a broken feature. The status line tells you which case you are in.
+    </p>
+
+    <h4><a name="dimmed"></a>Excluded Cards Appear Dimmed</h4>
+    <p>
+        A template can be opted out of the pane without being disabled &mdash; it keeps expanding on
+        its keyword exactly as before, it just stops appearing here. The reason is that the two
+        audiences differ: a one-word expansion such as <code>number</code> &rarr;
+        <code>NUMBER</code> is useful at the caret and is noise in a browser, where it costs a whole
+        card to say almost nothing.
+    </p>
+    <p>
+        With <strong>Show excluded</strong> on, those templates reappear
+        <span class="card-dim">dimmed</span>, so they are visibly not part of the normal list but are
+        still reachable. Select one and use <strong>Exclude from snippets</strong> on the context menu
+        to bring it back. See <a href="templates.htm#exclude">Exclude From Snippets</a>.
+    </p>
+
+    <h4><a name="insert"></a>Inserting a Snippet</h4>
+    <p>
+        Select a card and press
+        <span class="key">Ctrl</span>+<span class="key">Enter</span>, or <strong>double-click</strong>
+        it, to insert the template's text at the caret of the active editor. The insertion goes
+        through exactly the same path as expanding the keyword by hand, so the caret lands in the
+        position the template author marked rather than at the end of the block.
+    </p>
+    <p>
+        Insertion needs an editor to insert into. With no document open nothing is inserted and the
+        status line reads <code>No editor to insert into</code>. The pane reports this in place
+        rather than in a dialog, because it is a state you can see and fix for yourself.
+    </p>
+    <div class="note">
+        <strong>Bare <span class="key">Enter</span> does not insert.</strong> It expands or collapses
+        the card, as does <span class="key">Space</span>. In a list of things you can open, Enter
+        opening one is the stronger reading, and inserting into your script from a bare Enter would
+        be a surprise the first time it happened. Use
+        <span class="key">Ctrl</span>+<span class="key">Enter</span> or a double-click to insert.
+    </div>
+
+    <h4><a name="copy"></a>Copying and Dragging</h4>
+    <p>
+        <strong>Copy</strong> (<span class="key">Ctrl</span>+<span class="key">C</span>) puts the
+        selected template's text on the clipboard, and you can also <strong>drag</strong> a card
+        straight into the editor. Either way the clipboard carries a private marker alongside the
+        text, which lets the editor <strong>re-indent the block to the column you dropped it at</strong>
+        instead of leaving it flush-left the way an ordinary paste would. Pasting the same text from
+        another application carries no marker and is inserted verbatim.
+    </p>
+
+    <h4><a name="manage"></a>Managing Templates From the Pane</h4>
+    <p>
+        The pane is not read-only. From the context menu you can
+        <strong>Add template&hellip;</strong>, <strong>Edit template&hellip;</strong> and
+        <strong>Delete template&hellip;</strong>, each opening the same
+        <a href="templates.htm#form">Template Form</a> the settings page uses. A new template goes
+        into the language of the card you have selected, or into the language of the file you are
+        editing when nothing is selected; if neither is available the status line says
+        <code>No language to add a snippet to</code>.
+        <strong>Delete template&hellip;</strong> asks for confirmation, because it removes the entry
+        for good.
+    </p>
+    <p>
+        <strong>Exclude from snippets</strong> toggles the opt-out described
+        <a href="#dimmed">above</a> for the selected card; it carries a check mark while the card is
+        excluded, so the mark tells you which way the click will go rather than only that a click
+        will do something.
+    </p>
+
+    <h4><a name="menu"></a>The Context Menu</h4>
+    <p>Right-click anywhere in the pane. Greyed items are unavailable in the current state.</p>
+    <table class="kbd">
+        <tr><th>Command</th><th>Shortcut</th><th>Available when</th></tr>
+        <tr>
+            <td><strong>Insert at caret</strong></td>
+            <td><span class="key">Ctrl</span>+<span class="key">Enter</span>, double-click</td>
+            <td>a card is selected</td>
+        </tr>
+        <tr>
+            <td><strong>Copy</strong></td>
+            <td><span class="key">Ctrl</span>+<span class="key">C</span></td>
+            <td>a card is selected</td>
+        </tr>
+        <tr><td><strong>Expand all</strong></td><td>&mdash;</td><td>there is at least one card</td></tr>
+        <tr><td><strong>Collapse all</strong></td><td>&mdash;</td><td>there is at least one card</td></tr>
+        <tr>
+            <td><strong>Add template&hellip;</strong></td>
+            <td>&mdash;</td>
+            <td>a card is selected, or a document is open</td>
+        </tr>
+        <tr><td><strong>Edit template&hellip;</strong></td><td>&mdash;</td><td>a card is selected</td></tr>
+        <tr><td><strong>Delete template&hellip;</strong></td><td>&mdash;</td><td>a card is selected</td></tr>
+        <tr>
+            <td><strong>Exclude from snippets</strong></td>
+            <td>&mdash;</td>
+            <td>a card is selected; check mark shows its current state</td>
+        </tr>
+        <tr><td><strong>Show excluded</strong></td><td>&mdash;</td><td>always; check mark when on</td></tr>
+        <tr><td><strong>Show all languages</strong></td><td>&mdash;</td><td>always; check mark when on</td></tr>
+        <tr><td><strong>Refresh</strong></td><td>&mdash;</td><td>always</td></tr>
+    </table>
+
+    <h4><a name="refresh"></a>Keeping the Pane Up to Date</h4>
+    <p>
+        The pane watches the template collection and rebuilds itself when it changes, so editing a
+        template through the settings page, or editing <code>templates.xml</code> by hand and
+        returning to SQLTools, is reflected without you having to ask. A rebuild keeps the cards you
+        had expanded and your scroll position.
+    </p>
+    <p>
+        <strong>Refresh</strong> forces a rebuild immediately. It is rarely needed, but it is there
+        for the case where you have changed the file behind SQLTools' back.
+    </p>
+    <p>
+        If you invoke a command on a card whose template has since been deleted or had its identity
+        changed, the pane does not act on the wrong entry. It refreshes and reports
+        <code>Snippet has changed - list refreshed</code> on the status line.
+    </p>
+    <p>
+        Changes made in the pane are written to the settings immediately, which is why
+        <strong>Exclude from snippets</strong> needs no OK button.
+    </p>
+
+    <h4><a name="keys"></a>Keyboard Reference</h4>
+    <table class="kbd">
+        <tr><th>Key</th><th>Action</th></tr>
+        <tr>
+            <td><span class="key">&darr;</span> <span class="key">&uarr;</span></td>
+            <td>move the selection to the next or previous card</td>
+        </tr>
+        <tr>
+            <td><span class="key">&rarr;</span></td>
+            <td>expand the selected card</td>
+        </tr>
+        <tr>
+            <td><span class="key">&larr;</span></td>
+            <td>collapse the selected card</td>
+        </tr>
+        <tr>
+            <td><span class="key">Enter</span> or <span class="key">Space</span></td>
+            <td>toggle the selected card open and shut &mdash; <em>not</em> an insert</td>
+        </tr>
+        <tr>
+            <td><span class="key">Ctrl</span>+<span class="key">Enter</span></td>
+            <td>insert the selected template at the caret</td>
+        </tr>
+        <tr>
+            <td><span class="key">Ctrl</span>+<span class="key">C</span></td>
+            <td>copy the selected template's text</td>
+        </tr>
+        <tr>
+            <td><span class="key">Home</span> / <span class="key">End</span></td>
+            <td>select the first or last card</td>
+        </tr>
+        <tr>
+            <td><span class="key">PgUp</span> / <span class="key">PgDn</span></td>
+            <td>scroll a page, leaving the selection on screen</td>
+        </tr>
+        <tr>
+            <td><span class="key">Alt</span>+<span class="key">5</span></td>
+            <td>show or hide the whole pane</td>
+        </tr>
+        <tr>
+            <td><span class="key">F1</span></td>
+            <td>this page</td>
+        </tr>
+    </table>
+
+    <HR SIZE="1">
+    <h4>See Also</h4>
+    <ul>
+        <li><a href="templates.htm">Templates</a> &mdash; expansion, minimum length, the Template Form</li>
+        <li><a href="autocomplete.htm">Autocomplete</a></li>
+        <li><a href="menu_view.htm">View menu</a></li>
+        <li><a href="main_window.htm">Main Window</a></li>
+    </ul>
+
+</BODY>
+</HTML>

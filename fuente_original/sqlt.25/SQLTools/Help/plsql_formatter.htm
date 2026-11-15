@@ -1,0 +1,631 @@
+<HTML>
+    <HEAD>
+        <TITLE>SQL Formatter &mdash; PL/SQL</TITLE>
+        <META content="Microsoft Visual Studio 7.0" name="GENERATOR">
+        <META http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+        <LINK href="_sqltools.css" type="text/css" rel="stylesheet">
+    </HEAD>
+    <BODY>
+        <OBJECT id="Object1" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" type="application/x-oleobject"
+                VIEWASTEXT>
+            <PARAM NAME="Keyword" VALUE="PL/SQL formatting">
+            <PARAM NAME="Keyword" VALUE="Format PL/SQL">
+            <PARAM NAME="Keyword" VALUE="anonymous block formatting">
+            <PARAM NAME="Keyword" VALUE="procedure formatting">
+            <PARAM NAME="Keyword" VALUE="function formatting">
+            <PARAM NAME="Keyword" VALUE="package formatting">
+            <PARAM NAME="Keyword" VALUE="trigger formatting">
+            <PARAM NAME="Keyword" VALUE="cursor formatting">
+            <PARAM NAME="Keyword" VALUE="IF formatting">
+            <PARAM NAME="Keyword" VALUE="LOOP formatting">
+        </OBJECT>
+
+        <H3>SQL Formatter &mdash; PL/SQL</H3>
+        <HR SIZE="3">
+
+        <P>
+            <A href="sql_formatter.htm">&larr; SQL Formatter overview</A>
+        </P>
+        <P>
+            <A href="sql_format_settings.htm#plsql">&larr; SQL Formatter settings</A>
+        </P>
+
+        <H4>Contents</H4>
+        <UL>
+            <LI><A href="#overview">Overview</A></LI>
+            <LI><A href="#skeleton">Blocks: DECLARE / BEGIN / EXCEPTION / END</A></LI>
+            <LI><A href="#declare">Declarations: variables, cursors, types</A></LI>
+            <LI><A href="#nested">Nested procedures and functions</A></LI>
+            <LI><A href="#if">IF / ELSIF / ELSE</A></LI>
+            <LI><A href="#loop">LOOP / WHILE / FOR</A></LI>
+            <LI><A href="#case">CASE statement vs. CASE expression</A></LI>
+            <LI><A href="#exception">Exception handling</A></LI>
+            <LI><A href="#create">CREATE PROCEDURE / FUNCTION / PACKAGE / TRIGGER / TYPE</A></LI>
+            <LI><A href="#params">Parameter lists</A></LI>
+            <LI><A href="#expr">Long expressions: concatenation, math, boolean conditions</A></LI>
+            <LI><A href="#condcompile">Conditional compilation ($IF / $THEN)</A></LI>
+            <LI><A href="#comments">Comments</A></LI>
+            <LI><A href="#fragment">Formatting a fragment (partial selection)</A></LI>
+        </UL>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="overview">Overview</A></H4>
+
+        <P>
+            In addition to plain SQL statements, the SQL Formatter understands
+            full PL/SQL syntax: anonymous blocks, stored procedures and
+            functions, packages, triggers, object types, and all of the usual
+            flow-control statements (<CODE>IF</CODE>, <CODE>LOOP</CODE>,
+            <CODE>CASE</CODE>, exception handlers). Any <CODE>SELECT</CODE>,
+            <CODE>INSERT</CODE>, <CODE>UPDATE</CODE>, <CODE>DELETE</CODE>, or
+            <CODE>MERGE</CODE> statement found inside PL/SQL code is formatted
+            using the exact same rules described in the
+            <A href="sql_formatter_select.htm">SELECT</A> and
+            <A href="sql_formatter_dml.htm">INSERT / UPDATE / DELETE / MERGE</A>
+            pages &mdash; PL/SQL formatting simply wraps around it.
+        </P>
+
+        <P>
+            Select the code you want to format and choose
+            <STRONG>Tools > Text/Format > Format SQL</STRONG>, use the Editor
+            context menu command <STRONG>Format SQL</STRONG>, or press
+            <STRONG>Ctrl+K, E</STRONG> (<STRONG>Shift+Ctrl+K, E</STRONG> to
+            adjust settings first). You can format an entire script, a single
+            procedure, or just a fragment of code &mdash; see
+            <A href="#fragment">Formatting a fragment</A> below.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="skeleton">Blocks: DECLARE / BEGIN / EXCEPTION / END</A></H4>
+
+        <P>
+            Every PL/SQL block &mdash; anonymous, nested, or the body of a
+            named procedure/function/package/trigger &mdash; follows the same
+            skeleton. <CODE>DECLARE</CODE>, <CODE>BEGIN</CODE>,
+            <CODE>EXCEPTION</CODE>, and <CODE>END</CODE> each start on their
+            own line at the block&rsquo;s own indentation level; everything
+            inside a section is indented one level deeper.
+        </P>
+
+        <P><STRONG>Example:</STRONG></P>
+        <PRE>declare
+  v_count number;
+begin
+  select count(*) into v_count from employees;
+
+  dbms_output.put_line(v_count);
+exception
+  when no_data_found then
+    v_count := 0;
+end;
+/</PRE>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="declare">Declarations: variables, cursors, types</A></H4>
+
+        <P>
+            Consecutive simple variable and constant declarations are
+            column-aligned as a group, so the types (and default values, if
+            any) line up neatly:
+        </P>
+
+        <PRE>declare
+  v_id                number;
+  v_name              varchar2(100)        := 'x';
+  c_max_rows constant number               := 100;
+  v_emp_id            emp.employee_id%type;
+  v_row               emp%rowtype;
+begin</PRE>
+
+        <P>
+            A blank line, a comment, or a declaration that is not a simple
+            scalar (a cursor, a <CODE>TYPE</CODE>, or a nested subprogram)
+            breaks the alignment group &mdash; alignment starts fresh
+            afterwards.
+        </P>
+
+        <P>
+            <CODE>CURSOR</CODE> declarations, <CODE>TYPE</CODE> declarations,
+            and nested subprograms are each followed by a blank line to set
+            them apart from the rest of the section:
+        </P>
+
+        <PRE>declare
+  cursor c_emp (p_dept_id number) is
+    select employee_id, last_name
+    from emp
+    where department_id = p_dept_id;
+
+  type t_emp_rec is record (
+    id   number,
+    name varchar2(50)
+  );
+
+  v_rec t_emp_rec;
+begin</PRE>
+
+        <P>
+            The query inside a <CODE>CURSOR &hellip; IS</CODE> declaration is
+            formatted using the ordinary <CODE>SELECT</CODE> rules, indented
+            one level under the <CODE>CURSOR</CODE> keyword &mdash; exactly as
+            if that same query had been formatted on its own.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="nested">Nested procedures and functions</A></H4>
+
+        <P>
+            A procedure or function declared locally inside a
+            <CODE>DECLARE</CODE> section is formatted the same way as a
+            top-level one (see <A href="#create">CREATE PROCEDURE / FUNCTION</A>
+            below): <CODE>IS</CODE>/<CODE>AS</CODE> always starts its own line,
+            and the body follows the usual block layout. A blank line is added
+            after its closing <CODE>END;</CODE>.
+        </P>
+
+        <PRE>declare
+  procedure deposit(account in out number, amount in number) is
+  begin
+    account := account + amount;
+  end;
+begin</PRE>
+
+        <P>
+            A <STRONG>forward declaration</STRONG> (just the signature, no
+            body) is emitted as a single normalized line ending in
+            <CODE>;</CODE>, also followed by a blank line.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="if">IF / ELSIF / ELSE</A></H4>
+
+        <P>
+            Each branch keyword (<CODE>IF</CODE>, <CODE>ELSIF</CODE>,
+            <CODE>ELSE</CODE>) starts on its own line at the statement&rsquo;s
+            indentation level; the statements inside each branch are indented
+            one level deeper. <CODE>END IF;</CODE> lines up with the original
+            <CODE>IF</CODE>.
+        </P>
+
+        <PRE>if v_salary > 10000 then
+  v_bonus := v_salary * 0.1;
+elsif v_salary > 5000 then
+  v_bonus := v_salary * 0.05;
+else
+  v_bonus := 0;
+end if;</PRE>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="loop">LOOP / WHILE / FOR</A></H4>
+
+        <P>
+            All loop forms &mdash; plain <CODE>LOOP</CODE>,
+            <CODE>WHILE &hellip; LOOP</CODE>, numeric <CODE>FOR &hellip; LOOP</CODE>,
+            and cursor <CODE>FOR &hellip; LOOP</CODE> &mdash; are formatted the
+            same way: the loop header stays on one line, the body is indented
+            one level, and <CODE>END LOOP;</CODE> lines up with the header.
+        </P>
+
+        <PRE>for i in 1..10 loop
+  dbms_output.put_line(i);
+end loop;
+
+for i in reverse 1..10 loop
+  dbms_output.put_line(i);
+end loop;</PRE>
+
+        <P>
+            A cursor <CODE>FOR</CODE> loop with an inline subquery formats the
+            subquery using the ordinary <CODE>SELECT</CODE> rules, indented
+            one level under the opening <CODE>(</CODE>:
+        </P>
+
+        <PRE>for r in (
+  select employee_id, last_name
+  from emp
+  where department_id = 10
+) loop
+  dbms_output.put_line(r.last_name);
+end loop;</PRE>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="case">CASE statement vs. CASE expression</A></H4>
+
+        <P>
+            PL/SQL has two different uses of <CODE>CASE</CODE>, and the
+            formatter tells them apart automatically:
+        </P>
+        <UL>
+            <LI>
+                A <STRONG>CASE statement</STRONG> (<CODE>
+                    CASE &hellip; WHEN &hellip;
+                    THEN &lt;statements&gt; &hellip; END CASE;
+                </CODE>) appears where a
+                statement is expected, and each <CODE>WHEN</CODE>/<CODE>THEN</CODE>
+                branch is formatted like an <CODE>IF</CODE> branch.
+            </LI>
+            <LI>
+                A <STRONG>CASE expression</STRONG> (used inside an assignment,
+                a <CODE>RETURN</CODE>, or another expression) is formatted the
+                same way it would be inside a SQL statement.
+            </LI>
+        </UL>
+
+        <PRE>case v_grade
+  when 'A' then
+    dbms_output.put_line('Excellent');
+  when 'B' then
+    dbms_output.put_line('Good  ');
+  else
+    dbms_output.put_line('Needs improvement');
+end case;</PRE>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="exception">Exception handling</A></H4>
+
+        <P>
+            Each <CODE>WHEN &lt;exception&gt; THEN</CODE> clause in an
+            <CODE>EXCEPTION</CODE> section is formatted like an
+            <CODE>IF</CODE> branch: the <CODE>WHEN</CODE> line stays on one
+            line, and the handler&rsquo;s statements are indented one level
+            deeper.
+        </P>
+
+        <PRE>exception
+  when no_data_found then
+    v_count := 0;
+  when others then
+    raise;
+end;</PRE>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="create">CREATE PROCEDURE / FUNCTION / PACKAGE / TRIGGER / TYPE</A></H4>
+
+        <P>
+            The header of a <CODE>CREATE [OR REPLACE] PROCEDURE</CODE>,
+            <CODE>FUNCTION</CODE>, <CODE>PACKAGE [BODY]</CODE>,
+            <CODE>TRIGGER</CODE>, or object <CODE>TYPE [BODY]</CODE> is kept on
+            one line when it is short enough; otherwise the parameter list is
+            wrapped one parameter per line (see
+            <A href="#params">Parameter lists</A>). <CODE>IS</CODE>/<CODE>AS</CODE>
+            stays on the same line as the header by default.
+        </P>
+
+        <PRE>create or replace procedure deposit(account in out number, amount in number) is
+begin
+  account := account + amount;
+end;
+/</PRE>
+
+        <P>
+            A package spec/body and a package&rsquo;s declaration list follow
+            the same rules as an ordinary <CODE>DECLARE</CODE> section (see
+            <A href="#declare">Declarations</A>), and each subprogram body in
+            a package body is separated from its neighbours by a blank line.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="params">Parameter lists</A></H4>
+
+        <P>
+            Parameter lists appear in two places, and both are governed by the
+            same two settings &mdash; <CODE>Param list max length</CODE> and
+            <CODE>Align param list to paren</CODE>: in the <EM>header</EM> of a
+            procedure, function, or type member, and in the argument list of a
+            <EM>call</EM>. They are laid out differently once they wrap. A
+            header always puts one parameter per line; a call packs as many
+            arguments onto a line as will fit, and drops to one argument per
+            line only when the limit is too narrow for even the first argument
+            to fit after the opening <CODE>(</CODE>.
+        </P>
+
+        <H5>In declarations (headers)</H5>
+
+        <P>
+            When a procedure/function header (or a call to one) is too long
+            to fit on one line, its parameter list is wrapped one parameter
+            per line, with the parameter names, modes (<CODE>IN</CODE> /
+            <CODE>OUT</CODE> / <CODE>IN OUT</CODE>), and types column-aligned:
+        </P>
+
+        <PRE>create or replace procedure proc_example (
+  p_id    in     number,
+  p_name  in     varchar2 default 'unknown',
+  p_out   out    number,
+  p_inout in out varchar2
+) is</PRE>
+
+        <P>
+            When <STRONG>Align parameter list with opening parenthesis</STRONG>
+            is enabled, the first parameter instead shares the line with the
+            opening <CODE>(</CODE>, and every following parameter (as well as
+            the closing <CODE>)</CODE>) lines up under that same column:
+        </P>
+
+        <PRE>create or replace procedure proc_example (p_id    in     number,
+                                          p_name  in     varchar2 default 'unknown',
+                                          p_out   out    number,
+                                          p_inout in out varchar2) is</PRE>
+
+        <H5>In calls</H5>
+
+        <P>
+            The argument list of a call is packed rather than exploded: the
+            formatter keeps adding arguments to the current line while they fit
+            within <CODE>Param list max length</CODE>, then continues on a new
+            line. A call that already fits inside the limit is left on one line.
+        </P>
+
+        <P>
+            The five examples below all start from the same statement &mdash;
+            only the two settings change:
+        </P>
+
+        <PRE>BEGIN
+update_employee_record( p_employee_id=>v_id,p_department_name=>v_dept,
+p_employment_status=>'ACTIVE' );
+END;
+/</PRE>
+
+        <P>
+            <STRONG>1. Max length = 0, align to paren off.</STRONG> Wrapping is
+            disabled, so the call stays on one line however wide it gets.
+            Spacing and indentation are still normalised:
+        </P>
+
+        <PRE>BEGIN
+  update_employee_record(p_employee_id =&gt; v_id, p_department_name =&gt; v_dept, p_employment_status =&gt; 'ACTIVE');
+END;
+/</PRE>
+
+        <P>
+            <STRONG>2. Max length = 80, align to paren off.</STRONG> The call no
+            longer fits, so it is packed: what fits stays on the first line, the
+            rest continues one indent step in, and the closing <CODE>)</CODE>
+            gets a line of its own:
+        </P>
+
+        <PRE>BEGIN
+  update_employee_record(p_employee_id =&gt; v_id, p_department_name =&gt; v_dept,
+    p_employment_status =&gt; 'ACTIVE'
+  );
+END;
+/</PRE>
+
+        <P>
+            <STRONG>3. Max length = 80, align to paren on.</STRONG> The same
+            packing, but continuation lines align under the column after
+            <CODE>(</CODE> instead of one indent step, and the closing
+            <CODE>)</CODE> is appended to the last argument:
+        </P>
+
+        <PRE>BEGIN
+  update_employee_record(p_employee_id =&gt; v_id, p_department_name =&gt; v_dept,
+                         p_employment_status =&gt; 'ACTIVE');
+END;
+/</PRE>
+
+        <P>
+            <STRONG>4. Max length = 40, align to paren off.</STRONG> The limit is
+            now too narrow for even the first argument to fit after
+            <CODE>(</CODE>, so the list opens with a break and every argument
+            gets its own line:
+        </P>
+
+        <PRE>BEGIN
+  update_employee_record(
+    p_employee_id =&gt; v_id,
+    p_department_name =&gt; v_dept,
+    p_employment_status =&gt; 'ACTIVE'
+  );
+END;
+/</PRE>
+
+        <P>
+            <STRONG>5. Max length = 40, align to paren on.</STRONG> One argument
+            per line as in example 4, but the alignment style keeps the first
+            argument on the <CODE>(</CODE> line and lines the rest up beneath
+            it:
+        </P>
+
+        <PRE>BEGIN
+  update_employee_record(p_employee_id =&gt; v_id,
+                         p_department_name =&gt; v_dept,
+                         p_employment_status =&gt; 'ACTIVE');
+END;
+/</PRE>
+
+        <P>
+            The break after <CODE>(</CODE> in example 4 applies only to a real
+            list &mdash; two or more arguments. A call with a single argument
+            has nothing to lay out one per line, so its argument stays on the
+            <CODE>(</CODE> line and is wrapped instead by the rules for
+            <A href="#expr">long expressions</A>:
+        </P>
+
+        <PRE>BEGIN
+  DBMS_OUTPUT.PUT_LINE('Employee ' || v_name || ' moved to department ' || v_dept || ' effective '
+      || v_dt
+  );
+END;
+/</PRE>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="expr">Long expressions: concatenation, math, boolean conditions</A></H4>
+
+        <P>
+            A long string built with <CODE>||</CODE> is packed as many pieces
+            per line as fit within the configured width, wrapping onto a new
+            line only when the next piece would not fit:
+        </P>
+
+        <PRE>begin
+  v_msg := 'Employee ' || v_first_name || ' ' || v_last_name 
+    || ' earns ' || v_salary || ' per month';
+end;</PRE>
+
+        <P>
+            Long arithmetic (<CODE>+</CODE> / <CODE>-</CODE>) and boolean
+            (<CODE>AND</CODE> / <CODE>OR</CODE>) expressions wrap the same
+            way &mdash; each continuation line lines up under the start of the
+            expression.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="condcompile">Conditional compilation ($IF / $THEN)</A></H4>
+
+        <P>
+            <CODE>$IF &hellip; $THEN &hellip; $ELSIF &hellip; $ELSE &hellip; $END</CODE>
+            conditional-compilation blocks are formatted the same way as an
+            ordinary <CODE>IF</CODE> statement.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="comments">Comments</A></H4>
+
+        <P>
+            An end-of-line <CODE>--</CODE> comment that annotates a line of
+            PL/SQL code stays on that line, one space after the code:
+        </P>
+
+        <PRE>DECLARE
+  v_amt NUMBER(10, 2); -- currency, 2dp
+BEGIN
+  v_amt := 0; -- initialize
+  IF v_amt > 0 THEN -- positive only
+    NULL;
+  END IF; -- guard
+END;
+/</PRE>
+
+        <P>
+            This is controlled by <STRONG>Keep end-of-line comments on their
+            code line</STRONG>. When that option is off, every end-of-line
+            comment is emitted on a line of its own below the code it
+            annotates, which was the behaviour of earlier releases.
+        </P>
+
+        <P>
+            <STRONG>End-of-line comment max column</STRONG> limits the rule:
+            when keeping a comment on its code line would push that line past
+            the configured column, the comment is demoted onto a line of its
+            own instead. A value of <CODE>0</CODE> disables the width check.
+            Both options are described in the
+            <A href="sql_format_settings.htm#plsql">formatting settings
+            reference</A>.
+        </P>
+
+        <P>
+            <STRONG>Alignment.</STRONG> End-of-line comments are aligned to a
+            common column inside <EM>SQL statements</EM> only &mdash; including
+            SQL statements nested in a PL/SQL block &mdash; as described in the
+            <A href="sql_formatter.htm#comments">SQL Formatter overview</A>:
+        </P>
+
+        <PRE>BEGIN
+  SELECT
+    employee_id,                         -- pk
+    first_name || last_name AS full_name -- derived
+  INTO
+    v_id, v_nm
+  FROM hr.employees
+  WHERE rownum = 1;
+END;
+/</PRE>
+
+        <P>
+            Comments attached to PL/SQL constructs &mdash; declarations,
+            assignments, <CODE>END IF;</CODE> and the like &mdash; are separated
+            from the code by a single space and are not aligned.
+        </P>
+
+        <P>
+            Multi-line <CODE>/* &hellip; */</CODE> comments are re-indented to
+            the current level while preserving their internal layout.
+        </P>
+
+        <HR SIZE="1">
+
+        <!-- ============================================================ -->
+        <H4><A name="fragment">Formatting a fragment (partial selection)</A></H4>
+
+        <P>
+            You do not need to select a whole procedure or block to format it
+            &mdash; you can select just part of a script, for example a single
+            <CODE>IF &hellip; END IF;</CODE> statement in the middle of a
+            larger block, and format only that selection.
+        </P>
+
+        <P>
+            A few things to keep in mind when formatting a fragment:
+        </P>
+        <UL>
+            <LI>
+                If your selection starts or ends in the middle of a
+                statement, only the tokens you actually selected are
+                rewritten &mdash; nothing outside the selection is touched, and
+                no text is invented to &ldquo;complete&rdquo; a statement that
+                isn&rsquo;t fully selected.
+            </LI>
+            <LI>
+                If you select a clause without its enclosing construct (for
+                example just <CODE>WHEN cond THEN &hellip;</CODE> copied out of
+                an <CODE>EXCEPTION</CODE> section), it is formatted at the
+                indentation level it already had &mdash; no extra indent is
+                invented for the missing enclosing block.
+            </LI>
+            <LI>
+                Declarations such as <CODE>CURSOR &hellip; IS</CODE>,
+                <CODE>TYPE</CODE>, <CODE>SUBTYPE</CODE>, and
+                <CODE>PRAGMA</CODE> are recognized only when the surrounding
+                <CODE>DECLARE</CODE> block is part of the selection. A
+                partial declaration selected on its own is left as-is rather
+                than reformatted incorrectly.
+            </LI>
+            <LI>
+                A nested <CODE>PROCEDURE</CODE>/<CODE>FUNCTION</CODE>
+                declaration, on the other hand, is recognized and formatted
+                correctly even when selected on its own, since it carries
+                enough of its own structure (header, optional body) to be
+                understood without the enclosing block.
+            </LI>
+            <LI>
+                Any part of the selection the formatter cannot confidently
+                interpret is left exactly as written, rather than risking an
+                incorrect rewrite.
+            </LI>
+        </UL>
+
+        <HR SIZE="1">
+        <P>
+            <A href="sql_formatter.htm">&larr; SQL Formatter overview</A>
+        </P>
+
+    </BODY>
+</HTML>

@@ -1,0 +1,186 @@
+<HTML>
+    <HEAD>
+        <TITLE>Find and Replace</TITLE>
+        <meta content="text/html; charset=Windows-1252" http-equiv="Content-Type">
+        <LINK href="_sqltools.css" type="text/css" rel="stylesheet">
+    </HEAD>
+    <BODY>
+        <OBJECT id="Object1" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" type="application/x-oleobject"
+            VIEWASTEXT>
+            <PARAM NAME="Keyword" VALUE="Find">
+            <PARAM NAME="Keyword" VALUE="Replace">
+            <PARAM NAME="Keyword" VALUE="Search">
+            <PARAM NAME="Keyword" VALUE="live preview">
+            <PARAM NAME="Keyword" VALUE="search as you type">
+            <PARAM NAME="Keyword" VALUE="Mark All">
+            <PARAM NAME="Keyword" VALUE="bookmarks">
+        </OBJECT>
+        <H3>Find and Replace in the Editor</H3>
+        <HR SIZE="3">
+        <P>The editor's <STRONG>Find</STRONG> (<STRONG>Ctrl+F</STRONG>) and
+            <STRONG>Replace</STRONG> (<STRONG>Ctrl+H</STRONG>) dialog is <EM>modeless</EM>:
+            it does not block the editor. You can keep it open while you scroll, select and
+            edit text, and it keeps showing live search results as you type. For searching
+            across files on disk see <A href="file_find.htm">Find in Files</A>.</P>
+
+        <H4><A name="dialog">Working with the dialog</A></H4>
+        <UL>
+            <LI>Each open document has its own Find/Replace dialog. Invoking
+                <STRONG>Ctrl+F</STRONG> while the dialog is already open brings it to the
+                front and re-targets it at the editor you are working in.</LI>
+            <LI><STRONG>Ctrl+F</STRONG> and <STRONG>Ctrl+H</STRONG> switch an open dialog
+                between Find and Replace mode in place &mdash; the search text, options and
+                scope are kept.</LI>
+            <LI>If you select text in the editor before pressing <STRONG>Ctrl+F</STRONG>,
+                the selection is copied into the <STRONG>Find what</STRONG> box and the
+                <EM>Selection</EM> scope is armed automatically.</LI>
+            <LI>The dialog remembers its position, the search/replace history (use the
+                drop-down lists or the arrow keys over the field) and all options between
+                sessions.</LI>
+            <LI><STRONG>Esc</STRONG> or the caption <STRONG>X</STRONG> closes the dialog
+                and returns the focus to the editor. By default the dialog stays open when
+                it merely loses focus; this can be changed in the
+                <A href="#settings">settings</A>.</LI>
+        </UL>
+
+        <H4><A name="live">Search as you type (live preview)</A></H4>
+        <UL>
+            <LI>Shortly after you stop typing (about 300 ms) the dialog searches
+                automatically, jumps to the first match and shows the
+                <STRONG>n of m</STRONG> counter &mdash; which match you are on and how many
+                matches there are in total. The counter is also mirrored in the dialog
+                caption.</LI>
+            <LI>All matches are highlighted in the editor with a translucent overlay; the
+                current match uses a distinct tint. Editing the text refreshes the
+                highlights.</LI>
+            <LI><STRONG>Count</STRONG> reports the number of matches without moving the
+                cursor.</LI>
+            <LI>Prefer classic behaviour? Live preview can be turned off in the
+                <A href="#settings">settings</A> &mdash; searches then run only on
+                <STRONG>Enter</STRONG>, <STRONG>F3</STRONG>, <STRONG>Shift+F3</STRONG> and
+                the dialog buttons.</LI>
+        </UL>
+
+        <H4><A name="scope">Search scope</A></H4>
+        <P>
+            <table>
+                <tr>
+                    <th class="col-narrow">Scope</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><strong>Selection</strong></td>
+                    <td>Search only inside the selected region. Armed automatically when the
+                        dialog is opened over a selection; the dialog caption shows the active
+                        scope. Searches wrap at the edges of the region.</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><strong>The current file</strong></td>
+                    <td>The whole active document (default).</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><strong>All Windows</strong></td>
+                    <td>All open editor windows. The dialog follows the editor you switch to,
+                        so you can keep pressing <strong>Find Next</strong> across documents.</td>
+                </tr>
+            </table>
+        </P>
+
+        <H4><A name="options">Search options</A></H4>
+        <UL>
+            <LI><strong>Match whole word only</strong> &mdash; skip matches embedded in
+                longer words.</LI>
+            <LI><strong>Match case</strong> &mdash; case-sensitive search.</LI>
+            <LI><strong>Regular expression</strong> &mdash; pattern search; the button
+                next to the <strong>Find what</strong> box opens an expression builder
+                with the supported syntax. See
+                <A href="regular_expressions.htm">Regular Expressions</A>.</LI>
+            <LI><strong>Backslash escapes</strong> &mdash; interpret <CODE>\t</CODE>,
+                <CODE>\n</CODE> and friends in the search/replace text (see
+                <A href="regular_expressions.htm#backslash">Regular Expressions</A>).</LI>
+        </UL>
+
+        <H4><A name="replace">Replace</A></H4>
+        <UL>
+            <LI><strong>Replace</strong> replaces the current match (finding one first if
+                needed) and moves to the next.</LI>
+            <LI><strong>Replace All</strong> replaces every match in the active scope.
+                With the <em>All Windows</em> scope you get a single confirmation before
+                the batch runs over all open documents.</LI>
+            <LI>Replace honours the scope: with <em>Selection</em> only the selected
+                region is modified.</LI>
+        </UL>
+
+        <H4><A name="markall">Mark All (bookmarks)</A></H4>
+        <P><strong>Mark All</strong> sets a bookmark on every line containing a match.
+            Combine it with the bookmark commands on the <A href="menu_search.htm">Search
+            menu</A> to walk the hits (<strong>Next/Previous Bookmark</strong>) or to copy
+            / delete all bookmarked lines at once.</P>
+        <H4><A name="keys">Keyboard</A></H4>
+        <P>
+            <table>
+                <tr>
+                    <th class="col-narrow">Key</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><strong>Ctrl+F</strong> / <strong>Ctrl+H</strong></td>
+                    <td>Open / re-target the dialog in Find or Replace mode</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><strong>Enter</strong></td>
+                    <td>In the dialog: repeat the search (same as Find Next)</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><strong>F3</strong> / <strong>Shift+F3</strong></td>
+                    <td>Find next / previous &mdash; works both in the dialog and in the
+                        editor while the dialog is open</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><strong>Ctrl+F3</strong> /
+                        <strong>Ctrl+Shift+F3</strong></td>
+                    <td>Find the next / previous occurrence of the currently selected text,
+                        without opening the dialog</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><strong>Esc</strong></td>
+                    <td>Close the dialog and return focus to the editor</td>
+                </tr>
+            </table>
+        </P>
+
+        <H4><A name="settings">Settings</A></H4>
+        <P>Two options in <strong>Tools &gt; Settings &gt; Editor &gt; General</strong>,
+            group <strong>Find/Replace</strong>, restore the classic dialog behaviour.
+            Both are off by default and take effect immediately &mdash; no restart
+            needed:</P>
+        <P>
+            <table>
+                <tr>
+                    <th class="col-narrow">Option</th>
+                    <th>When checked</th>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><strong>Close Find/Replace dialog when it loses
+                        focus</strong></td>
+                    <td>The dialog closes as soon as the focus moves away from both the
+                        dialog and the editor being searched (for example when you click
+                        another document or another program) &mdash; the classic behaviour.
+                        While this is off, the dialog stays open until <strong>Esc</strong>,
+                        the caption <strong>X</strong> or the <strong>Close</strong> button
+                        dismisses it.</td>
+                </tr>
+                <tr>
+                    <td class="col-narrow"><strong>Disable search-as-you-type live
+                        preview</strong></td>
+                    <td>No automatic searching while you type: searches run only on
+                        <strong>Enter</strong>, <strong>F3</strong>,
+                        <strong>Shift+F3</strong> and the dialog buttons. While this is off,
+                        typing in the dialog searches after a short pause and shows the match
+                        count and the first hit live.</td>
+                </tr>
+            </table>
+        </P>
+    </BODY>
+</HTML>
+

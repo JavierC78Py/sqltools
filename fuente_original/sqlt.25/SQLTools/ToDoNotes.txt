@@ -1,0 +1,81 @@
+These notes are for myself - do not take that for immediate execution w/o my confirmation
+Please do not update ToDoNotes.txt except with status [done] or something like that
+Completed detail is pruned out of this file: it lives in md/ and in
+CodeFoldingRemaining.md, and the full text stays in git history.
+
+	Data grid:
+        [done] grid should not allow any operations if connection is closed (how to check that?)
+        [done] grid should not let leave the inserted row or at least should warn how to complete the operation
+        [done] assert: close the edit before sort / run querty
+        [done] disable "Arrow at text boundary" 
+        [done] grid should accept modified values in grid display format
+        [done] suppress "the cell has been changed." when moving beterrn columns of the same row in insert mode.
+        [done] INS16 sort is blocked but menu is not gray
+        [done] row rename to Edit?, and add Change\F2
+        [done] duplicate row on Ctrl+Shift+F2 ?
+        [done] do not drop the sort on delete - dropping it on insert and update is right, on delete it is overkill
+        [done] different color for nulls
+
+        shorten some messages
+        update history.txt and help
+        filters
+
+		grid sorting dialog with ability to select multiple columns
+		grid search / filtering
+
+		unify GridView / GridWnd (1376 vs 1375 lines, only 241 differ, already drifted - B9)
+		truncation flag: text cut by StringLimit still exports as though complete, and
+			"color for truncated cells" needs the same flag
+		no new writers to the static PaintGridManager::m_Dcc (reentrancy debt)
+
+	CodeFolding:
+	 	4) handle "-" for sql*plus commands,
+		5) better painting for ...
+  		7) show tooltips for Outlining
+
+  	pl/sql formatter:
+		new line before USING in OPEN cursor FOR '...' USING ...;
+    	add format setting dialog when shift pressed
+    	add linked brick formatting for MERGE INSERT
+    	add extra indentation for every row of select but first
+
+   	editor:
+		redesign the template page
+		"Select String Literal" select whole multi-line string/comments with shortcut or mouse click
+		diff on reload with highliting / bookmark adjusting / undo
+
+  	update help:
+    	cursor navigation over sql,
+    	writing sql
+
+  	SQL Worksheet:
+    	Alt+Click calls describe
+
+  	Other
+    	add preview in tooltip for templates
+    	use dba views if they are available
+
+    	show the full record from the underlying data dictionary view — for example, for a table,
+        	everything from ALL_TABLES — in the Properties panel (Alt+2).
+        	The idea is to populate it on double-clicking a table name,
+        	similar to how "Explain Plan" works now.
+
+    	Bug DDL reverse engineering and type in object viewer for
+        	CREATE TABLE companies (id NUMBER, company_name VARCHAR2(50), offices address_table)
+            	NESTED TABLE offices STORE AS offices_tab;
+        	see NESTED_TABLE_TEST workspace
+
+    	Show sub partitions in Object Viewer
+
+		add diff
+		add edge viewer for html values
+		add nuclear "cancel" - abandom the current connection
+		add config for session stats
+		add grid search and sort
+
+		CXPTheme::SetWindowTheme(pTree->GetSafeHwnd(), L"Explorer", NULL);
+
+L"\x2BC8"   // ⯈
+L"\x2B9F"   // ⮟
+L"\x22C1"   // ⋁
+L"\x22EE"   // ⋮

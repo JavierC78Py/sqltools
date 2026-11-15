@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Internal Settings</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+        <LINK href="_sqltools.css" type="text/css" rel="stylesheet"></head>
+    <body>
+        <OBJECT classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" type="application/x-oleobject"
+            VIEWASTEXT>
+            <PARAM NAME="Keyword" VALUE="Internal Settings">
+            <PARAM NAME="Keyword" VALUE="sqltools.xml">
+            <PARAM NAME="Keyword" VALUE="SQLPlus">
+        </OBJECT>
+        <h3>Internal Settings (Main Window &amp; SQL*Plus)</h3>
+        <HR SIZE="3">
+        <P>SQLTools exposes several internal settings that control how the main window 
+            behaves. These settings were previously hardcoded, but you can now modify them 
+            manually. </P>
+
+        <h4>Editing Internal Settings</h4>
+        <ol>
+            <li>Open the <strong>Tools</strong> menu and click <strong>Open Setting Folder</strong>. </li>
+            <li>Drag and drop <strong>sqltools.xml</strong> from the Settings Folder into SQLTools. </li>
+            <li>Locate and edit the following parameters:
+                <ul>
+                    <li><strong>MainWindowFixedPane</strong></li>
+                    <li><strong>MainWindowFixedPaneDefaultHeight</strong></li>
+                </ul>
+            </li>
+        </ol>
+
+        <h4>MainWindowFixedPane</h4>
+        <P>Controls which pane remains fixed when the main window is resized. Valid values: </P>
+        <ul>
+            <li><strong>0</strong> &ndash; top pane is fixed</li>
+            <li><strong>1</strong> &ndash; bottom pane is fixed (default)</li>
+        </ul>
+
+        <h4>MainWindowFixedPaneDefaultHeight</h4>
+        <P>Specifies the default height (in pixels) of the fixed pane. Default value: 
+            <strong>150</strong>. </P>
+
+        <P>These settings are available starting from <strong>version 1.5 build 16</strong>. </P>
+
+        <HR SIZE="3">
+
+        <h3>SQL*Plus Launch Parameters</h3>
+        <P>If you experience issues launching SQL*Plus, you can adjust the following 
+            parameters in <strong>sqltools.xml</strong>: </P>
+        <ul>
+            <li><strong>SQLPlusExecutable</strong> &ndash; path to the SQL*Plus executable<br>
+                Example: <code>SQLPlusExecutable="C:\Oracle\bin\sqlplus.exe"</code>
+            </li>
+            <li><strong>SQLPlusCommandLine</strong> &ndash; command line template used to start SQL*Plus<br>
+                Example:<br>
+                <code>SQLPlusCommandLine="$(USER)/$(PASSWORD)@$(CONNECT_STRING) $(SYS_PRIVS) @$(FILENAME)"</code>
+            </li>
+        </ul>
+
+        <P>These parameters are supported starting from <strong>version 1.5 build 21</strong>. </P>
+        </body>
+</html>
