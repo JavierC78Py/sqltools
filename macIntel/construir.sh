@@ -6,6 +6,6 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 QT="${QT_ROOT:-$HOME/Qt/6.8.3/macos}"
 cmake -S "$ROOT" -B "$ROOT/build-release" -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$QT" \
-      -DCMAKE_OSX_ARCHITECTURES=x86_64 -DORACLE_IC_DIR="$ROOT/instantclient_19_16"
+      -DCMAKE_OSX_ARCHITECTURES=x86_64 -DCMAKE_OSX_SYSROOT="$(xcrun --show-sdk-path)" -DORACLE_IC_DIR="$ROOT/instantclient_19_16"
 cmake --build "$ROOT/build-release"
 IC_DIR="$ROOT/instantclient_19_16" BUILD_DIR="$ROOT/build-release" OUT_DIR="$ROOT/macIntel/paquete" bash "$ROOT/tools/package_app.sh"

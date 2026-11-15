@@ -10,7 +10,7 @@ Versión nativa **arm64**: no necesita Rosetta.
 4. Configure su conexión como indica el `LEEME.md` incluido en el zip.
 
 ## Para quien la compila
-1. Descargue de Oracle el **Instant Client ARM64** (*Basic* y *SDK*, versión 19.x o superior) desde
+1. Descargue de Oracle el **Instant Client ARM64** (*Basic* y *SDK*, misma versión; probado con 23.26. El *Basic* viene en `.dmg` y el *SDK* en `.pkg`) desde
    <https://www.oracle.com/database/technologies/instant-client/macos-arm64-downloads.html> (hay que aceptar la licencia OTN).
 2. Descomprima ambos en la raíz del proyecto, de modo que quede **`instantclient_arm64/`** con `libclntsh.dylib` y `sdk/include`.
 3. Ejecute:
@@ -19,4 +19,4 @@ bash macM/construir.sh          # genera macM/paquete/SQLTools-Mac-arm64.zip
 ```
 Qt 6.8 del instalador oficial ya es universal (Intel + Apple Silicon), así que se puede compilar desde un Mac Intel o desde uno M.
 
-> Estado: la compilación arm64 aún no se ha probado en un Mac M; el primer probador debe avisar de cualquier fallo.
+> Estado: compilada con Oracle Instant Client 23.26 ARM64 (ejecutable y librerías arm64, firma ad-hoc válida). Aún no se ha ejecutado en un Mac M real: el primer probador debe avisar de cualquier fallo.

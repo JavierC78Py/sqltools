@@ -15,8 +15,11 @@ echo "== 1/6 Copiando la app ($ARCH)"; rm -rf "$OUT"; mkdir -p "$OUT"; ditto "$S
 FW="$APP/Contents/Frameworks"; mkdir -p "$FW"
 
 echo "== 2/6 Oracle Instant Client dentro del .app"
-for f in libclntsh.dylib.19.1 libclntshcore.dylib.19.1 libnnz19.dylib libociei.dylib; do cp "$IC/$f" "$FW/$f"; done
-ln -sf libclntsh.dylib.19.1 "$FW/libclntsh.dylib"
+CL="$(basename "$(readlink "$IC/libclntsh.dylib" || echo libclntsh.dylib)")"      # p. ej. libclntsh.dylib.19.1 o .23.1
+VER="${CL#libclntsh.dylib.}"
+NNZ=libnnz.dylib; [ -f "$IC/libnnz${VER%%.*}.dylib" ] && NNZ="libnnz${VER%%.*}.dylib"   # 19: libnnz19.dylib; 23: libnnz.dylib
+for f in "$CL" "libclntshcore.dylib.$VER" "$NNZ" libociei.dylib; do cp "$IC/$f" "$FW/$f"; done
+ln -sf "$CL" "$FW/libclntsh.dylib"; chmod -R u+w "$FW"
 
 echo "== 3/6 Qt (frameworks y plugins) con macdeployqt"
 "$QT/bin/macdeployqt" "$APP" -libpath="$FW" 2>&1 | grep -E 'ERROR|WARNING' || true

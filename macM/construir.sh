@@ -9,6 +9,6 @@ QT="${QT_ROOT:-$HOME/Qt/6.8.3/macos}"
 IC="${IC_DIR:-$ROOT/instantclient_arm64}"
 [ -f "$IC/libclntsh.dylib" ] || { echo "Falta el Instant Client ARM64 en $IC (vea macM/LEEME.md)"; exit 1; }
 cmake -S "$ROOT" -B "$ROOT/build-arm64" -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$QT" \
-      -DCMAKE_OSX_ARCHITECTURES=arm64 -DORACLE_IC_DIR="$IC"
+      -DCMAKE_OSX_ARCHITECTURES=arm64 -DCMAKE_OSX_SYSROOT="$(xcrun --show-sdk-path)" -DORACLE_IC_DIR="$IC"
 cmake --build "$ROOT/build-arm64"
 IC_DIR="$IC" BUILD_DIR="$ROOT/build-arm64" OUT_DIR="$ROOT/macM/paquete" bash "$ROOT/tools/package_app.sh"
