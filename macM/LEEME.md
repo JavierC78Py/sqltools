@@ -1,12 +1,21 @@
 # SQLTools Mac — versión para Mac con chip **Apple Silicon** (M1/M2/M3/M4)
 
-> ## ⬇️ [Descargar SQLTools-Mac-arm64.zip](https://github.com/JavierC78Py/sqltools/releases/download/v0.1.0-prueba/SQLTools-Mac-arm64.zip)
-> Es el programa listo para usar (Apple Silicon (M1–M4)). Descárguelo, descomprímalo y siga los pasos de abajo.
+> ## ⬇️ Descargar: dos partes en esta carpeta
+> GitHub no admite archivos de más de 100 MB, por eso el zip está dividido:
+> [`SQLTools-Mac-arm64.zip.parte-aa`](SQLTools-Mac-arm64.zip.parte-aa) y [`SQLTools-Mac-arm64.zip.parte-ab`](SQLTools-Mac-arm64.zip.parte-ab) (botón *Download raw file* en cada una).
+>
+> Cuando tenga ambas en *Descargas*, **únalas** con este comando en Terminal:
+>
+> ```bash
+> cd ~/Downloads && cat SQLTools-Mac-arm64.zip.parte-* > SQLTools-Mac-arm64.zip && shasum -a 256 SQLTools-Mac-arm64.zip
+> ```
+>
+> El número que muestra debe ser igual al de [`SHA256.txt`](SHA256.txt). Después descomprima el zip y siga los pasos de abajo.
 
 Versión nativa **arm64**: no necesita Rosetta.
 
 ## Para quien va a probarla
-1. Descargue **[`SQLTools-Mac-arm64.zip`](https://github.com/JavierC78Py/sqltools/releases/download/v0.1.0-prueba/SQLTools-Mac-arm64.zip)** y descomprímalo.
+1. Descargue el zip ya unido (ver el recuadro de arriba) y descomprímalo.
 2. Arrastre **SQLTools Mac.app** a *Aplicaciones*.
 3. La primera vez: clic derecho sobre la app → **Abrir** → **Abrir**. Si macOS dice que está dañada:
    `xattr -dr com.apple.quarantine "/Applications/SQLTools Mac.app"`
