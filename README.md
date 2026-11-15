@@ -14,8 +14,8 @@ Port nativo para macOS de **[SQLTools](https://sqltools.net)**, el cliente Oracl
 ## Descargas para probar
 | Su Mac | Carpeta | Descarga |
 |---|---|---|
-| Chip **Intel** | [`macIntel/`](macIntel/LEEME.md) | `SQLTools-Mac-x86_64.zip`[⬇️ SQLTools-Mac-x86_64.zip](https://github.com/JavierC78Py/sqltools/releases/download/v0.1.0-prueba/SQLTools-Mac-x86_64.zip) |
-| Chip **Apple (M1–M4)** | [`macM/`](macM/LEEME.md) | `SQLTools-Mac-arm64.zip`[⬇️ SQLTools-Mac-x86_64.zip](https://github.com/JavierC78Py/sqltools/releases/download/v0.1.0-prueba/SQLTools-Mac-x86_64.zip) |
+| Chip **Intel** | [`macIntel/`](macIntel/LEEME.md) | [⬇️ SQLTools-Mac-x86_64.zip](https://github.com/JavierC78Py/sqltools/releases/download/v0.1.0-prueba/SQLTools-Mac-x86_64.zip) |
+| Chip **Apple (M1–M4)** | [`macM/`](macM/LEEME.md) | [⬇️ SQLTools-Mac-arm64.zip](https://github.com/JavierC78Py/sqltools/releases/download/v0.1.0-prueba/SQLTools-Mac-arm64.zip) |
 
 ## Documentación (en español)
 - Manual de usuario: [`docs/manual/`](docs/manual/) (PDF y HTML en `docs/manual/salida/`)

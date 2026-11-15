@@ -6,7 +6,7 @@
 Versión nativa **arm64**: no necesita Rosetta.
 
 ## Para quien va a probarla
-1. Descargue **`SQLTools-Mac-arm64.zip`** de la sección **Releases** del repositorio y descomprímalo.
+1. Descargue **[`SQLTools-Mac-arm64.zip`](https://github.com/JavierC78Py/sqltools/releases/download/v0.1.0-prueba/SQLTools-Mac-arm64.zip)** y descomprímalo.
 2. Arrastre **SQLTools Mac.app** a *Aplicaciones*.
 3. La primera vez: clic derecho sobre la app → **Abrir** → **Abrir**. Si macOS dice que está dañada:
    `xattr -dr com.apple.quarantine "/Applications/SQLTools Mac.app"`

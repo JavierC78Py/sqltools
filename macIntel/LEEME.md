@@ -8,7 +8,7 @@ Para Macs con procesador **Intel** (x86_64). En un Mac con chip Apple (M1…M4) 
 ¿Cómo saber qué chip tiene su Mac?  → menú  > **Acerca de este Mac** > *Chip* o *Procesador*.
 
 ## Para quien va a probarla
-1. Descargue **`SQLTools-Mac-x86_64.zip`** de la sección **Releases** del repositorio y descomprímalo.
+1. Descargue **[`SQLTools-Mac-x86_64.zip`](https://github.com/JavierC78Py/sqltools/releases/download/v0.1.0-prueba/SQLTools-Mac-x86_64.zip)** y descomprímalo.
 2. Arrastre **SQLTools Mac.app** a *Aplicaciones*.
 3. La primera vez: clic derecho sobre la app → **Abrir** → **Abrir** (no está firmada por Apple). Si macOS dice que está dañada:
    `xattr -dr com.apple.quarantine "/Applications/SQLTools Mac.app"`
