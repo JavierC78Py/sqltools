@@ -1,5 +1,8 @@
 # SQLTools Mac — versión para Mac con chip **Apple Silicon** (M1/M2/M3/M4)
 
+> ## ⬇️ [Descargar SQLTools-Mac-arm64.zip](https://github.com/JavierC78Py/sqltools/releases/download/v0.1.0-prueba/SQLTools-Mac-arm64.zip)
+> Es el programa listo para usar (Apple Silicon (M1–M4)). Descárguelo, descomprímalo y siga los pasos de abajo.
+
 Versión nativa **arm64**: no necesita Rosetta.
 
 ## Para quien va a probarla

@@ -1,5 +1,8 @@
 # SQLTools Mac — versión para Mac con chip **Intel**
 
+> ## ⬇️ [Descargar SQLTools-Mac-x86_64.zip](https://github.com/JavierC78Py/sqltools/releases/download/v0.1.0-prueba/SQLTools-Mac-x86_64.zip)
+> Es el programa listo para usar (Intel). Descárguelo, descomprímalo y siga los pasos de abajo.
+
 Para Macs con procesador **Intel** (x86_64). En un Mac con chip Apple (M1…M4) funciona con Rosetta, pero use mejor la carpeta [`macM`](../macM).
 
 ¿Cómo saber qué chip tiene su Mac?  → menú  > **Acerca de este Mac** > *Chip* o *Procesador*.
